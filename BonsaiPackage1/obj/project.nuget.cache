@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "D/4s/wJO5L9KUWXebclSXOPbcIjPTWVrthC22P7X6xabC57hcx0efVdeOTB2QZPkfmXELOHtQwVhdFFuaVxClA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\labadmin\\source\\repos\\BonsaiPackage1\\BonsaiPackage1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\labadmin\\.nuget\\packages\\bonsai.core\\2.6.3\\bonsai.core.2.6.3.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\google.protobuf\\3.19.1\\google.protobuf.3.19.1.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\rx-core\\2.2.5\\rx-core.2.2.5.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\rx-interfaces\\2.2.5\\rx-interfaces.2.2.5.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\rx-linq\\2.2.5\\rx-linq.2.2.5.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\zaber.motion\\2.10.1\\zaber.motion.2.10.1.nupkg.sha512"
+  ],
+  "logs": []
+}

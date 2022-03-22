@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj",
+        "projectName": "Extensions",
+        "projectPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj",
+        "packagesPath": "C:\\Users\\labadmin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\NuGet.Config",
+          "C:\\Users\\labadmin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/bonsai-community/api/v3/index.json": {},
+          "https://www.myget.org/F/bonsai/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Bonsai.Core": {
+              "target": "Package",
+              "version": "[2.6.3, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            },
+            "Zaber.Motion": {
+              "target": "Package",
+              "version": "[2.10.1, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

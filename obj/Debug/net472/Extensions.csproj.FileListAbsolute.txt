@@ -1,0 +1,5 @@
+C:\Users\labadmin\Desktop\GitHub\labwide_Rig001\obj\Debug\net472\Extensions.csproj.AssemblyReference.cache
+C:\Users\labadmin\Desktop\GitHub\labwide_Rig001\obj\Debug\net472\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\labadmin\Desktop\GitHub\labwide_Rig001\obj\Debug\net472\Extensions.AssemblyInfoInputs.cache
+C:\Users\labadmin\Desktop\GitHub\labwide_Rig001\obj\Debug\net472\Extensions.AssemblyInfo.cs
+C:\Users\labadmin\Desktop\GitHub\labwide_Rig001\obj\Debug\net472\Extensions.csproj.CoreCompileInputs.cache
