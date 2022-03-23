@@ -9,19 +9,19 @@ using Zaber.Motion.Ascii;
 
 // transform inputs and outputs by type
 using TSource = Zaber.Motion.Ascii.Device;
+using TResult = Zaber.Motion.Ascii.Device;
 
 namespace BonsaiPackage1
 {
     [Description("attempting to use a zaber device as input and then move that device's lockstep")]
-    [WorkflowElementCategory(ElementCategory.Sink)]
-    public class Sink1 : Sink<Device>
+    [WorkflowElementCategory(ElementCategory.Transform)]
+    public class Transform1 : Transform<TSource, TResult>
     {
 
-        private void Process(TSource source)
+        public void Process(TSource source)
         {
             var lockstep = source.GetLockstep(1);
-            Console.WriteLine("in sink!");
-            lockstep.MoveRelative(-1000);
+            Console.WriteLine($"in transform! {lockstep.GetOffsets()}");
 
         }
         public override IObservable<Device> Process(IObservable<Device> source)

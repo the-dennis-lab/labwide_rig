@@ -438,13 +438,14 @@
   "project": {
     "version": "0.1.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\labadmin\\source\\repos\\BonsaiPackage1\\BonsaiPackage1.csproj",
+      "projectUniqueName": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
       "projectName": "BonsaiPackage1",
-      "projectPath": "C:\\Users\\labadmin\\source\\repos\\BonsaiPackage1\\BonsaiPackage1.csproj",
+      "projectPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
       "packagesPath": "C:\\Users\\labadmin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\labadmin\\source\\repos\\BonsaiPackage1\\obj\\",
+      "outputPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\NuGet.Config",
         "C:\\Users\\labadmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -453,7 +454,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/bonsai-community/api/v3/index.json": {},
+        "https://www.myget.org/F/bonsai/api/v3/index.json": {}
       },
       "frameworks": {
         "net472": {

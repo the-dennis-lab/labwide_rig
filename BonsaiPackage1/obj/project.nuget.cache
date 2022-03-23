@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D/4s/wJO5L9KUWXebclSXOPbcIjPTWVrthC22P7X6xabC57hcx0efVdeOTB2QZPkfmXELOHtQwVhdFFuaVxClA==",
+  "dgSpecHash": "BNMOlo8aTkoZ/GGbqetUdZyNbWTY1k5v6RFIb+LbbcLdAA9uUSgQqVU6g2yJoiY1MHCcISJC+isP1zvGp17Png==",
   "success": true,
-  "projectFilePath": "C:\\Users\\labadmin\\source\\repos\\BonsaiPackage1\\BonsaiPackage1.csproj",
+  "projectFilePath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\labadmin\\.nuget\\packages\\bonsai.core\\2.6.3\\bonsai.core.2.6.3.nupkg.sha512",
     "C:\\Users\\labadmin\\.nuget\\packages\\google.protobuf\\3.19.1\\google.protobuf.3.19.1.nupkg.sha512",
