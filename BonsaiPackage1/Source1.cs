@@ -133,7 +133,8 @@ namespace BonsaiPackage1
 
         public override IObservable<Device> Generate()
         {
-            return zaber;
+            Console.WriteLine("in source1");
+            return (IObservable<Device>)Observable.Return(zaber);
         }
     }
 }

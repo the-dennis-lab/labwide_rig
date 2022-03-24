@@ -23,7 +23,7 @@ namespace BonsaiPackage1
                 {
                     Library.EnableDeviceDbStore(); // From Zaber, necessary
                     var device = connection.DetectDevices()[0];
-                    return Observable.Return(device);
+                    return Observable.Return(device).Concat(Observable.Never(device));
                 }
             );
         }
