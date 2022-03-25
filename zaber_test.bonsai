@@ -30,12 +30,6 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberLocation" />
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Item1</Selector>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Item2</Selector>
-      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="3" Label="Source1" />
@@ -43,8 +37,6 @@
       <Edge From="1" To="3" Label="Source3" />
       <Edge From="2" To="3" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
-      <Edge From="5" To="7" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
