@@ -21,13 +21,13 @@ namespace BonsaiPackage1
             return source.Select(
                 s =>
                     {
-                        var lockstep = s.GetLockstep(1);
-                        double lockstepoffset = lockstep.GetOffsets()[0];
-                        Console.WriteLine($"lockstepoffset is {lockstepoffset}");
+                        var lockstepaxis = s.GetAxis(1);
+                        Console.WriteLine($"axis of lockstep is {s.GetAxis(1).GetPosition()}");
+                        var locksteplocation = lockstepaxis.GetPosition();
                         var axis = s.GetAxis(3);
                         double axisposition = axis.GetPosition();
                         Console.WriteLine($"axisposition is {axisposition}");
-                        return Tuple.Create(lockstepoffset, axisposition);
+                        return Tuple.Create(locksteplocation, axisposition);
                     });
 
         } 
