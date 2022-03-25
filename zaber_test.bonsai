@@ -27,9 +27,13 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberMove" />
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ZaberLocation" />
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="3" Label="Source1" />
+      <Edge From="0" To="5" Label="Source1" />
       <Edge From="1" To="3" Label="Source3" />
       <Edge From="2" To="3" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
