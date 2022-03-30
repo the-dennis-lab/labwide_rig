@@ -43,6 +43,7 @@ namespace RTSPConnect
                         {
                             Console.WriteLine("frame is");
                             Console.WriteLine(frame);
+                            /*
                             if (!(frame is RawJpegFrame))
                                 Console.WriteLine(frame);
                             return;
@@ -51,6 +52,7 @@ namespace RTSPConnect
                                 Console.WriteLine("math");
                             return;
                             lastTimeSnapshotSaved = ticksNow;
+                            */
                             string snapshotName = frame.Timestamp.ToString("O").Replace(":", "_") + ".jpg";
                             string path = SavePath + snapshotName;
                             Console.WriteLine(path);
