@@ -17,7 +17,7 @@ namespace BonsaiPackage1
 {
     // Attribute metadata. Description attributes specify strings that will be included as
     // documentation in the editor
-    [Description("Connect to zaber API via COM and return device")]
+    [Description("connect to an RTSP")]
     [WorkflowElementCategory(ElementCategory.Source)]
           
     public class Source1 : Source<Device>
