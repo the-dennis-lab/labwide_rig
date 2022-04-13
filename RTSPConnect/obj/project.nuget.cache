@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a5khZIVDjZsmMks/H4/yKFK0O4rR44Rm/rlMHKIy32njBTJ5PoO9nJ960b6EZC92lXayjbwS2GegD6Z1euordg==",
+  "dgSpecHash": "EIHIQmKD49NUMrM+b27jshz4sC20GYxpxweDx10MmYnQW9NO20NoHNmujqw8M8wlq0lp5InbTmBniXb3F1dWuA==",
   "success": true,
   "projectFilePath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\RTSPConnect\\RTSPConnect.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\labadmin\\.nuget\\packages\\bonsai.dsp\\2.6.1\\bonsai.dsp.2.6.1.nupkg.sha512",
     "C:\\Users\\labadmin\\.nuget\\packages\\bonsai.system\\2.6.0\\bonsai.system.2.6.0.nupkg.sha512",
     "C:\\Users\\labadmin\\.nuget\\packages\\bonsai.vision\\2.6.1\\bonsai.vision.2.6.1.nupkg.sha512",
+    "C:\\Users\\labadmin\\.nuget\\packages\\commandlineparser\\2.4.3\\commandlineparser.2.4.3.nupkg.sha512",
     "C:\\Users\\labadmin\\.nuget\\packages\\opencv.net\\3.3.1\\opencv.net.3.3.1.nupkg.sha512",
     "C:\\Users\\labadmin\\.nuget\\packages\\rtspclientsharp\\1.3.3\\rtspclientsharp.1.3.3.nupkg.sha512",
     "C:\\Users\\labadmin\\.nuget\\packages\\rx-core\\2.2.5\\rx-core.2.2.5.nupkg.sha512",

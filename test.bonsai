@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.3"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:p1="clr-namespace:Bonsai.Pylon;assembly=Bonsai.Pylon"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:PylonCapture">
+          <p1:SerialNumber>24121204</p1:SerialNumber>
+          <p1:ParameterFile>C:\Users\labadmin\Desktop\20220406_roomlights.pfs</p1:ParameterFile>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Image</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:OpticalFlow">
+          <cv:PyramidScale>0.5</cv:PyramidScale>
+          <cv:Levels>3</cv:Levels>
+          <cv:WindowSize>12</cv:WindowSize>
+          <cv:Iterations>3</cv:Iterations>
+          <cv:PolyN>5</cv:PolyN>
+          <cv:PolySigma>1.1</cv:PolySigma>
+          <cv:Flags>None</cv:Flags>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:ConvertToImage" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:HsvThreshold">
+          <cv:Lower>
+            <cv:Val0>10</cv:Val0>
+            <cv:Val1>0</cv:Val1>
+            <cv:Val2>0</cv:Val2>
+            <cv:Val3>0</cv:Val3>
+          </cv:Lower>
+          <cv:Upper>
+            <cv:Val0>76</cv:Val0>
+            <cv:Val1>255</cv:Val1>
+            <cv:Val2>255</cv:Val2>
+            <cv:Val3>0</cv:Val3>
+          </cv:Upper>
+        </Combinator>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
