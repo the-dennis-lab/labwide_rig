@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj": {}
+    "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj": {
+    "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj": {
       "version": "0.1.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
+        "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
         "projectName": "BonsaiPackage1",
-        "projectPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
-        "packagesPath": "C:\\Users\\labadmin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\BonsaiPackage1\\obj\\",
+        "projectPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\BonsaiPackage1\\BonsaiPackage1.csproj",
+        "packagesPath": "C:\\Users\\emily\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\BonsaiPackage1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_rig\\NuGet.Config",
-          "C:\\Users\\labadmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\NuGet.Config",
+          "C:\\Users\\emily\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,7 +52,7 @@
               "version": "[2.10.1, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
         }
       }
     }

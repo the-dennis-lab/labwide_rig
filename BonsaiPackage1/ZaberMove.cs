@@ -8,17 +8,17 @@ namespace BonsaiPackage1
 {
     [Description("Take a Zaber device as input and then move that device's lockstep")]
     [WorkflowElementCategory(ElementCategory.Sink)]
-    public class ZaberMove : Sink<Tuple<Device, int, int>>
+    public class ZaberMove : Sink<Tuple<Device, double, double>>
     {
-        public override IObservable<Tuple<Device, int, int>> Process(IObservable<Tuple<Device, int, int>> source)
+        public override IObservable<Tuple<Device, double, double>> Process(IObservable<Tuple<Device, double, double>> source)
         {
             return source.Do(
                 s =>
                 {
                     var lockstep = s.Item1.GetLockstep(1);
-                    lockstep.MoveRelative(s.Item2);
+                    lockstep.MoveVelocity(s.Item2);
                     var axis = s.Item1.GetAxis(3);
-                    axis.MoveRelative(s.Item3);
+                    axis.MoveVelocity(s.Item3);
                 }
             );
         }

@@ -3,7 +3,6 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:Bonsai.Pylon;assembly=Bonsai.Pylon"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -16,30 +15,6 @@
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Image</Selector>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="cv:ConvertColor">
-            <cv:Conversion>Bgr2Hsv</cv:Conversion>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="cv:VideoWriter">
-            <cv:FileName>raw_video_</cv:FileName>
-            <cv:Suffix>Timestamp</cv:Suffix>
-            <cv:Buffered>true</cv:Buffered>
-            <cv:Overwrite>false</cv:Overwrite>
-            <cv:FourCC>JPEG</cv:FourCC>
-            <cv:FrameRate>30</cv:FrameRate>
-            <cv:FrameSize>
-              <cv:Width>0</cv:Width>
-              <cv:Height>0</cv:Height>
-            </cv:FrameSize>
-            <cv:ResizeInterpolation>NearestNeighbor</cv:ResizeInterpolation>
-          </Combinator>
-        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:RangeThreshold">
@@ -108,90 +83,19 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
       </Expression>
-      <Expression xsi:type="scr:PythonTransform">
-        <scr:Script>import sys 
-
-@returns(str)
-def process(value):
-    return str(value)</scr:Script>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="scr:PythonTransform">
-          <scr:Script>from zaber_motion import Library
-from zaber_motion.ascii import Connection
-from zaber_motion import Units
-
-@returns(bool)
-def process(value):
-
-  Library.enable_device_db_store()
-
-  with Connection.open_serial_port("COM3") as connection:
-      device_list=connection.detect_devices()
-      print(device_list)
-      device=device_list[0]
-      lockstep=device.get_lockstep(1)
-      axis_3=device.get_axis(3)
-      #axis_3.move_relative(-1000)
-      lockstep.move_relative(-2000)
-  return True</scr:Script>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="cv:MorphologicalOperator">
-            <cv:Size>
-              <cv:Width>3</cv:Width>
-              <cv:Height>3</cv:Height>
-            </cv:Size>
-            <cv:Anchor>
-              <cv:X>0</cv:X>
-              <cv:Y>0</cv:Y>
-            </cv:Anchor>
-            <cv:Shape>Ellipse</cv:Shape>
-            <cv:Iterations>12</cv:Iterations>
-            <cv:Operation>Open</cv:Operation>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="scr:PythonSource">
-          <scr:Script>@returns(bool)
-from zaber_motion import Library
-from zaber_motion.ascii import Connection
-from zaber_motion import Units
-
-  Library.enable_device_db_store()
-
-  with Connection.open_serial_port("COM3") as connection:
-      device_list=connection.detect_devices()
-      print(device_list)
-      device=device_list[0]
-      lockstep=device.get_lockstep(1)
-      axis_3=device.get_axis(3)
-      #axis_3.move_relative(-1000)
-      lockstep.move_relative(-2000)
-</scr:Script>
-        </Builder>
-      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="1" To="4" Label="Source1" />
-      <Edge From="1" To="15" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="9" To="11" Label="Source1" />
-      <Edge From="10" To="12" Label="Source1" />
-      <Edge From="11" To="12" Label="Source2" />
-      <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="8" To="10" Label="Source1" />
+      <Edge From="9" To="10" Label="Source2" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
