@@ -2,8 +2,8 @@
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:BonsaiPackage1;assembly=BonsaiPackage1"
-                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:p2="clr-namespace:Bonsai.Pylon;assembly=Bonsai.Pylon"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:dlc="clr-namespace:Bonsai.DeepLabCut;assembly=Bonsai.DeepLabCut"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
@@ -11,20 +11,10 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="p1:ZaberDevice">
-            <p1:PortName>COM3</p1:PortName>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="cv:CreatePoint2f">
-            <cv:X>1024</cv:X>
-            <cv:Y>1024</cv:Y>
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ZaberDevice">
+          <p1:PortName>COM3</p1:PortName>
+        </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p2:PylonCapture">
@@ -52,7 +42,7 @@
               <Combinator xsi:type="dlc:DetectPose">
                 <dlc:ModelFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\exported-models\DLC_rig_001_resnet_50_iteration-0_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\dlc-models\iteration-0\rig_001Apr27-trainset90shuffle1\train\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.4</dlc:MinConfidence>
+                <dlc:MinConfidence>0.7</dlc:MinConfidence>
                 <dlc:ScaleFactor xsi:nil="true" />
               </Combinator>
             </Expression>
@@ -62,10 +52,13 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.X</Selector>
+              <Selector>Position</Selector>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.Y</Selector>
+              <Selector>X</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Y</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:GetBodyPart">
@@ -73,10 +66,13 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.X</Selector>
+              <Selector>Position</Selector>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.Y</Selector>
+              <Selector>X</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Y</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:GetBodyPart">
@@ -84,10 +80,13 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.X</Selector>
+              <Selector>Position</Selector>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.Y</Selector>
+              <Selector>X</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Y</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:GetBodyPart">
@@ -95,10 +94,13 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.X</Selector>
+              <Selector>Position</Selector>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.Y</Selector>
+              <Selector>X</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Y</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:GetBodyPart">
@@ -106,16 +108,57 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.X</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
+              <Selector>Position</Selector>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Position.Y</Selector>
+              <Selector>X</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="scr:PythonTransform">
+              <scr:Name>takemedianX</scr:Name>
+              <scr:Script>import math
+from System import Tuple
+clr.AddReference("OpenCV.Net")
+from OpenCV.Net import Point2f
+from System import Tuple
+
+@returns(int)
+def process(value):
+  goodvals=[val for val in value if not math.isnan(val)]
+  goodsum=math.fsum(goodvals)
+  if len(goodvals) &gt; 0:
+    goodlen=len(goodvals)
+    centerval= int(goodsum/goodlen)
+  else:
+    centerval=int(0)
+  return centerval</scr:Script>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Y</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="scr:PythonTransform">
+              <scr:Name>takemedianY</scr:Name>
+              <scr:Script>import math
+from System import Tuple
+clr.AddReference("OpenCV.Net")
+from OpenCV.Net import Point2f
+from System import Tuple
+
+@returns(int)
+def process(value):
+  goodvals=[val for val in value if not math.isnan(val)]
+  goodsum=math.fsum(goodvals)
+  if len(goodvals) &gt; 0:
+    goodlen=len(goodvals)
+  else:
+    goodlen=1
+  centerval= int(goodsum/goodlen)
+  return centerval</scr:Script>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />
@@ -125,98 +168,120 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
-            <Edge From="1" To="5" Label="Source1" />
-            <Edge From="1" To="8" Label="Source1" />
-            <Edge From="1" To="11" Label="Source1" />
+            <Edge From="1" To="6" Label="Source1" />
+            <Edge From="1" To="10" Label="Source1" />
             <Edge From="1" To="14" Label="Source1" />
+            <Edge From="1" To="18" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="2" To="4" Label="Source1" />
-            <Edge From="3" To="16" Label="Source1" />
-            <Edge From="4" To="18" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="5" To="7" Label="Source1" />
-            <Edge From="6" To="16" Label="Source2" />
-            <Edge From="7" To="18" Label="Source2" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="8" To="10" Label="Source1" />
-            <Edge From="9" To="16" Label="Source3" />
-            <Edge From="10" To="18" Label="Source3" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="3" To="5" Label="Source1" />
+            <Edge From="4" To="21" Label="Source1" />
+            <Edge From="5" To="24" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="21" Label="Source2" />
+            <Edge From="9" To="24" Label="Source2" />
+            <Edge From="10" To="11" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
             <Edge From="11" To="13" Label="Source1" />
-            <Edge From="12" To="16" Label="Source4" />
-            <Edge From="13" To="18" Label="Source4" />
+            <Edge From="12" To="21" Label="Source3" />
+            <Edge From="13" To="24" Label="Source3" />
             <Edge From="14" To="15" Label="Source1" />
-            <Edge From="14" To="17" Label="Source1" />
-            <Edge From="15" To="16" Label="Source5" />
-            <Edge From="16" To="19" Label="Source1" />
-            <Edge From="17" To="18" Label="Source5" />
-            <Edge From="18" To="19" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="15" To="17" Label="Source1" />
+            <Edge From="16" To="21" Label="Source4" />
+            <Edge From="17" To="24" Label="Source4" />
+            <Edge From="18" To="19" Label="Source1" />
             <Edge From="19" To="20" Label="Source1" />
+            <Edge From="19" To="23" Label="Source1" />
+            <Edge From="20" To="21" Label="Source5" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="26" Label="Source1" />
+            <Edge From="23" To="24" Label="Source5" />
+            <Edge From="24" To="25" Label="Source1" />
+            <Edge From="25" To="26" Label="Source2" />
+            <Edge From="26" To="27" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Subtract" />
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item1</Selector>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="MemberSelector">
-          <Selector>X</Selector>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1024</Value>
+        </Combinator>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="scr:ExpressionTransform">
-          <scr:Expression>it *-100.0</scr:Expression>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Concat" />
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="MemberSelector">
-          <Selector>Y</Selector>
-        </Builder>
+      <Expression xsi:type="Subtract">
+        <Operand xsi:type="IntProperty">
+          <Value>0</Value>
+        </Operand>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="scr:ExpressionTransform">
-          <scr:Expression>it *100.0</scr:Expression>
-        </Builder>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>it *-100.0</scr:Expression>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item2</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1024</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Concat" />
+      </Expression>
+      <Expression xsi:type="Subtract">
+        <Operand xsi:type="IntProperty">
+          <Value>0</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>it *100.0</scr:Expression>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:SampleInterval">
+          <rx:Interval>PT1S</rx:Interval>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ZaberMove" />
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:CombineLatest" />
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:SampleInterval">
-            <rx:Interval>PT1S</rx:Interval>
+          <Combinator xsi:type="io:StartProcess">
+            <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+            <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\thermal_videos\\%YYYY_thermal.mp4,no-overwrite}"</io:Arguments>
           </Combinator>
         </Builder>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="p1:ZaberMove" />
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:StartProcess">
-          <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-          <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\thermal_videos\\%YYYY_thermal.mp4,no-overwrite}"</io:Arguments>
-        </Combinator>
-      </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="11" Label="Source1" />
-      <Edge From="1" To="6" Label="Source2" />
+      <Edge From="0" To="15" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="6" To="9" Label="Source1" />
+      <Edge From="4" To="10" Label="Source1" />
+      <Edge From="5" To="7" Label="Source1" />
+      <Edge From="6" To="7" Label="Source2" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="11" Label="Source2" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="11" Label="Source3" />
-      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="15" Label="Source2" />
+      <Edge From="10" To="12" Label="Source1" />
+      <Edge From="11" To="12" Label="Source2" />
       <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="15" Label="Source3" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
