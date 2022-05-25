@@ -88,7 +88,7 @@ void playFile(const char *filename)
 }
 
 void loop() {
-  if (digitalRead(BUTTON) == HIGH) {
+  if (digitalRead(BUTTON) == LOW) {
     activateSound(PIN);
   }
 }
@@ -100,11 +100,7 @@ void setupSound(int pin) {
 
 void activateSound(int pin) {
   digitalWrite(pin, HIGH); // bring the pin low to begin the activation
-  /*
-  According to the documentation, the Audio FX board needs 50ms to trigger. However,
-  I've found that coming from my 3.3v Arduino Pro, it needs 100ms to get the trigger
-  the going
-  */
+  playFile("Adom_singlechirp.WAV");
   delay(50); // hold the pin low long enough to trigger the board; may need to be longer for consistent triggering
   digitalWrite(pin, LOW); // bring the pin high again to end the activation
 }

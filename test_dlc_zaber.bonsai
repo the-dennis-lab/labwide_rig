@@ -11,10 +11,12 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:ZaberDevice">
-          <p1:PortName>COM3</p1:PortName>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:ZaberDevice">
+            <p1:PortName>COM3</p1:PortName>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p2:PylonCapture">
@@ -251,8 +253,10 @@ def process(value):
           <rx:Interval>PT1S</rx:Interval>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:ZaberMove" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:ZaberMove" />
+        </Builder>
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="Combinator">
