@@ -10,12 +10,7 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
-#include <SerialFlash.h>
 
-
-#define PIN 4
-#define LED 13 // Most Arduinos have an LED on pin 13
-#define BUTTON 2 // use pin input as a button MAY NEED TO CHANGE
 
 AudioPlaySdWav           playWav1;
 // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
@@ -26,6 +21,8 @@ AudioConnection          patchCord1(playWav1, 0, audioOutput, 0);
 AudioConnection          patchCord2(playWav1, 1, audioOutput, 1);
 AudioControlSGTL5000     sgtl5000_1;
 
+String command;
+
 // Use these with the audio adaptor board
 #define SDCARD_CS_PIN    10
 #define SDCARD_MOSI_PIN  7
@@ -34,10 +31,6 @@ AudioControlSGTL5000     sgtl5000_1;
 
 
 void setup() {
-  pinMode(LED, OUTPUT); // Make the LED pin active
-  pinMode(BUTTON, INPUT);
-  setupSound(PIN);
-
     Serial.begin(9600);
 
   // Audio connections require memory to work.  For more
@@ -62,9 +55,6 @@ void setup() {
 }
 
 
-
-
-
 void playFile(const char *filename)
 {
   Serial.print("Playing file: ");
@@ -79,15 +69,12 @@ void playFile(const char *filename)
 
   // Simply wait for the file to finish playing.
   while (playWav1.isPlaying()) {
-    // uncomment these lines if you audio shield
-    // has the optional volume pot soldered
-    //float vol = analogRead(15);
-    //vol = vol / 1024;
-    // sgtl5000_1.volume(vol);
   }
 }
 
+
 void loop() {
+<<<<<<< HEAD:Arduino/sketch_may16a/sketch_may16a_.ino
   if (digitalRead(BUTTON) == LOW) {
     activateSound(PIN);
   }
@@ -104,3 +91,13 @@ void activateSound(int pin) {
   delay(50); // hold the pin low long enough to trigger the board; may need to be longer for consistent triggering
   digitalWrite(pin, LOW); // bring the pin high again to end the activation
 }
+=======
+  if (Serial.available()) {
+    command = Serial.readStringUntil('\n');
+    command.trim();
+    if (command.equals("1")) {
+  playFile("ADOM_SINGLE.WAV");  // filenames are always uppercase 8.3 format
+    }
+  }
+}
+>>>>>>> 840e552dd20bd9cc0224ee6f5e442ed381a216ab:Arduino/sketch_may16a/sketch_may16a.ino
