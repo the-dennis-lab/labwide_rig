@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:p1="clr-namespace:BonsaiPackage1;assembly=BonsaiPackage1"
+                 xmlns:p1="clr-namespace:ZaberMovement;assembly=ZaberMovement"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -13,13 +14,13 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
+        <Combinator xsi:type="DoubleProperty">
           <Value>0</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1099</Value>
+        <Combinator xsi:type="DoubleProperty">
+          <Value>0</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -28,11 +29,20 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberMove" />
       </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item2</Selector>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>int32(it)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberLocation" />
       </Expression>
       <Expression xsi:type="io:CsvWriter">
-        <io:FileName>C:\Users\labadmin\Desktop\date.csv</io:FileName>
+        <io:FileName>C:\Users\emily\Desktop\data\ZaberLocation_.csv</io:FileName>
         <io:Append>false</io:Append>
         <io:Overwrite>true</io:Overwrite>
         <io:Suffix>Timestamp</io:Suffix>
@@ -41,11 +51,15 @@
     </Nodes>
     <Edges>
       <Edge From="0" To="3" Label="Source1" />
-      <Edge From="0" To="5" Label="Source1" />
+      <Edge From="0" To="7" Label="Source1" />
       <Edge From="1" To="3" Label="Source3" />
       <Edge From="2" To="3" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source2" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

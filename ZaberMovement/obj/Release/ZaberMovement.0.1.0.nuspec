@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ZaberMovement</id>
+    <version>0.1.0</version>
+    <title>ZaberMovement</title>
+    <authors>thedennislab, Jon Newman</authors>
+    <description>A package for the Bonsai visual programming language to allow for velocity based control of a 3 axis (one lockstep, one axis) zaber system</description>
+    <releaseNotes>plans for the future include more inputs from user to allow for choosing between movement types (velocity, relative) and number/types of axes.</releaseNotes>
+    <copyright>Copyright ©  2022</copyright>
+    <tags>Bonsai Rx Zaber</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="Bonsai.Core" version="2.6.3" exclude="Build,Analyzers" />
+        <dependency id="Zaber.Motion" version="2.10.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net472/zaber-motion-lib-windows-386.dll" buildAction="Content" />
+      <files include="any/net472/zaber-motion-lib-windows-amd64.dll" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\bin\Release\net472\ZaberMovement.dll" target="lib\net472\ZaberMovement.dll" />
+    <file src="C:\Users\emily\.nuget\packages\zaber.motion\2.10.1\runtimes\win\native\zaber-motion-lib-windows-386.dll" target="content\zaber-motion-lib-windows-386.dll" />
+    <file src="C:\Users\emily\.nuget\packages\zaber.motion\2.10.1\runtimes\win\native\zaber-motion-lib-windows-386.dll" target="contentFiles\any\net472\zaber-motion-lib-windows-386.dll" />
+    <file src="C:\Users\emily\.nuget\packages\zaber.motion\2.10.1\runtimes\win\native\zaber-motion-lib-windows-amd64.dll" target="content\zaber-motion-lib-windows-amd64.dll" />
+    <file src="C:\Users\emily\.nuget\packages\zaber.motion\2.10.1\runtimes\win\native\zaber-motion-lib-windows-amd64.dll" target="contentFiles\any\net472\zaber-motion-lib-windows-amd64.dll" />
+  </files>
+</package>

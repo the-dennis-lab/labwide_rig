@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj": {
+      "version": "0.1.1",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
+        "projectName": "ZaberMovement",
+        "projectPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
+        "packagesPath": "C:\\Users\\emily\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\NuGet.Config",
+          "C:\\Users\\emily\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/bonsai-community/api/v3/index.json": {},
+          "https://www.myget.org/F/bonsai/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Bonsai.Core": {
+              "target": "Package",
+              "version": "[2.6.3, )"
+            },
+            "Zaber.Motion": {
+              "target": "Package",
+              "version": "[2.10.1, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
