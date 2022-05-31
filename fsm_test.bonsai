@@ -108,12 +108,16 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Switch" />
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="io:SerialStringWrite">
-            <io:NewLine>\r\n</io:NewLine>
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="io:SerialStringWrite">
+          <io:PortName>COM5</io:PortName>
+          <io:NewLine>\r\n</io:NewLine>
+        </Combinator>
       </Expression>
     </Nodes>
     <Edges>
@@ -127,6 +131,7 @@
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
