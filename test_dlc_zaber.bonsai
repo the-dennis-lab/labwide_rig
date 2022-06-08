@@ -1,34 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:p1="clr-namespace:Bonsai.Pylon;assembly=Bonsai.Pylon"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:p1="clr-namespace:ZaberMovement;assembly=ZaberMovement"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:dlc="clr-namespace:Bonsai.DeepLabCut;assembly=Bonsai.DeepLabCut"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
-                 xmlns:p2="clr-namespace:ZaberMovement;assembly=ZaberMovement"
-                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:PylonCapture">
-          <p1:SerialNumber>24121204</p1:SerialNumber>
-          <p1:ParameterFile>C:\Users\emily\Desktop\basler_files\acA2040-90umNIR_24121204_BUFFER.pfs</p1:ParameterFile>
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT1S</rx:Period>
         </Combinator>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Image</Selector>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ConvertColor">
-          <cv:Conversion>Gray2Bgr</cv:Conversion>
+        <Combinator xsi:type="Int64Property">
+          <Value>9</Value>
         </Combinator>
       </Expression>
-      <Expression xsi:type="NestedWorkflow">
-        <Name>DeepLabCut</Name>
-        <Description>DLC</Description>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="GreaterThanOrEqual" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ZaberDevice">
+          <p1:PortName>COM3</p1:PortName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>stopZaberWith0</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="wie:KeyDown">
+                <wie:Filter>D0</wie:Filter>
+                <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="DoubleProperty">
+                <Value>0</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="wie:KeyDown">
+                <wie:Filter>D0</wie:Filter>
+                <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="DoubleProperty">
+                <Value>0</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ZaberMove" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="5" Label="Source2" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="5" Label="Source3" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>1</cv:Index>
+          <cv:CaptureProperties>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameWidth</cv:Property>
+              <cv:Value>2048</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameHeight</cv:Property>
+              <cv:Value>2048</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>Fps</cv:Property>
+              <cv:Value>50</cv:Value>
+            </cv:CapturePropertyAssignment>
+          </cv:CaptureProperties>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Resize">
+          <cv:Size>
+            <cv:Width>256</cv:Width>
+            <cv:Height>256</cv:Height>
+          </cv:Size>
+          <cv:Interpolation>Linear</cv:Interpolation>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>DLC</Name>
         <Workflow>
           <Nodes>
             <Expression xsi:type="WorkflowInput">
@@ -36,25 +117,11 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:DetectPose">
-                <dlc:ModelFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\exported-models\DLC_rig_001_resnet_50_iteration-0_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
+                <dlc:ModelFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\exported-models\DLC_rig_001_resnet_50_iteration-3_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\dlc-models\iteration-0\rig_001Apr27-trainset90shuffle1\train\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.9</dlc:MinConfidence>
-                <dlc:ScaleFactor xsi:nil="true" />
+                <dlc:MinConfidence>0.197674423</dlc:MinConfidence>
+                <dlc:ScaleFactor>1</dlc:ScaleFactor>
               </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dlc:GetBodyPart">
-                <dlc:Name>tailtip</dlc:Name>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Position</Selector>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>X</Selector>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Y</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:GetBodyPart">
@@ -127,10 +194,10 @@ def process(value):
   if len(goodvals) &gt; 0:
     goodlen=len(goodvals)
     centerval= int(goodsum/goodlen)
-    if abs(math.fsum([centerval,-1024])) &lt; 220:
-      centerval = int(1024)
+    if abs(math.fsum([centerval,-128])) &lt; 25:
+      centerval = int(128)
   else:
-    centerval=int(0)
+    centerval=int(128)
   return centerval</scr:Script>
             </Expression>
             <Expression xsi:type="MemberSelector">
@@ -153,11 +220,11 @@ def process(value):
   goodsum=math.fsum(goodvals)
   if len(goodvals) &gt; 0:
     goodlen=len(goodvals)
+    centerval= int(goodsum/goodlen)
+    if abs(math.fsum([centerval,-128])) &lt; 25:
+      centerval = int(128)
   else:
-    goodlen=1
-  centerval= int(goodsum/goodlen)
-  if abs(math.fsum([centerval,-1024])) &lt; 220:
-    centerval = int(1024)
+    centerval=int(128)
   return centerval</scr:Script>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -171,63 +238,44 @@ def process(value):
             <Edge From="1" To="6" Label="Source1" />
             <Edge From="1" To="10" Label="Source1" />
             <Edge From="1" To="14" Label="Source1" />
-            <Edge From="1" To="18" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="3" To="5" Label="Source1" />
-            <Edge From="4" To="21" Label="Source1" />
-            <Edge From="5" To="24" Label="Source1" />
+            <Edge From="4" To="17" Label="Source1" />
+            <Edge From="5" To="20" Label="Source1" />
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
             <Edge From="7" To="9" Label="Source1" />
-            <Edge From="8" To="21" Label="Source2" />
-            <Edge From="9" To="24" Label="Source2" />
+            <Edge From="8" To="17" Label="Source2" />
+            <Edge From="9" To="20" Label="Source2" />
             <Edge From="10" To="11" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
             <Edge From="11" To="13" Label="Source1" />
-            <Edge From="12" To="21" Label="Source3" />
-            <Edge From="13" To="24" Label="Source3" />
+            <Edge From="12" To="17" Label="Source3" />
+            <Edge From="13" To="20" Label="Source3" />
             <Edge From="14" To="15" Label="Source1" />
             <Edge From="15" To="16" Label="Source1" />
-            <Edge From="15" To="17" Label="Source1" />
-            <Edge From="16" To="21" Label="Source4" />
-            <Edge From="17" To="24" Label="Source4" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="20" Label="Source1" />
-            <Edge From="19" To="23" Label="Source1" />
-            <Edge From="20" To="21" Label="Source5" />
-            <Edge From="21" To="22" Label="Source1" />
-            <Edge From="22" To="26" Label="Source1" />
-            <Edge From="23" To="24" Label="Source5" />
-            <Edge From="24" To="25" Label="Source1" />
-            <Edge From="25" To="26" Label="Source2" />
-            <Edge From="26" To="27" Label="Source1" />
+            <Edge From="15" To="19" Label="Source1" />
+            <Edge From="16" To="17" Label="Source4" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="18" To="22" Label="Source1" />
+            <Edge From="19" To="20" Label="Source4" />
+            <Edge From="20" To="21" Label="Source1" />
+            <Edge From="21" To="22" Label="Source2" />
+            <Edge From="22" To="23" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Item1</Selector>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p2:ZaberDevice">
-          <p2:PortName>COM3</p2:PortName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1024</Value>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Concat" />
-      </Expression>
       <Expression xsi:type="Subtract">
         <Operand xsi:type="IntProperty">
-          <Value>0</Value>
+          <Value>128</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
-        <scr:Expression>double(it *-100)</scr:Expression>
+        <scr:Expression>double(it *-2000)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="dsp:Abs" />
@@ -240,69 +288,13 @@ def process(value):
       <Expression xsi:type="MemberSelector">
         <Selector>Item2</Selector>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1024</Value>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Concat" />
-      </Expression>
       <Expression xsi:type="Subtract">
         <Operand xsi:type="IntProperty">
-          <Value>0</Value>
+          <Value>128</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
-        <scr:Expression>double(it *100)</scr:Expression>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:CombineLatest" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p2:ZaberMove" />
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>saveLocation</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source2</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item2</Selector>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>int32(it)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="p2:ZaberLocation" />
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\ZaberLocation_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>true</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="4" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="4" Label="Source2" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="7" Label="Source1" />
-          </Edges>
-        </Workflow>
+        <scr:Expression>double(it *2000)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="dsp:Abs" />
@@ -312,34 +304,6 @@ def process(value):
           <Value>0</Value>
         </Operand>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>has initial timeout elapsed?</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timer">
-                <rx:DueTime>PT0S</rx:DueTime>
-                <rx:Period>PT1S</rx:Period>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="Int64Property">
-                <Value>900</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="2" Label="Source1" />
-            <Edge From="1" To="2" Label="Source2" />
-            <Edge From="2" To="3" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GreaterThanOrEqual" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Merge" />
       </Expression>
@@ -349,136 +313,225 @@ def process(value):
       <Expression xsi:type="PublishSubject">
         <Name>isMoving?</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="GroupWorkflow">
-          <Name>saveThermal</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="io:StartProcess">
-                  <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                  <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\thermal_videos\\thermal.mp4,no-overwrite}"</io:Arguments>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="1" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>isMoving?</Name>
-      </Expression>
-      <Expression xsi:type="CreateObservable">
-        <Name>CheckCondition</Name>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>move</Name>
         <Workflow>
           <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="IntProperty">
+                <Value>0</Value>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
-            <Expression xsi:type="Condition">
-              <Name>isNotMoving</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="BitwiseNot" />
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source2</Name>
             </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DueTime" />
-              <Property Name="Period" />
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source3</Name>
             </Expression>
-            <Expression xsi:type="SelectMany">
-              <Name>Timer</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="DueTime" />
-                    <Property Name="Period" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Timer">
-                      <rx:DueTime>PT1S</rx:DueTime>
-                      <rx:Period>PT2S</rx:Period>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ZaberLocation" />
+            </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>C:\Users\emily\Desktop\data\ZaberLocation_.csv</io:FileName>
+              <io:Append>false</io:Append>
+              <io:Overwrite>true</io:Overwrite>
+              <io:Suffix>Timestamp</io:Suffix>
+              <io:IncludeHeader>false</io:IncludeHeader>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ZaberMove" />
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="6" Label="Source2" />
+            <Edge From="1" To="4" Label="Source2" />
+            <Edge From="2" To="4" Label="Source3" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="4" To="9" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\emily\Desktop\data\DLC_medians.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>false</io:Overwrite>
+        <io:Suffix>None</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:VideoWriter">
+          <cv:FileName>C:\Users\emily\Desktop\data\video_basler_</cv:FileName>
+          <cv:Suffix>Timestamp</cv:Suffix>
+          <cv:Buffered>true</cv:Buffered>
+          <cv:Overwrite>false</cv:Overwrite>
+          <cv:FourCC>FMP4</cv:FourCC>
+          <cv:FrameRate>50</cv:FrameRate>
+          <cv:FrameSize>
+            <cv:Width>2048</cv:Width>
+            <cv:Height>2048</cv:Height>
+          </cv:FrameSize>
+          <cv:ResizeInterpolation>Linear</cv:ResizeInterpolation>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>saveThermal</Name>
+        <Description />
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+                <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\thermal_videos\\thermal.mp4,no-overwrite}"</io:Arguments>
+              </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="3" Label="Source1" />
-            <Edge From="2" To="3" Label="Source2" />
-            <Edge From="3" To="4" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Switch" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1</Value>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:SerialStringWrite">
-          <io:PortName>COM5</io:PortName>
-          <io:NewLine>\r\n</io:NewLine>
-        </Combinator>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>chirp</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>isMoving?</Name>
+            </Expression>
+            <Expression xsi:type="CreateObservable">
+              <Name>CheckCondition</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="Condition">
+                    <Name>isNotMoving</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="BitwiseNot" />
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="DueTime" />
+                    <Property Name="Period" />
+                  </Expression>
+                  <Expression xsi:type="SelectMany">
+                    <Name>Timer</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="DueTime" />
+                          <Property Name="Period" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Timer">
+                            <rx:DueTime>PT1S</rx:DueTime>
+                            <rx:Period>PT2S</rx:Period>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Switch" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="IntProperty">
+                <Value>1</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM5</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>C:\Users\emily\Desktop\data\chirp_times_.csv</io:FileName>
+              <io:Append>false</io:Append>
+              <io:Overwrite>false</io:Overwrite>
+              <io:Suffix>Timestamp</io:Suffix>
+              <io:IncludeHeader>false</io:IncludeHeader>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="3" To="5" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="2" Label="Source2" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
-      <Edge From="3" To="12" Label="Source1" />
-      <Edge From="4" To="7" Label="Source1" />
-      <Edge From="5" To="17" Label="Source1" />
-      <Edge From="5" To="19" Label="Source1" />
-      <Edge From="6" To="7" Label="Source2" />
+      <Edge From="3" To="19" Label="Source3" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="4" To="22" Label="Source3" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="6" To="24" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="17" Label="Source2" />
+      <Edge From="8" To="14" Label="Source1" />
+      <Edge From="8" To="23" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="11" To="24" Label="Source1" />
-      <Edge From="12" To="14" Label="Source1" />
-      <Edge From="13" To="14" Label="Source2" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="11" To="22" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="19" Label="Source1" />
       <Edge From="14" To="15" Label="Source1" />
       <Edge From="15" To="16" Label="Source1" />
-      <Edge From="16" To="17" Label="Source3" />
-      <Edge From="16" To="20" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="16" To="22" Label="Source2" />
       <Edge From="17" To="18" Label="Source1" />
-      <Edge From="17" To="19" Label="Source2" />
+      <Edge From="18" To="19" Label="Source2" />
+      <Edge From="19" To="20" Label="Source1" />
       <Edge From="20" To="21" Label="Source1" />
-      <Edge From="21" To="24" Label="Source2" />
-      <Edge From="22" To="23" Label="Source1" />
-      <Edge From="23" To="24" Label="Source3" />
-      <Edge From="24" To="25" Label="Source1" />
-      <Edge From="25" To="26" Label="Source1" />
-      <Edge From="28" To="29" Label="Source1" />
-      <Edge From="29" To="30" Label="Source1" />
-      <Edge From="30" To="31" Label="Source1" />
-      <Edge From="31" To="32" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
