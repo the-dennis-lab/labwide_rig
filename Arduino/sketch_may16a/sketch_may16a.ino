@@ -74,24 +74,6 @@ void playFile(const char *filename)
 
 
 void loop() {
-<<<<<<< HEAD:Arduino/sketch_may16a/sketch_may16a_.ino
-  if (digitalRead(BUTTON) == LOW) {
-    activateSound(PIN);
-  }
-}
-
-void setupSound(int pin) {
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, LOW); // Set the pin low as the default state
-}
-
-void activateSound(int pin) {
-  digitalWrite(pin, HIGH); // bring the pin low to begin the activation
-  playFile("Adom_singlechirp.WAV");
-  delay(50); // hold the pin low long enough to trigger the board; may need to be longer for consistent triggering
-  digitalWrite(pin, LOW); // bring the pin high again to end the activation
-}
-=======
   if (Serial.available()) {
     command = Serial.readStringUntil('\n');
     command.trim();
@@ -100,4 +82,3 @@ void activateSound(int pin) {
     }
   }
 }
->>>>>>> 840e552dd20bd9cc0224ee6f5e442ed381a216ab:Arduino/sketch_may16a/sketch_may16a.ino
