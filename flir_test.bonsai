@@ -1,26 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:p1="clr-namespace:RTSPConnect;assembly=RTSPConnect"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:RTSPSource">
-          <p1:URI>rtsp://10.123.1.42/mjpeg/stream3</p1:URI>
-          <p1:USERNAME>admin</p1:USERNAME>
-          <p1:PASSWORD>Musmusculus.</p1:PASSWORD>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:RTSPSink">
-          <p1:FrameRate>10</p1:FrameRate>
-          <p1:SavePath>\Users\labadmin\Desktop\</p1:SavePath>
+        <Combinator xsi:type="io:StartProcess">
+          <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+          <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\%date%_thermal.mp4,no-overwrite}"</io:Arguments>
         </Combinator>
       </Expression>
     </Nodes>
-    <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-    </Edges>
+    <Edges />
   </Workflow>
 </WorkflowBuilder>
