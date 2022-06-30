@@ -477,7 +477,7 @@ def process(values):
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="io:StartProcess">
                 <io:FileName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</io:FileName>
-                <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\thermal_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
+                <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\thermal1_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -596,6 +596,26 @@ def process(values):
             <Edge From="7" To="8" Label="Source1" />
           </Edges>
         </Workflow>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>saveThermal2</Name>
+          <Description />
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="io:StartProcess">
+                  <io:FileName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</io:FileName>
+                  <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@IPADDRESS/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\thermal2_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>
