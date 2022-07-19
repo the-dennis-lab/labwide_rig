@@ -53,9 +53,9 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:DetectPose">
-                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-06-17\exported-models\DLC_rigtesting_resnet_50_iteration-1_shuffle-1\snapshot-200000.pb</dlc:ModelFileName>
+                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-06-17\exported-models\DLC_rigtesting_resnet_50_iteration-2_shuffle-1\snapshot-900000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-06-17\dlc-models\iteration-0\rigtestingJun17-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.4</dlc:MinConfidence>
+                <dlc:MinConfidence>0.5</dlc:MinConfidence>
                 <dlc:ScaleFactor>1</dlc:ScaleFactor>
               </Combinator>
             </Expression>
@@ -219,7 +219,7 @@ def process(value):
         </Operand>
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
-        <scr:Expression>double(it*-1000)</scr:Expression>
+        <scr:Expression>double(it*-1200)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="dsp:Abs" />
@@ -243,7 +243,7 @@ def process(value):
         </Operand>
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
-        <scr:Expression>double(it *1000)</scr:Expression>
+        <scr:Expression>double(it *1200)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="dsp:Abs" />
@@ -255,7 +255,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT15M</rx:DueTime>
+          <rx:DueTime>PT1M</rx:DueTime>
           <rx:Period>PT0S</rx:Period>
         </Combinator>
       </Expression>
@@ -337,21 +337,21 @@ def process(values):
   moveax=values[1]
   minax=1
   maxax=1
-  multfac=8
+  multfac=6
 
   if values[2]==True:
     #close to door, high values of lockstep
     if poslockstep &gt; 287918:
-      minax=182441
-      maxax=183363
+      minax=102441
+      maxax=263363
     elif poslockstep &gt; 271367:
-      minax=173566
-      maxax=185301
+      minax=128566
+      maxax=230301
     elif poslockstep &gt; 248798:
-      minax=143043
-      maxax=208625
+      minax=98043
+      maxax=253625
     elif poslockstep &gt; 240357:
-      minax=93700
+      minax=193700
       maxax=240230
     elif poslockstep &gt; 213330:
       minax=67123
@@ -364,8 +364,8 @@ def process(values):
     #we're less than 83k in Zaber units, close to the computer
     #x  is lockstep, y is axis3
     if poslockstep &lt; 36907:
-      minax=159350
-      maxax=167876
+      minax=129350
+      maxax=197876
     elif poslockstep &lt; 63143:
       minax=135200
       maxax=200129
@@ -461,7 +461,7 @@ def process(values):
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
           <cv:FourCC>FMP4</cv:FourCC>
-          <cv:FrameRate>50</cv:FrameRate>
+          <cv:FrameRate>80</cv:FrameRate>
           <cv:FrameSize>
             <cv:Width>2048</cv:Width>
             <cv:Height>2048</cv:Height>
@@ -469,23 +469,25 @@ def process(values):
           <cv:ResizeInterpolation>Linear</cv:ResizeInterpolation>
         </Combinator>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>saveThermal1</Name>
-        <Description />
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:StartProcess">
-                <io:FileName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</io:FileName>
-                <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\thermal1_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>saveThermal1</Name>
+          <Description />
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="io:StartProcess">
+                  <io:FileName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</io:FileName>
+                  <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\thermal1_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>chirp</Name>
