@@ -23,15 +23,15 @@
           <cv:CaptureProperties>
             <cv:CapturePropertyAssignment>
               <cv:Property>FrameWidth</cv:Property>
-              <cv:Value>2048</cv:Value>
+              <cv:Value>1600</cv:Value>
             </cv:CapturePropertyAssignment>
             <cv:CapturePropertyAssignment>
               <cv:Property>FrameHeight</cv:Property>
-              <cv:Value>2048</cv:Value>
+              <cv:Value>1600</cv:Value>
             </cv:CapturePropertyAssignment>
             <cv:CapturePropertyAssignment>
               <cv:Property>Fps</cv:Property>
-              <cv:Value>80</cv:Value>
+              <cv:Value>100</cv:Value>
             </cv:CapturePropertyAssignment>
             <cv:CapturePropertyAssignment>
               <cv:Property>PosMsec</cv:Property>
@@ -47,10 +47,10 @@
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
           <cv:FourCC>FMP4</cv:FourCC>
-          <cv:FrameRate>80</cv:FrameRate>
+          <cv:FrameRate>100</cv:FrameRate>
           <cv:FrameSize>
-            <cv:Width>2048</cv:Width>
-            <cv:Height>2048</cv:Height>
+            <cv:Width>1600</cv:Width>
+            <cv:Height>1600</cv:Height>
           </cv:FrameSize>
           <cv:ResizeInterpolation>Linear</cv:ResizeInterpolation>
         </Combinator>
@@ -62,11 +62,15 @@
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="ModelFileName" />
+              <Property Name="MinConfidence" />
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:DetectPose">
-                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-1_shuffle-1\snapshot-300000.pb</dlc:ModelFileName>
+                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-4_shuffle-1\snapshot-500000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-0\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.5</dlc:MinConfidence>
+                <dlc:MinConfidence>0.95</dlc:MinConfidence>
                 <dlc:ScaleFactor>1</dlc:ScaleFactor>
               </Combinator>
             </Expression>
@@ -154,7 +158,12 @@
               <Combinator xsi:type="rx:Zip" />
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Image.Width</Selector>
+              <Selector>Width</Selector>
+            </Expression>
+            <Expression xsi:type="Divide">
+              <Operand xsi:type="IntProperty">
+                <Value>2</Value>
+              </Operand>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:CombineLatest" />
@@ -199,7 +208,17 @@ def process(values):
   goodsum=math.fsum(goodvals)
   if len(goodvals) &gt; 0:
     goodlen=len(goodvals)
-    medianval= int((goodsum/goodlen))
+    print(goodlen)
+    goodvals.sort()
+    if goodlen % 2 == 0:
+      print('even num')
+      print(goodvals)
+      if goodlen==1:
+        medianval=int(goodvals[0])
+      else:
+        medianval = int(((goodvals[int((goodlen-1)/2)] + goodvals[int((goodlen+1)/2)])/goodlen))
+    else:
+      medianval= goodvals[int(goodlen/2)]
     if abs(math.fsum([medianval,-const])) &lt; (const/6):
       medianval = int(const)
   else:
@@ -210,62 +229,56 @@ def process(values):
               <Combinator xsi:type="rx:Zip" />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\DLCmedians_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>true</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
           </Nodes>
           <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="1" To="5" Label="Source1" />
-            <Edge From="1" To="8" Label="Source1" />
-            <Edge From="1" To="11" Label="Source1" />
-            <Edge From="1" To="14" Label="Source1" />
-            <Edge From="1" To="17" Label="Source1" />
-            <Edge From="1" To="20" Label="Source1" />
-            <Edge From="1" To="25" Label="Source1" />
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="0" To="26" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="2" To="4" Label="Source1" />
-            <Edge From="3" To="22" Label="Source1" />
-            <Edge From="4" To="24" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="5" To="7" Label="Source1" />
-            <Edge From="6" To="22" Label="Source2" />
-            <Edge From="7" To="24" Label="Source2" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="8" To="10" Label="Source1" />
-            <Edge From="9" To="22" Label="Source3" />
-            <Edge From="10" To="24" Label="Source3" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="11" To="13" Label="Source1" />
-            <Edge From="12" To="22" Label="Source4" />
-            <Edge From="13" To="24" Label="Source4" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="14" To="16" Label="Source1" />
-            <Edge From="15" To="22" Label="Source5" />
-            <Edge From="16" To="24" Label="Source5" />
-            <Edge From="17" To="18" Label="Source1" />
-            <Edge From="17" To="19" Label="Source1" />
-            <Edge From="18" To="22" Label="Source6" />
-            <Edge From="19" To="24" Label="Source6" />
-            <Edge From="20" To="21" Label="Source1" />
-            <Edge From="20" To="23" Label="Source1" />
-            <Edge From="21" To="22" Label="Source7" />
-            <Edge From="22" To="28" Label="Source1" />
-            <Edge From="23" To="24" Label="Source7" />
-            <Edge From="24" To="26" Label="Source1" />
-            <Edge From="25" To="26" Label="Source2" />
-            <Edge From="25" To="28" Label="Source2" />
+            <Edge From="2" To="6" Label="Source1" />
+            <Edge From="2" To="9" Label="Source1" />
+            <Edge From="2" To="12" Label="Source1" />
+            <Edge From="2" To="15" Label="Source1" />
+            <Edge From="2" To="18" Label="Source1" />
+            <Edge From="2" To="21" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="3" To="5" Label="Source1" />
+            <Edge From="4" To="23" Label="Source1" />
+            <Edge From="5" To="25" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="6" To="8" Label="Source1" />
+            <Edge From="7" To="23" Label="Source2" />
+            <Edge From="8" To="25" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="9" To="11" Label="Source1" />
+            <Edge From="10" To="23" Label="Source3" />
+            <Edge From="11" To="25" Label="Source3" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="12" To="14" Label="Source1" />
+            <Edge From="13" To="23" Label="Source4" />
+            <Edge From="14" To="25" Label="Source4" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="15" To="17" Label="Source1" />
+            <Edge From="16" To="23" Label="Source5" />
+            <Edge From="17" To="25" Label="Source5" />
+            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="18" To="20" Label="Source1" />
+            <Edge From="19" To="23" Label="Source6" />
+            <Edge From="20" To="25" Label="Source6" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="21" To="24" Label="Source1" />
+            <Edge From="22" To="23" Label="Source7" />
+            <Edge From="23" To="30" Label="Source1" />
+            <Edge From="24" To="25" Label="Source7" />
+            <Edge From="25" To="28" Label="Source1" />
             <Edge From="26" To="27" Label="Source1" />
+            <Edge From="27" To="28" Label="Source2" />
             <Edge From="27" To="30" Label="Source2" />
             <Edge From="28" To="29" Label="Source1" />
-            <Edge From="29" To="30" Label="Source1" />
+            <Edge From="29" To="32" Label="Source2" />
             <Edge From="30" To="31" Label="Source1" />
-            <Edge From="30" To="32" Label="Source1" />
+            <Edge From="31" To="32" Label="Source1" />
+            <Edge From="32" To="33" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -284,6 +297,9 @@ def process(values):
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Width</Selector>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
@@ -337,7 +353,7 @@ def process(values):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1400</Value>
+          <Value>1300</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -358,6 +374,7 @@ def process(value):
   lockstep=zaberloc[0]
   ax3=zaberloc[1]
   intval=value[3]
+  width=value[4]
 
   #make constant depend on zaber
   mult_str=str(img[int(lockstep/100),int(ax3/100)])[1:4]
@@ -374,9 +391,9 @@ def process(value):
   else:
     constant=128
 
-  newval = itemval/8
+  newval = itemval/(float(width)/256)
   newval = newval-constant
-  newval = newval*-intval
+  newval = int(newval*-intval)
 
   return newval</scr:Script>
       </Expression>
@@ -409,6 +426,7 @@ def process(value):
   lockstep=zaberloc[0]
   ax3=zaberloc[1]
   intval=value[3]
+  width=value[4]
 
   #make constant depend on zaber
   mult_str=str(img[int(lockstep/100),int(ax3/100)])[1:4]
@@ -424,10 +442,9 @@ def process(value):
     constant=0
   else:
     constant=128
-
-  newval = itemval/8
+  newval = itemval/(float(width)/256)
   newval = newval-constant
-  newval = newval*intval
+  newval = int(newval*intval)
 
   return newval</scr:Script>
       </Expression>
@@ -622,45 +639,48 @@ def process(value):
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="12" Label="Source1" />
-      <Edge From="0" To="32" Label="Source1" />
+      <Edge From="0" To="13" Label="Source1" />
+      <Edge From="0" To="33" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="1" To="3" Label="Source1" />
+      <Edge From="1" To="8" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="3" To="5" Label="Source1" />
       <Edge From="3" To="6" Label="Source1" />
-      <Edge From="4" To="19" Label="Source1" />
-      <Edge From="5" To="24" Label="Source1" />
+      <Edge From="4" To="20" Label="Source1" />
+      <Edge From="5" To="25" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="28" Label="Source3" />
-      <Edge From="10" To="11" Label="Source1" />
-      <Edge From="11" To="12" Label="Source2" />
-      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="8" To="20" Label="Source5" />
+      <Edge From="8" To="25" Label="Source5" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="29" Label="Source3" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="13" To="19" Label="Source3" />
-      <Edge From="13" To="24" Label="Source3" />
       <Edge From="14" To="15" Label="Source1" />
-      <Edge From="16" To="19" Label="Source2" />
-      <Edge From="17" To="24" Label="Source2" />
-      <Edge From="18" To="19" Label="Source4" />
-      <Edge From="18" To="24" Label="Source4" />
-      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="14" To="20" Label="Source3" />
+      <Edge From="14" To="25" Label="Source3" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="17" To="20" Label="Source2" />
+      <Edge From="18" To="25" Label="Source2" />
+      <Edge From="19" To="20" Label="Source4" />
+      <Edge From="19" To="25" Label="Source4" />
       <Edge From="20" To="21" Label="Source1" />
-      <Edge From="20" To="23" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="28" Label="Source1" />
-      <Edge From="23" To="32" Label="Source2" />
-      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="21" To="24" Label="Source1" />
+      <Edge From="22" To="23" Label="Source1" />
+      <Edge From="23" To="29" Label="Source1" />
+      <Edge From="24" To="33" Label="Source2" />
       <Edge From="25" To="26" Label="Source1" />
-      <Edge From="25" To="31" Label="Source1" />
       <Edge From="26" To="27" Label="Source1" />
-      <Edge From="27" To="28" Label="Source2" />
-      <Edge From="28" To="29" Label="Source1" />
+      <Edge From="26" To="32" Label="Source1" />
+      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="28" To="29" Label="Source2" />
       <Edge From="29" To="30" Label="Source1" />
-      <Edge From="31" To="32" Label="Source3" />
-      <Edge From="32" To="33" Label="Source1" />
-      <Edge From="32" To="34" Label="Source1" />
+      <Edge From="30" To="31" Label="Source1" />
+      <Edge From="32" To="33" Label="Source3" />
+      <Edge From="33" To="34" Label="Source1" />
+      <Edge From="33" To="35" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
