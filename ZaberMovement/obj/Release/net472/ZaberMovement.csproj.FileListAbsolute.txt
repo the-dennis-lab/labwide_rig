@@ -41,3 +41,4 @@ C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\Zaber
 C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.csproj.CopyComplete
 C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.dll
 C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.pdb
+C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.csproj.AssemblyReference.cache

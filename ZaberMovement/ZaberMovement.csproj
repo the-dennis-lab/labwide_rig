@@ -13,7 +13,7 @@
     <PackageTags>Bonsai Rx Zaber</PackageTags>
     <TargetFramework>net472</TargetFramework>
     <Features>strict</Features>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <PackageReleaseNotes>plans for the future include more inputs from user to allow for choosing between movement types (velocity, relative) and number/types of axes.</PackageReleaseNotes>
     <Company>thedennislab</Company>
   </PropertyGroup>

@@ -64,9 +64,9 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:DetectPose">
-                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-2_shuffle-1\snapshot-200000.pb</dlc:ModelFileName>
+                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-6_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-4\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.5</dlc:MinConfidence>
+                <dlc:MinConfidence>0.85</dlc:MinConfidence>
                 <dlc:ScaleFactor>1</dlc:ScaleFactor>
               </Combinator>
             </Expression>
@@ -154,6 +154,24 @@
               <Combinator xsi:type="rx:Zip" />
             </Expression>
             <Expression xsi:type="MemberSelector">
+              <Selector>Image</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:VideoWriter">
+                <cv:FileName>C:\Users\emily\Desktop\data\video_DLC_</cv:FileName>
+                <cv:Suffix>Timestamp</cv:Suffix>
+                <cv:Buffered>true</cv:Buffered>
+                <cv:Overwrite>false</cv:Overwrite>
+                <cv:FourCC>FMP4</cv:FourCC>
+                <cv:FrameRate>100</cv:FrameRate>
+                <cv:FrameSize>
+                  <cv:Width>1600</cv:Width>
+                  <cv:Height>1600</cv:Height>
+                </cv:FrameSize>
+                <cv:ResizeInterpolation>Linear</cv:ResizeInterpolation>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
               <Selector>Width</Selector>
             </Expression>
             <Expression xsi:type="Divide">
@@ -237,7 +255,7 @@ def process(values):
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="0" To="25" Label="Source1" />
+            <Edge From="0" To="27" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="1" To="5" Label="Source1" />
             <Edge From="1" To="8" Label="Source1" />
@@ -245,6 +263,7 @@ def process(values):
             <Edge From="1" To="14" Label="Source1" />
             <Edge From="1" To="17" Label="Source1" />
             <Edge From="1" To="20" Label="Source1" />
+            <Edge From="1" To="25" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="2" To="4" Label="Source1" />
             <Edge From="3" To="22" Label="Source1" />
@@ -272,19 +291,20 @@ def process(values):
             <Edge From="20" To="21" Label="Source1" />
             <Edge From="20" To="23" Label="Source1" />
             <Edge From="21" To="22" Label="Source7" />
-            <Edge From="22" To="30" Label="Source1" />
+            <Edge From="22" To="32" Label="Source1" />
             <Edge From="23" To="24" Label="Source7" />
-            <Edge From="24" To="28" Label="Source1" />
+            <Edge From="24" To="30" Label="Source1" />
             <Edge From="25" To="26" Label="Source1" />
-            <Edge From="26" To="28" Label="Source2" />
-            <Edge From="26" To="30" Label="Source2" />
-            <Edge From="27" To="28" Label="Source3" />
-            <Edge From="27" To="30" Label="Source3" />
-            <Edge From="28" To="29" Label="Source1" />
-            <Edge From="29" To="32" Label="Source2" />
+            <Edge From="27" To="28" Label="Source1" />
+            <Edge From="28" To="30" Label="Source2" />
+            <Edge From="28" To="32" Label="Source2" />
+            <Edge From="29" To="30" Label="Source3" />
+            <Edge From="29" To="32" Label="Source3" />
             <Edge From="30" To="31" Label="Source1" />
-            <Edge From="31" To="32" Label="Source1" />
+            <Edge From="31" To="34" Label="Source2" />
             <Edge From="32" To="33" Label="Source1" />
+            <Edge From="33" To="34" Label="Source1" />
+            <Edge From="34" To="35" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -321,7 +341,7 @@ def process(values):
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0.05S</rx:Period>
+          <rx:Period>PT0.02S</rx:Period>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -347,19 +367,19 @@ def process(values):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_y_mult.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_y_mult_NONE.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_x_mult.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_x_mult_0-1.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1300</Value>
+          <Value>1400</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -387,13 +407,9 @@ def process(value):
 
 
   if '255' in mult_str:
-    constant=256
-  #elif '19' in mult_str:
-  #  constant = 192
-  #elif '64' in mult_str:
-  #  constant=64
+    constant=192
   elif '0' in mult_str:
-    constant=0
+    constant=64
   else:
     constant=128
 
@@ -439,13 +455,9 @@ def process(value):
 
 
   if '255' in mult_str:
-    constant=256
-  #elif '19' in mult_str:
-  #  constant = 192
-  #elif '64' in mult_str:
-  #  constant=64
+    constant=192
   elif '0' in mult_str:
-    constant=0
+    constant=64
   else:
     constant=128
   newval = itemval/(float(width)/256)
@@ -475,10 +487,23 @@ def process(value):
         <scr:Expression>double(it)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\emily\Desktop\data\DLC_medians_with_zaber.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>false</io:Overwrite>
+        <io:Suffix>Timestamp</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberMove" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
       </Expression>
       <Expression xsi:type="io:CsvWriter">
         <io:FileName>C:\Users\emily\Desktop\data\ZaberMove_.csv</io:FileName>
@@ -646,7 +671,7 @@ def process(value):
     </Nodes>
     <Edges>
       <Edge From="0" To="13" Label="Source1" />
-      <Edge From="0" To="33" Label="Source1" />
+      <Edge From="0" To="35" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="1" To="3" Label="Source1" />
       <Edge From="1" To="8" Label="Source1" />
@@ -656,16 +681,19 @@ def process(value):
       <Edge From="4" To="20" Label="Source1" />
       <Edge From="5" To="25" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
+      <Edge From="6" To="33" Label="Source1" />
       <Edge From="8" To="20" Label="Source5" />
       <Edge From="8" To="25" Label="Source5" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="29" Label="Source3" />
       <Edge From="11" To="12" Label="Source1" />
+      <Edge From="11" To="37" Label="Source2" />
       <Edge From="12" To="13" Label="Source2" />
       <Edge From="13" To="14" Label="Source1" />
       <Edge From="14" To="15" Label="Source1" />
       <Edge From="14" To="20" Label="Source3" />
       <Edge From="14" To="25" Label="Source3" />
+      <Edge From="14" To="33" Label="Source2" />
       <Edge From="15" To="16" Label="Source1" />
       <Edge From="17" To="20" Label="Source2" />
       <Edge From="18" To="25" Label="Source2" />
@@ -676,7 +704,7 @@ def process(value):
       <Edge From="21" To="24" Label="Source1" />
       <Edge From="22" To="23" Label="Source1" />
       <Edge From="23" To="29" Label="Source1" />
-      <Edge From="24" To="33" Label="Source2" />
+      <Edge From="24" To="35" Label="Source2" />
       <Edge From="25" To="26" Label="Source1" />
       <Edge From="26" To="27" Label="Source1" />
       <Edge From="26" To="32" Label="Source1" />
@@ -684,9 +712,11 @@ def process(value):
       <Edge From="28" To="29" Label="Source2" />
       <Edge From="29" To="30" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
-      <Edge From="32" To="33" Label="Source3" />
+      <Edge From="32" To="35" Label="Source3" />
       <Edge From="33" To="34" Label="Source1" />
-      <Edge From="33" To="35" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="35" To="37" Label="Source1" />
+      <Edge From="37" To="38" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

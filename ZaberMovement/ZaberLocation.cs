@@ -21,10 +21,8 @@ namespace ZaberMovement
                 s =>
                     {
                         var lockstepaxis = s.Item1.GetAxis(1);
-                        Console.WriteLine($"axis of lockstep is {s.Item1.GetAxis(1).GetPosition()}");
                         Zaber.Motion.Ascii.Axis axis = s.Item1.GetAxis(3);
                         double axisposition = axis.GetPosition();
-                        Console.WriteLine($"axisposition is {axisposition}");
                         return Tuple.Create(lockstepaxis.GetPosition(), axisposition);
                     });
 

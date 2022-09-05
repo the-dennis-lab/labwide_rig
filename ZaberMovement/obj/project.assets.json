@@ -436,7 +436,7 @@
     "C:\\Users\\emily\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "0.1.1",
+    "version": "0.1.2",
     "restore": {
       "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
       "projectName": "ZaberMovement",
