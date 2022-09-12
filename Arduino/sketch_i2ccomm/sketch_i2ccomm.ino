@@ -21,7 +21,7 @@ void loop() {
     command=Serial.readStringUntil('\n');
     command.trim();
     bridge_set_outputs(command.toInt());
-    delay(120000); //open for 120 seconds
+    delay(1200); //open for 120 seconds
     bridge_set_outputs(0x00); //close
 
 }

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.3"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="io:StartProcess">
+            <io:FileName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</io:FileName>
+            <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=L:\\data\\rig\\thermal1_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>saveThermal1</Name>
+        <Description />
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</io:FileName>
+                <io:Arguments>vlc -vvv "rtsp://admin:Musmusculus.@10.123.1.59/stream3" --sout "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:file{dst=C:\\Users\\emily\\Desktop\\data\\thermal1_$(get-date -f yyyyMMdd_hh-mm-ss).mp4,no-overwrite}"</io:Arguments>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+    </Nodes>
+    <Edges />
+  </Workflow>
+</WorkflowBuilder>
