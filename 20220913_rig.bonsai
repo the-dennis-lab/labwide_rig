@@ -804,7 +804,7 @@ def process(value):
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="CHIRP_TOCHANGE_1-2-4-8-16" />
+              <Property Name="Value" DisplayName="CHIRP_TOCHANGE_1-2-4-8" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
