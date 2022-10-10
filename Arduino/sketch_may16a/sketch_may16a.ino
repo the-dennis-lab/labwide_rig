@@ -78,7 +78,7 @@ void loop() {
     command = Serial.readStringUntil('\n');
     command.trim();
     if (command.equals("1")) {
-  playFile("ADOM_SINGLE.WAV");  // filenames are always uppercase 8.3 format
+  playFile("TEST.WAV");  // filenames are always uppercase 8.3 format
     }
   }
 }
