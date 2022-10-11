@@ -2,13 +2,13 @@
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:ZaberMovement;assembly=ZaberMovement"
-                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
-                 xmlns:dlc="clr-namespace:Bonsai.DeepLabCut;assembly=Bonsai.DeepLabCut"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:dlc="clr-namespace:Bonsai.DeepLabCut;assembly=Bonsai.DeepLabCut"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -18,44 +18,55 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:CameraCapture">
-          <cv:Index>0</cv:Index>
-          <cv:CaptureProperties>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>FrameWidth</cv:Property>
-              <cv:Value>1896</cv:Value>
-            </cv:CapturePropertyAssignment>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>FrameHeight</cv:Property>
-              <cv:Value>1896</cv:Value>
-            </cv:CapturePropertyAssignment>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>Fps</cv:Property>
-              <cv:Value>90</cv:Value>
-            </cv:CapturePropertyAssignment>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>PosMsec</cv:Property>
-              <cv:Value>0</cv:Value>
-            </cv:CapturePropertyAssignment>
-          </cv:CaptureProperties>
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0.001S</rx:Period>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="cv:VideoWriter">
-            <cv:FileName>C:\Users\emily\Desktop\data\video_basler_.avi</cv:FileName>
-            <cv:Suffix>Timestamp</cv:Suffix>
-            <cv:Buffered>true</cv:Buffered>
-            <cv:Overwrite>false</cv:Overwrite>
-            <cv:FourCC>FMP4</cv:FourCC>
-            <cv:FrameRate>90</cv:FrameRate>
-            <cv:FrameSize>
-              <cv:Width>1896</cv:Width>
-              <cv:Height>1896</cv:Height>
-            </cv:FrameSize>
-            <cv:ResizeInterpolation>Linear</cv:ResizeInterpolation>
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ZaberLocation" />
+      </Expression>
+      <Expression xsi:type="PublishSubject">
+        <Name>zaberLocation</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:LoadImage">
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_1-1.png</cv:FileName>
+          <cv:Mode>Grayscale</cv:Mode>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:LoadImage">
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax3_mult_1-1.png</cv:FileName>
+          <cv:Mode>Grayscale</cv:Mode>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1500</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0.5S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="LessThanOrEqual">
+        <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Int64">
+          <Value>600</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>cam</Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>DLC</Name>
@@ -68,7 +79,7 @@
               <Combinator xsi:type="dlc:DetectPose">
                 <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-6_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-4\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.95</dlc:MinConfidence>
+                <dlc:MinConfidence>0.9</dlc:MinConfidence>
                 <dlc:ScaleFactor>1</dlc:ScaleFactor>
               </Combinator>
             </Expression>
@@ -178,7 +189,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>12</Value>
+                <Value>1216</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -357,58 +368,11 @@ def process(value):
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timestamp" />
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Item3</Selector>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>cam</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Width</Selector>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0.1S</rx:Period>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1</Value>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:CombineLatest" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:ZaberLocation" />
-      </Expression>
-      <Expression xsi:type="PublishSubject">
-        <Name>zaberLocation</Name>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timestamp" />
-      </Expression>
-      <Expression xsi:type="io:CsvWriter">
-        <io:FileName>C:\Users\emily\Desktop\data\ZaberLocation_.csv</io:FileName>
-        <io:Append>false</io:Append>
-        <io:Overwrite>true</io:Overwrite>
-        <io:Suffix>Timestamp</io:Suffix>
-        <io:IncludeHeader>false</io:IncludeHeader>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_1-1.png</cv:FileName>
-          <cv:Mode>Grayscale</cv:Mode>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax3_mult_1-1.png</cv:FileName>
-          <cv:Mode>Grayscale</cv:Mode>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1400</Value>
-        </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
@@ -583,32 +547,8 @@ def process(value):
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ImageWriter">
-          <cv:Path>C:\Users\emily\Desktop\data\20221011\tst_</cv:Path>
-          <cv:Suffix>Timestamp</cv:Suffix>
-          <cv:Overwrite>false</cv:Overwrite>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0.5S</rx:Period>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="LessThanOrEqual">
-        <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Int64">
-          <Value>600</Value>
-        </Operand>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Merge" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:DistinctUntilChanged" />
-      </Expression>
-      <Expression xsi:type="PublishSubject">
-        <Name>isMoving?</Name>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>zaberLocation</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
@@ -619,6 +559,18 @@ def process(value):
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item3</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:DistinctUntilChanged" />
+      </Expression>
+      <Expression xsi:type="PublishSubject">
+        <Name>isMoving?</Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>moveZaber</Name>
@@ -651,6 +603,9 @@ def process(value):
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />
             </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
             <Expression xsi:type="io:CsvWriter">
               <io:FileName>C:\Users\emily\Desktop\data\ZaberMove_.csv</io:FileName>
               <io:Append>false</io:Append>
@@ -669,8 +624,59 @@ def process(value):
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="6" To="8" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
           </Edges>
         </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameWidth</cv:Property>
+              <cv:Value>1896</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameHeight</cv:Property>
+              <cv:Value>1896</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>Fps</cv:Property>
+              <cv:Value>90</cv:Value>
+            </cv:CapturePropertyAssignment>
+          </cv:CaptureProperties>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="PublishSubject">
+        <Name>cam</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:VideoWriter">
+          <cv:FileName>C:\Users\emily\Desktop\data\video_basler_.avi</cv:FileName>
+          <cv:Suffix>Timestamp</cv:Suffix>
+          <cv:Buffered>true</cv:Buffered>
+          <cv:Overwrite>false</cv:Overwrite>
+          <cv:FourCC>IYUV</cv:FourCC>
+          <cv:FrameRate>90</cv:FrameRate>
+          <cv:FrameSize>
+            <cv:Width>0</cv:Width>
+            <cv:Height>0</cv:Height>
+          </cv:FrameSize>
+          <cv:ResizeInterpolation>NearestNeighbor</cv:ResizeInterpolation>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>cam</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\emily\Desktop\tst_.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>false</io:Overwrite>
+        <io:Suffix>Timestamp</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="GroupWorkflow">
@@ -815,7 +821,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>1</Value>
+                <Value>0</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -884,7 +890,6 @@ def process(value):
   cricket_l = value[1]
   cricket_ax = value[2]
   radius = value[3]
-  print(zaber_l, zaber_ax, cricket_l, cricket_ax, radius)
 
 
   if abs(math.hypot(zaber_l,zaber_ax)-math.hypot(cricket_l,cricket_ax)) &lt; radius:
@@ -904,7 +909,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>1</Value>
+                <Value>0</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -920,40 +925,12 @@ def process(value):
               <io:Suffix>Timestamp</io:Suffix>
               <io:IncludeHeader>false</io:IncludeHeader>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\isInside_output_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>false</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\isInside_input_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>false</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\switvhoutput_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>true</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="2" Label="Source1" />
             <Edge From="1" To="2" Label="Source2" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="16" Label="Source1" />
-            <Edge From="3" To="37" Label="Source1" />
             <Edge From="4" To="19" Label="Source1" />
             <Edge From="5" To="20" Label="Source1" />
             <Edge From="6" To="21" Label="Source1" />
@@ -977,15 +954,11 @@ def process(value):
             <Edge From="24" To="25" Label="Source1" />
             <Edge From="25" To="26" Label="Source1" />
             <Edge From="26" To="27" Label="Source1" />
-            <Edge From="26" To="35" Label="Source1" />
             <Edge From="27" To="28" Label="Source1" />
-            <Edge From="27" To="33" Label="Source1" />
             <Edge From="28" To="29" Label="Source1" />
             <Edge From="29" To="30" Label="Source1" />
             <Edge From="30" To="31" Label="Source2" />
             <Edge From="30" To="32" Label="Source1" />
-            <Edge From="33" To="34" Label="Source1" />
-            <Edge From="35" To="36" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1011,54 +984,54 @@ def process(value):
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="11" Label="Source1" />
-      <Edge From="0" To="37" Label="Source2" />
+      <Edge From="0" To="3" Label="Source1" />
+      <Edge From="0" To="35" Label="Source2" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="1" To="3" Label="Source1" />
-      <Edge From="1" To="8" Label="Source1" />
-      <Edge From="1" To="29" Label="Source1" />
+      <Edge From="1" To="35" Label="Source1" />
+      <Edge From="2" To="3" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
-      <Edge From="3" To="5" Label="Source1" />
-      <Edge From="3" To="6" Label="Source1" />
-      <Edge From="3" To="7" Label="Source1" />
-      <Edge From="4" To="19" Label="Source1" />
-      <Edge From="5" To="23" Label="Source1" />
-      <Edge From="6" To="35" Label="Source1" />
-      <Edge From="7" To="32" Label="Source4" />
-      <Edge From="8" To="19" Label="Source5" />
-      <Edge From="8" To="23" Label="Source5" />
-      <Edge From="8" To="27" Label="Source2" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="18" Label="Source3" />
+      <Edge From="5" To="22" Label="Source3" />
+      <Edge From="6" To="18" Label="Source2" />
+      <Edge From="7" To="22" Label="Source2" />
+      <Edge From="8" To="18" Label="Source4" />
+      <Edge From="8" To="22" Label="Source4" />
+      <Edge From="8" To="26" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
-      <Edge From="9" To="37" Label="Source1" />
-      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="10" To="32" Label="Source3" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="14" Label="Source1" />
-      <Edge From="13" To="19" Label="Source3" />
-      <Edge From="13" To="23" Label="Source3" />
-      <Edge From="13" To="35" Label="Source2" />
-      <Edge From="14" To="15" Label="Source1" />
-      <Edge From="16" To="19" Label="Source2" />
-      <Edge From="17" To="23" Label="Source2" />
-      <Edge From="18" To="19" Label="Source4" />
-      <Edge From="18" To="23" Label="Source4" />
-      <Edge From="18" To="27" Label="Source1" />
+      <Edge From="12" To="14" Label="Source1" />
+      <Edge From="12" To="15" Label="Source1" />
+      <Edge From="12" To="31" Label="Source1" />
+      <Edge From="13" To="18" Label="Source1" />
+      <Edge From="14" To="22" Label="Source1" />
+      <Edge From="15" To="29" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source5" />
+      <Edge From="17" To="22" Label="Source5" />
+      <Edge From="17" To="26" Label="Source2" />
+      <Edge From="18" To="19" Label="Source1" />
       <Edge From="19" To="20" Label="Source1" />
+      <Edge From="19" To="35" Label="Source3" />
       <Edge From="20" To="21" Label="Source1" />
-      <Edge From="20" To="37" Label="Source3" />
-      <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="32" Label="Source1" />
+      <Edge From="21" To="32" Label="Source1" />
+      <Edge From="22" To="23" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
+      <Edge From="23" To="35" Label="Source4" />
       <Edge From="24" To="25" Label="Source1" />
-      <Edge From="24" To="37" Label="Source4" />
-      <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="32" Label="Source2" />
-      <Edge From="27" To="28" Label="Source1" />
-      <Edge From="30" To="31" Label="Source1" />
-      <Edge From="31" To="32" Label="Source3" />
+      <Edge From="25" To="32" Label="Source2" />
+      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="28" To="29" Label="Source2" />
+      <Edge From="29" To="30" Label="Source1" />
+      <Edge From="31" To="32" Label="Source4" />
       <Edge From="32" To="33" Label="Source1" />
       <Edge From="33" To="34" Label="Source1" />
-      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="36" To="37" Label="Source1" />
+      <Edge From="36" To="38" Label="Source1" />
+      <Edge From="39" To="40" Label="Source1" />
+      <Edge From="40" To="41" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
