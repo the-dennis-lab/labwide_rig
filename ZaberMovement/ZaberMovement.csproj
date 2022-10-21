@@ -13,7 +13,7 @@
     <PackageTags>Bonsai Rx Zaber</PackageTags>
     <TargetFramework>net472</TargetFramework>
     <Features>strict</Features>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <PackageReleaseNotes>plans for the future include more inputs from user to allow for choosing between movement types (velocity, relative) and number/types of axes.</PackageReleaseNotes>
     <Company>thedennislab</Company>
   </PropertyGroup>
@@ -21,6 +21,12 @@
   <ItemGroup>
     <PackageReference Include="Bonsai.Core" Version="2.6.3" />
     <PackageReference Include="Zaber.Motion" Version="2.10.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ZaberMovePrecise.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>

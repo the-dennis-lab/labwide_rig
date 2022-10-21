@@ -12,6 +12,9 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>zaberLocation</Name>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberDevice">
           <p1:PortName>COM3</p1:PortName>
@@ -39,19 +42,19 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_1-1.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_20221014.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax3_mult_1-1.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax3_mult_20221014.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1500</Value>
+          <Value>1400</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -62,11 +65,33 @@
       </Expression>
       <Expression xsi:type="LessThanOrEqual">
         <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Int64">
-          <Value>600</Value>
+          <Value>1800</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>cam</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Width</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameWidth</cv:Property>
+              <cv:Value>1896</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameHeight</cv:Property>
+              <cv:Value>1896</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>Fps</cv:Property>
+              <cv:Value>90</cv:Value>
+            </cv:CapturePropertyAssignment>
+          </cv:CaptureProperties>
+        </Combinator>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>DLC</Name>
@@ -77,8 +102,8 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dlc:DetectPose">
-                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-6_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
-                <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-4\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
+                <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-8_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
+                <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-7\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
                 <dlc:MinConfidence>0.9</dlc:MinConfidence>
                 <dlc:ScaleFactor>1</dlc:ScaleFactor>
               </Combinator>
@@ -189,7 +214,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>1216</Value>
+                <Value>16</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -362,18 +387,6 @@ def process(value):
       <Expression xsi:type="MemberSelector">
         <Selector>Item1</Selector>
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Item2</Selector>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timestamp" />
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>cam</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Width</Selector>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
       </Expression>
@@ -418,6 +431,9 @@ def process(value):
         <Operand xsi:type="DoubleProperty">
           <Value>0</Value>
         </Operand>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item2</Selector>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
@@ -514,6 +530,14 @@ def process(value):
               <MemberName>Period</MemberName>
               <Value />
             </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="animal_name" Description="a string, no spaces with animal name" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>animal</Value>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:CombineLatest" />
             </Expression>
@@ -529,14 +553,16 @@ def process(value):
             <Edge From="3" To="6" Label="Source1" />
             <Edge From="4" To="6" Label="Source5" />
             <Edge From="5" To="6" Label="Source6" />
-            <Edge From="6" To="13" Label="Source1" />
-            <Edge From="7" To="12" Label="Source3" />
-            <Edge From="8" To="12" Label="Source2" />
-            <Edge From="9" To="12" Label="Source1" />
-            <Edge From="10" To="12" Label="Source5" />
-            <Edge From="11" To="12" Label="Source4" />
-            <Edge From="12" To="13" Label="Source2" />
-            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="6" To="15" Label="Source1" />
+            <Edge From="7" To="14" Label="Source3" />
+            <Edge From="8" To="14" Label="Source2" />
+            <Edge From="9" To="14" Label="Source1" />
+            <Edge From="10" To="14" Label="Source5" />
+            <Edge From="11" To="14" Label="Source4" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="14" Label="Source6" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -547,8 +573,8 @@ def process(value):
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>zaberLocation</Name>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
@@ -629,23 +655,7 @@ def process(value):
         </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:CameraCapture">
-          <cv:Index>0</cv:Index>
-          <cv:CaptureProperties>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>FrameWidth</cv:Property>
-              <cv:Value>1896</cv:Value>
-            </cv:CapturePropertyAssignment>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>FrameHeight</cv:Property>
-              <cv:Value>1896</cv:Value>
-            </cv:CapturePropertyAssignment>
-            <cv:CapturePropertyAssignment>
-              <cv:Property>Fps</cv:Property>
-              <cv:Value>90</cv:Value>
-            </cv:CapturePropertyAssignment>
-          </cv:CaptureProperties>
-        </Combinator>
+        <Combinator xsi:type="cv:Grayscale" />
       </Expression>
       <Expression xsi:type="PublishSubject">
         <Name>cam</Name>
@@ -672,7 +682,7 @@ def process(value):
         <Combinator xsi:type="rx:Timestamp" />
       </Expression>
       <Expression xsi:type="io:CsvWriter">
-        <io:FileName>C:\Users\emily\Desktop\tst_.csv</io:FileName>
+        <io:FileName>C:\Users\emily\Desktop\data\cam_frames.csv</io:FileName>
         <io:Append>false</io:Append>
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>Timestamp</io:Suffix>
@@ -821,7 +831,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>0</Value>
+                <Value>1</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -896,7 +906,7 @@ def process(value):
     is_inside=True
   else:
     is_inside=False
-  print(is_inside)
+
   return is_inside</scr:Script>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -984,52 +994,53 @@ def process(value):
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="3" Label="Source1" />
-      <Edge From="0" To="35" Label="Source2" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="1" To="35" Label="Source1" />
-      <Edge From="2" To="3" Label="Source2" />
-      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="0" To="29" Label="Source2" />
+      <Edge From="1" To="4" Label="Source1" />
+      <Edge From="1" To="35" Label="Source2" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="2" To="35" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="5" To="18" Label="Source3" />
-      <Edge From="5" To="22" Label="Source3" />
-      <Edge From="6" To="18" Label="Source2" />
-      <Edge From="7" To="22" Label="Source2" />
-      <Edge From="8" To="18" Label="Source4" />
-      <Edge From="8" To="22" Label="Source4" />
-      <Edge From="8" To="26" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="32" Label="Source3" />
-      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="17" Label="Source3" />
+      <Edge From="6" To="22" Label="Source3" />
+      <Edge From="7" To="17" Label="Source2" />
+      <Edge From="8" To="22" Label="Source2" />
+      <Edge From="9" To="17" Label="Source4" />
+      <Edge From="9" To="22" Label="Source4" />
+      <Edge From="9" To="26" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="32" Label="Source3" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="12" To="14" Label="Source1" />
-      <Edge From="12" To="15" Label="Source1" />
-      <Edge From="12" To="31" Label="Source1" />
-      <Edge From="13" To="18" Label="Source1" />
-      <Edge From="14" To="22" Label="Source1" />
-      <Edge From="15" To="29" Label="Source1" />
+      <Edge From="13" To="17" Label="Source5" />
+      <Edge From="13" To="22" Label="Source5" />
+      <Edge From="13" To="26" Label="Source2" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="14" To="36" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="15" To="21" Label="Source1" />
+      <Edge From="15" To="28" Label="Source1" />
+      <Edge From="15" To="31" Label="Source1" />
       <Edge From="16" To="17" Label="Source1" />
-      <Edge From="17" To="18" Label="Source5" />
-      <Edge From="17" To="22" Label="Source5" />
-      <Edge From="17" To="26" Label="Source2" />
+      <Edge From="17" To="18" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
+      <Edge From="18" To="35" Label="Source3" />
       <Edge From="19" To="20" Label="Source1" />
-      <Edge From="19" To="35" Label="Source3" />
-      <Edge From="20" To="21" Label="Source1" />
-      <Edge From="21" To="32" Label="Source1" />
+      <Edge From="20" To="32" Label="Source1" />
+      <Edge From="21" To="22" Label="Source1" />
       <Edge From="22" To="23" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
       <Edge From="23" To="35" Label="Source4" />
       <Edge From="24" To="25" Label="Source1" />
       <Edge From="25" To="32" Label="Source2" />
       <Edge From="26" To="27" Label="Source1" />
-      <Edge From="28" To="29" Label="Source2" />
+      <Edge From="28" To="29" Label="Source1" />
       <Edge From="29" To="30" Label="Source1" />
       <Edge From="31" To="32" Label="Source4" />
       <Edge From="32" To="33" Label="Source1" />
       <Edge From="33" To="34" Label="Source1" />
       <Edge From="36" To="37" Label="Source1" />
-      <Edge From="36" To="38" Label="Source1" />
+      <Edge From="37" To="38" Label="Source1" />
       <Edge From="39" To="40" Label="Source1" />
       <Edge From="40" To="41" Label="Source1" />
     </Edges>
