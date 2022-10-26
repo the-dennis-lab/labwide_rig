@@ -22,7 +22,7 @@ namespace ZaberMovement
                 connection =>
                 {
                     Library.EnableDeviceDbStore(); // From Zaber, necessary
-                    var device = connection.DetectDevices()[0];
+                    Device device = connection.DetectDevices()[0];
                     return Observable.Return(device).Concat(Observable.Never(device));
                 }
             );

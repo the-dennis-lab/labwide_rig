@@ -42,4 +42,4 @@ C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\Zaber
 C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.dll
 C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.pdb
 C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\bin\Release\net472\ZaberMovePrecise.cs
-C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\obj\Release\net472\ZaberMovement.csproj.AssemblyReference.cache
+C:\Users\emily\Desktop\github\labwide_rig\ZaberMovement\bin\Release\net472\System.Reactive.PlatformServices.dll

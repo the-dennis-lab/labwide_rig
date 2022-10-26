@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "6BTiKvuGRpRPqq8XAZzRCxCaKLOdsAblAg2NwO2VRlciuL8SUF3ifZmwN4LI21+DBjDwSD7GGrjkGHZ6dncL8Q==",
+  "dgSpecHash": "iv2FXr9ZRcOLB7xrOcAfanLn6kMloCa5UPCs5Q+nUa7E+epAOOgBhCy1IOMpL9zsQyXLvRlum96Lx0TtuRfBOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\emily\\.nuget\\packages\\bonsai.core\\2.6.3\\bonsai.core.2.6.3.nupkg.sha512",
+    "C:\\Users\\emily\\.nuget\\packages\\bonsai.core\\2.7.0\\bonsai.core.2.7.0.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\google.protobuf\\3.19.1\\google.protobuf.3.19.1.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\rx-core\\2.2.5\\rx-core.2.2.5.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\rx-interfaces\\2.2.5\\rx-interfaces.2.2.5.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\rx-linq\\2.2.5\\rx-linq.2.2.5.nupkg.sha512",
+    "C:\\Users\\emily\\.nuget\\packages\\rx-platformservices\\2.2.5\\rx-platformservices.2.2.5.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",

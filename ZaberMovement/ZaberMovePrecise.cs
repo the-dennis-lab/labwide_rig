@@ -21,7 +21,7 @@ namespace ZaberMovement
                         lockstep.MoveAbsolute(s.Item2);
                     }
                     catch { }
-                    
+
                     var axis = s.Item1.GetAxis(3);
                     try
                     {
