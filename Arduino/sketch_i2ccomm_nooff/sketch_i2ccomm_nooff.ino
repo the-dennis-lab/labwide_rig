@@ -20,8 +20,12 @@ void loop() {
   if (Serial.available()) {
     command=Serial.readStringUntil('\n');
     command.trim();
-    bridge_set_outputs(command.toInt());
-
+    if (command.toInt()==0) {
+      bridge_set_outputs(0x00); //close
+    }
+    else {
+      bridge_set_outputs(command.toInt());
+    }
 }
 }
 

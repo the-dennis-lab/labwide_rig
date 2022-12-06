@@ -13,6 +13,9 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>zaberLocation</Name>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:ZaberDevice">
           <p1:PortName>COM3</p1:PortName>
@@ -120,7 +123,7 @@
               <Combinator xsi:type="dlc:PredictPose">
                 <dlc:ModelFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-10_shuffle-1\snapshot-940000.pb</dlc:ModelFileName>
                 <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-7\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</dlc:PoseConfigFileName>
-                <dlc:MinConfidence>0.92</dlc:MinConfidence>
+                <dlc:MinConfidence>0.87</dlc:MinConfidence>
                 <dlc:ScaleFactor>0.8</dlc:ScaleFactor>
                 <dlc:ColorConversion xsi:nil="true" />
               </Combinator>
@@ -554,7 +557,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>b6</Value>
+                <Value>P3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -612,6 +615,19 @@ def process(value):
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\emily\Desktop\data\DLC_medians_with_zaber.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>false</io:Overwrite>
+        <io:Suffix>Timestamp</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Item3</Selector>
       </Expression>
@@ -623,29 +639,6 @@ def process(value):
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
         <Name>isMoving?</Name>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:CombineLatest" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timestamp" />
-      </Expression>
-      <Expression xsi:type="io:CsvWriter">
-        <io:FileName>C:\Users\emily\Desktop\data\DLC_medians_with_zaber.csv</io:FileName>
-        <io:Append>false</io:Append>
-        <io:Overwrite>false</io:Overwrite>
-        <io:Suffix>Timestamp</io:Suffix>
-        <io:IncludeHeader>false</io:IncludeHeader>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timestamp" />
-      </Expression>
-      <Expression xsi:type="io:CsvWriter">
-        <io:FileName>C:\Users\emily\Desktop\data\zaber_coords_.csv</io:FileName>
-        <io:Append>false</io:Append>
-        <io:Overwrite>false</io:Overwrite>
-        <io:Suffix>Timestamp</io:Suffix>
-        <io:IncludeHeader>false</io:IncludeHeader>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>moveZaber</Name>
@@ -829,7 +822,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>198270</Value>
+                <Value>177019</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -837,7 +830,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>76669</Value>
+                <Value>126633</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -853,7 +846,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>0</Value>
+                <Value>2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -866,37 +859,29 @@ def process(value):
               <io:Suffix>Timestamp</io:Suffix>
               <io:IncludeHeader>false</io:IncludeHeader>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM6</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM6</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM7</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM7</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM9</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM9</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM8</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM8</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>zaberLocation</Name>
@@ -987,15 +972,7 @@ def process(value):
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:DistinctUntilChanged" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="io:SerialStringWrite">
@@ -1032,7 +1009,7 @@ def process(value):
             <Edge From="5" To="20" Label="Source1" />
             <Edge From="6" To="21" Label="Source1" />
             <Edge From="7" To="22" Label="Source1" />
-            <Edge From="8" To="32" Label="Source1" />
+            <Edge From="8" To="30" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="25" Label="Source2" />
             <Edge From="11" To="12" Label="Source1" />
@@ -1053,10 +1030,8 @@ def process(value):
             <Edge From="26" To="27" Label="Source1" />
             <Edge From="27" To="28" Label="Source1" />
             <Edge From="28" To="29" Label="Source1" />
-            <Edge From="29" To="30" Label="Source1" />
-            <Edge From="30" To="31" Label="Source1" />
-            <Edge From="31" To="32" Label="Source2" />
-            <Edge From="31" To="33" Label="Source1" />
+            <Edge From="29" To="30" Label="Source2" />
+            <Edge From="29" To="31" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1082,56 +1057,54 @@ def process(value):
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="3" Label="Source1" />
-      <Edge From="0" To="38" Label="Source2" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="1" To="38" Label="Source1" />
-      <Edge From="2" To="3" Label="Source2" />
-      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="0" To="31" Label="Source2" />
+      <Edge From="1" To="4" Label="Source1" />
+      <Edge From="1" To="37" Label="Source2" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="2" To="37" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="4" To="33" Label="Source2" />
-      <Edge From="4" To="36" Label="Source1" />
-      <Edge From="5" To="18" Label="Source3" />
-      <Edge From="5" To="23" Label="Source3" />
-      <Edge From="6" To="18" Label="Source2" />
-      <Edge From="7" To="23" Label="Source2" />
-      <Edge From="8" To="18" Label="Source4" />
-      <Edge From="8" To="23" Label="Source4" />
-      <Edge From="8" To="27" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="30" Label="Source3" />
-      <Edge From="11" To="12" Label="Source1" />
-      <Edge From="12" To="18" Label="Source5" />
-      <Edge From="12" To="23" Label="Source5" />
-      <Edge From="12" To="27" Label="Source2" />
-      <Edge From="13" To="14" Label="Source1" />
-      <Edge From="13" To="16" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="19" Label="Source3" />
+      <Edge From="6" To="24" Label="Source3" />
+      <Edge From="7" To="19" Label="Source2" />
+      <Edge From="8" To="24" Label="Source2" />
+      <Edge From="9" To="19" Label="Source4" />
+      <Edge From="9" To="24" Label="Source4" />
+      <Edge From="9" To="28" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="34" Label="Source3" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="19" Label="Source5" />
+      <Edge From="13" To="24" Label="Source5" />
+      <Edge From="13" To="28" Label="Source2" />
       <Edge From="14" To="15" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
-      <Edge From="16" To="22" Label="Source1" />
-      <Edge From="16" To="33" Label="Source1" />
-      <Edge From="16" To="29" Label="Source1" />
+      <Edge From="14" To="17" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
       <Edge From="17" To="18" Label="Source1" />
+      <Edge From="17" To="23" Label="Source1" />
+      <Edge From="17" To="30" Label="Source1" />
+      <Edge From="17" To="33" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
       <Edge From="19" To="20" Label="Source1" />
-      <Edge From="19" To="38" Label="Source3" />
       <Edge From="20" To="21" Label="Source1" />
-      <Edge From="21" To="30" Label="Source1" />
-      <Edge From="22" To="23" Label="Source1" />
+      <Edge From="20" To="37" Label="Source3" />
+      <Edge From="21" To="22" Label="Source1" />
+      <Edge From="22" To="34" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
-      <Edge From="24" To="38" Label="Source4" />
       <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="30" Label="Source2" />
-      <Edge From="27" To="28" Label="Source1" />
-      <Edge From="29" To="30" Label="Source4" />
+      <Edge From="25" To="37" Label="Source4" />
+      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="27" To="34" Label="Source2" />
+      <Edge From="28" To="29" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
       <Edge From="31" To="32" Label="Source1" />
-      <Edge From="33" To="34" Label="Source1" />
+      <Edge From="33" To="34" Label="Source4" />
       <Edge From="34" To="35" Label="Source1" />
-      <Edge From="36" To="37" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="38" To="39" Label="Source1" />
       <Edge From="39" To="40" Label="Source1" />
-      <Edge From="40" To="41" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
