@@ -997,6 +997,13 @@ def process(value):
                 <io:NewLine>\r\n</io:NewLine>
               </Combinator>
             </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>C:\Users\emily\Desktop\data\chirps_.csv</io:FileName>
+              <io:Append>false</io:Append>
+              <io:Overwrite>false</io:Overwrite>
+              <io:Suffix>Timestamp</io:Suffix>
+              <io:IncludeHeader>false</io:IncludeHeader>
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
@@ -1009,6 +1016,7 @@ def process(value):
             <Edge From="4" To="11" Label="Source1" />
             <Edge From="4" To="13" Label="Source1" />
             <Edge From="4" To="15" Label="Source1" />
+            <Edge From="4" To="16" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="8" To="9" Label="Source2" />
