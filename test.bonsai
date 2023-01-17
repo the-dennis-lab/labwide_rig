@@ -3,6 +3,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -14,7 +15,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>10</Value>
+          <Value>100</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -221,6 +222,9 @@ def process(value):
         </Combinator>
       </Expression>
       <Expression xsi:type="PublishSubject" />
+      <Expression xsi:type="BehaviorSubject" TypeArguments="sys:Int32">
+        <Name>duc</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />

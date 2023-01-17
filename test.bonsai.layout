@@ -29,8 +29,8 @@
     <VisualizerSettings>
       <TimeSeriesVisualizer>
         <Capacity>640</Capacity>
-        <Min>-1</Min>
-        <Max>1</Max>
+        <Min>0</Min>
+        <Max>110</Max>
         <AutoScale>true</AutoScale>
       </TimeSeriesVisualizer>
     </VisualizerSettings>
@@ -38,8 +38,8 @@
   <DialogSettings>
     <Visible>true</Visible>
     <Location>
-      <X>625</X>
-      <Y>620</Y>
+      <X>774</X>
+      <Y>331</Y>
     </Location>
     <Size>
       <Width>412</Width>
@@ -50,9 +50,9 @@
     <VisualizerSettings>
       <TimeSeriesVisualizer>
         <Capacity>640</Capacity>
-        <Min>1.8831602475721982</Min>
-        <Max>2.1005183705234858</Max>
-        <AutoScale>false</AutoScale>
+        <Min>0</Min>
+        <Max>110</Max>
+        <AutoScale>true</AutoScale>
       </TimeSeriesVisualizer>
     </VisualizerSettings>
   </DialogSettings>
@@ -74,7 +74,7 @@
         <Y>7</Y>
       </Location>
       <Size>
-        <Width>1018</Width>
+        <Width>1058</Width>
         <Height>811</Height>
       </Size>
       <WindowState>Normal</WindowState>
@@ -461,8 +461,8 @@
   <DialogSettings>
     <Visible>true</Visible>
     <Location>
-      <X>681</X>
-      <Y>340</Y>
+      <X>708</X>
+      <Y>478</Y>
     </Location>
     <Size>
       <Width>412</Width>
@@ -474,7 +474,7 @@
       <TimeSeriesVisualizer>
         <Capacity>640</Capacity>
         <Min>0</Min>
-        <Max>35</Max>
+        <Max>1.1</Max>
         <AutoScale>true</AutoScale>
       </TimeSeriesVisualizer>
     </VisualizerSettings>
@@ -526,6 +526,18 @@
     <VisualizerSettings>
       <ObjectTextVisualizer />
     </VisualizerSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>

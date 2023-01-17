@@ -8,11 +8,13 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT1S</rx:Period>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Timer">
+            <rx:DueTime>PT0S</rx:DueTime>
+            <rx:Period>PT1S</rx:Period>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="Sink">
@@ -93,123 +95,124 @@
           <Combinator xsi:type="rx:Repeat" />
         </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:FileCapture">
-          <cv:FileName>C:\Users\dennise\Desktop\Basler_acA2040-90umNIR__24121204__20220419_105054047.mp4</cv:FileName>
-          <cv:PlaybackRate>0</cv:PlaybackRate>
-          <cv:StartPosition>0</cv:StartPosition>
-          <cv:PositionUnits>Frames</cv:PositionUnits>
-          <cv:Loop>false</cv:Loop>
-          <cv:Playing>false</cv:Playing>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:FileCapture">
+            <cv:FileName>C:\Users\dennise\Desktop\Basler_acA2040-90umNIR__24121204__20220419_105054047.mp4</cv:FileName>
+            <cv:PlaybackRate>0</cv:PlaybackRate>
+            <cv:StartPosition>0</cv:StartPosition>
+            <cv:PositionUnits>Frames</cv:PositionUnits>
+            <cv:Loop>false</cv:Loop>
+            <cv:Playing>false</cv:Playing>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="PublishSubject">
-        <Name>still</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="PublishSubject">
+          <Name>still</Name>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:Crop">
-          <cv:RegionOfInterest>
-            <cv:X>500</cv:X>
-            <cv:Y>500</cv:Y>
-            <cv:Width>1000</cv:Width>
-            <cv:Height>1000</cv:Height>
-          </cv:RegionOfInterest>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:Crop">
+            <cv:RegionOfInterest>
+              <cv:X>500</cv:X>
+              <cv:Y>500</cv:Y>
+              <cv:Width>1000</cv:Width>
+              <cv:Height>1000</cv:Height>
+            </cv:RegionOfInterest>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:FileCapture">
-          <cv:FileName>C:\Users\dennise\Desktop\Basler_acA2040-90umNIR__24121204__20220419_105054047.mp4</cv:FileName>
-          <cv:PlaybackRate>0</cv:PlaybackRate>
-          <cv:StartPosition>0</cv:StartPosition>
-          <cv:PositionUnits>Frames</cv:PositionUnits>
-          <cv:Loop>false</cv:Loop>
-          <cv:Playing>true</cv:Playing>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:FileCapture">
+            <cv:FileName>C:\Users\dennise\Desktop\Basler_acA2040-90umNIR__24121204__20220419_105054047.mp4</cv:FileName>
+            <cv:PlaybackRate>0</cv:PlaybackRate>
+            <cv:StartPosition>0</cv:StartPosition>
+            <cv:PositionUnits>Frames</cv:PositionUnits>
+            <cv:Loop>false</cv:Loop>
+            <cv:Playing>true</cv:Playing>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="PublishSubject">
-        <Name>stream</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="PublishSubject">
+          <Name>stream</Name>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:Crop">
-          <cv:RegionOfInterest>
-            <cv:X>500</cv:X>
-            <cv:Y>500</cv:Y>
-            <cv:Width>1000</cv:Width>
-            <cv:Height>1000</cv:Height>
-          </cv:RegionOfInterest>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:Crop">
+            <cv:RegionOfInterest>
+              <cv:X>500</cv:X>
+              <cv:Y>500</cv:Y>
+              <cv:Width>1000</cv:Width>
+              <cv:Height>1000</cv:Height>
+            </cv:RegionOfInterest>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Zip" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Zip" />
+        </Builder>
       </Expression>
-      <Expression xsi:type="Subtract" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:HsvThreshold">
-          <cv:Lower>
-            <cv:Val0>40</cv:Val0>
-            <cv:Val1>0</cv:Val1>
-            <cv:Val2>0</cv:Val2>
-            <cv:Val3>0</cv:Val3>
-          </cv:Lower>
-          <cv:Upper>
-            <cv:Val0>250</cv:Val0>
-            <cv:Val1>250</cv:Val1>
-            <cv:Val2>250</cv:Val2>
-            <cv:Val3>0</cv:Val3>
-          </cv:Upper>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Subtract" />
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:FindContours">
-          <cv:Mode>External</cv:Mode>
-          <cv:Method>ChainApproxNone</cv:Method>
-          <cv:Offset>
-            <cv:X>0</cv:X>
-            <cv:Y>0</cv:Y>
-          </cv:Offset>
-          <cv:MinArea>70</cv:MinArea>
-          <cv:MaxArea>1000</cv:MaxArea>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:HsvThreshold">
+            <cv:Lower>
+              <cv:Val0>40</cv:Val0>
+              <cv:Val1>0</cv:Val1>
+              <cv:Val2>0</cv:Val2>
+              <cv:Val3>0</cv:Val3>
+            </cv:Lower>
+            <cv:Upper>
+              <cv:Val0>250</cv:Val0>
+              <cv:Val1>250</cv:Val1>
+              <cv:Val2>250</cv:Val2>
+              <cv:Val3>0</cv:Val3>
+            </cv:Upper>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:BinaryRegionAnalysis" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:RoiActivity">
+            <cv:Regions>
+              <cv:ArrayOfPoint>
+                <cv:Point>
+                  <cv:X>539</cv:X>
+                  <cv:Y>978</cv:Y>
+                </cv:Point>
+                <cv:Point>
+                  <cv:X>0</cv:X>
+                  <cv:Y>978</cv:Y>
+                </cv:Point>
+                <cv:Point>
+                  <cv:X>0</cv:X>
+                  <cv:Y>413</cv:Y>
+                </cv:Point>
+                <cv:Point>
+                  <cv:X>539</cv:X>
+                  <cv:Y>413</cv:Y>
+                </cv:Point>
+              </cv:ArrayOfPoint>
+            </cv:Regions>
+            <cv:Operation>Sum</cv:Operation>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:LargestBinaryRegion" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:Centroid" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:RoiActivity">
-          <cv:Regions>
-            <cv:ArrayOfPoint>
-              <cv:Point>
-                <cv:X>539</cv:X>
-                <cv:Y>978</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>0</cv:X>
-                <cv:Y>978</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>0</cv:X>
-                <cv:Y>413</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>539</cv:X>
-                <cv:Y>413</cv:Y>
-              </cv:Point>
-            </cv:ArrayOfPoint>
-          </cv:Regions>
-          <cv:Operation>Sum</cv:Operation>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:RoiActivityDetected">
-          <cv:Index>0</cv:Index>
-          <cv:Threshold>175000</cv:Threshold>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:RoiActivityDetected">
+            <cv:Index>0</cv:Index>
+            <cv:Threshold>175000</cv:Threshold>
+          </Combinator>
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>
@@ -226,11 +229,7 @@
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="13" To="18" Label="Source1" />
       <Edge From="14" To="15" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
-      <Edge From="18" To="19" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
