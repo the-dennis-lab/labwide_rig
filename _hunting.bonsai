@@ -682,7 +682,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="io:CsvWriter">
         <io:FileName>C:\Users\emily\Desktop\data\DLC_medians_with_zaber.csv</io:FileName>
-        <io:Append>false</io:Append>
+        <io:Append>true</io:Append>
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
