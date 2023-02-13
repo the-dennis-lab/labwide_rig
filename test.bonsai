@@ -1,244 +1,220 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.3"
+<WorkflowBuilder Version="2.7.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:ipy="clr-namespace:Bonsai.Scripting.IronPython;assembly=Bonsai.Scripting.IronPython"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT1S</rx:Period>
+          <rx:Period>PT0.01S</rx:Period>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>100</Value>
-        </Combinator>
+      <Expression xsi:type="io:CsvReader">
+        <io:FileName>C:\Users\emily\Desktop\20230207_centers.csv</io:FileName>
+        <io:SkipRows>1</io:SkipRows>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:DistinctUntilChanged" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:Scan">
+          <Description />
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>locations</Name>
-        <Description>locations</Description>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="entrance_ls" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>20000</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="entrance_ax" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>10000</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_1_ls" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>2</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_1_ax" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>1</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_2_ls" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>20</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_2_ax" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>10</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_4_ls" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>200</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_4_ax" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>100</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_8_ls" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>2000</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_8_ax" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>1000</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_16_ls" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>0</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="cricket_16_ax" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>0</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="24" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="24" Label="Source2" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="24" Label="Source3" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="24" Label="Source4" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="24" Label="Source5" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="24" Label="Source6" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="24" Label="Source7" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="24" Label="Source8" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="24" Label="Source9" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="24" Label="Source10" />
-            <Edge From="20" To="21" Label="Source1" />
-            <Edge From="21" To="24" Label="Source11" />
-            <Edge From="22" To="23" Label="Source1" />
-            <Edge From="23" To="24" Label="Source12" />
-            <Edge From="24" To="25" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Range">
-          <rx:Start>0</rx:Start>
-          <rx:Count>8</rx:Count>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Zip" />
-      </Expression>
-      <Expression xsi:type="TakeWhile">
+      <Expression xsi:type="rx:TakeWhile">
         <Workflow>
           <Nodes>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item2</Selector>
-            </Expression>
-            <Expression xsi:type="GreaterThan">
-              <Operand xsi:type="IntProperty">
-                <Value>-1</Value>
-              </Operand>
-            </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Item1</Selector>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:CreateObservable">
+          <Workflow>
+            <Nodes />
+            <Edges />
+          </Workflow>
+        </Builder>
       </Expression>
-      <Expression xsi:type="scr:PythonTransform">
-        <scr:Name>cricket_chirp_val</scr:Name>
-        <scr:Script>@returns(int)
-def process(value):
-  chirp_val=2**value
-  print(chirp_val)
-  return chirp_val</scr:Script>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Sample" />
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:CombineLatest" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:ToLookup" />
       </Expression>
-      <Expression xsi:type="scr:PythonTransform">
-        <scr:Name>location_selector</scr:Name>
-        <scr:Script>from System import Tuple
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:Window">
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>locations</Name>
+          <Description>locations</Description>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_1" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>A1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_2" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>B1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_4" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>C1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_8" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>D1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_16" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>E1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_32" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>F1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_64" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>G1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="cricket_128" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>H1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Zip" />
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+              <Expression xsi:type="Disable">
+                <Builder xsi:type="io:CsvWriter">
+                  <io:FileName>C:\Users\emily\Desktop\data\locations_.csv</io:FileName>
+                  <io:Append>false</io:Append>
+                  <io:Overwrite>false</io:Overwrite>
+                  <io:Suffix>Timestamp</io:Suffix>
+                  <io:IncludeHeader>true</io:IncludeHeader>
+                </Builder>
+              </Expression>
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+              <Edge From="1" To="16" Label="Source1" />
+              <Edge From="2" To="3" Label="Source1" />
+              <Edge From="3" To="16" Label="Source2" />
+              <Edge From="4" To="5" Label="Source1" />
+              <Edge From="5" To="16" Label="Source3" />
+              <Edge From="6" To="7" Label="Source1" />
+              <Edge From="7" To="16" Label="Source4" />
+              <Edge From="8" To="9" Label="Source1" />
+              <Edge From="9" To="16" Label="Source5" />
+              <Edge From="10" To="11" Label="Source1" />
+              <Edge From="11" To="16" Label="Source6" />
+              <Edge From="12" To="13" Label="Source1" />
+              <Edge From="13" To="16" Label="Source7" />
+              <Edge From="14" To="15" Label="Source1" />
+              <Edge From="15" To="16" Label="Source8" />
+              <Edge From="16" To="17" Label="Source1" />
+              <Edge From="16" To="18" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:CombineLatest" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="ipy:PythonTransform">
+          <ipy:Script>from System import Tuple
 
-@returns(Tuple[int,int])
+@returns(bool)
 def process(value):
-  intval = value[0]
-  first=intval*2
-  second=first+1
-  print(first,second)
-  list_of_locs=value[1]
-  print(list_of_locs[first],list_of_locs[second])
-  return Tuple[int,int](list_of_locs[first],list_of_locs[second])</scr:Script>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Take">
-          <rx:Count>1</rx:Count>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="PublishSubject" />
-      <Expression xsi:type="BehaviorSubject" TypeArguments="sys:Int32">
-        <Name>duc</Name>
+  csv_line = value[0]
+  locations = value[1]
+  print(csv_line)
+  print(locations)
+  #if locations[0] in csv_line:
+  #  print(csv_line)
+  #  loc_ls=csv_line.split(',')[1]
+  #  loc_ax=csv_line.split(',')[2]
+  #else:
+  #  print('fuck')
+  return True</ipy:Script>
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="5" Label="Source2" />
-      <Edge From="3" To="9" Label="Source2" />
-      <Edge From="4" To="5" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
-      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="1" To="3" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
-      <Edge From="10" To="12" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
