@@ -10,12 +10,6 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
-#include <SerialFlash.h>
-
-
-#define PIN 4
-#define LED 13 // Most Arduinos have an LED on pin 13
-#define BUTTON 2 // use pin input as a button MAY NEED TO CHANGE
 
 AudioPlaySdWav           playWav1;
 // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
@@ -26,6 +20,7 @@ AudioConnection          patchCord1(playWav1, 0, audioOutput, 0);
 AudioConnection          patchCord2(playWav1, 1, audioOutput, 1);
 AudioControlSGTL5000     sgtl5000_1;
 
+
 // Use these with the audio adaptor board
 #define SDCARD_CS_PIN    10
 #define SDCARD_MOSI_PIN  7
@@ -34,9 +29,6 @@ AudioControlSGTL5000     sgtl5000_1;
 
 
 void setup() {
-  pinMode(LED, OUTPUT); // Make the LED pin active
-  pinMode(BUTTON, INPUT);
-  setupSound(PIN);
 
     Serial.begin(9600);
 
@@ -63,8 +55,6 @@ void setup() {
 
 
 
-
-
 void playFile(const char *filename)
 {
   Serial.print("Playing file: ");
@@ -79,32 +69,4 @@ void playFile(const char *filename)
 
   // Simply wait for the file to finish playing.
   while (playWav1.isPlaying()) {
-    // uncomment these lines if you audio shield
-    // has the optional volume pot soldered
-    //float vol = analogRead(15);
-    //vol = vol / 1024;
-    // sgtl5000_1.volume(vol);
-  }
-}
 
-void loop() {
-  if (digitalRead(BUTTON) == HIGH) {
-    activateSound(PIN);
-  }
-}
-
-void setupSound(int pin) {
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, LOW); // Set the pin low as the default state
-}
-
-void activateSound(int pin) {
-  digitalWrite(pin, HIGH); // bring the pin low to begin the activation
-  /*
-  According to the documentation, the Audio FX board needs 50ms to trigger. However,
-  I've found that coming from my 3.3v Arduino Pro, it needs 100ms to get the trigger
-  the going
-  */
-  delay(50); // hold the pin low long enough to trigger the board; may need to be longer for consistent triggering
-  digitalWrite(pin, LOW); // bring the pin high again to end the activation
-}

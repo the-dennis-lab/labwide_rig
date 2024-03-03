@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.3"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:p1="clr-namespace:Bonsai.Pylon;assembly=Bonsai.Pylon"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:dlc="clr-namespace:Bonsai.DeepLabCut;assembly=Bonsai.DeepLabCut"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:PylonCapture">
+          <p1:SerialNumber>24121204</p1:SerialNumber>
+          <p1:ParameterFile>C:\Users\emily\Desktop\acA2040-90umNIR_20220510.pfs</p1:ParameterFile>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Image</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:ConvertColor">
+          <cv:Conversion>Gray2Bgr</cv:Conversion>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dlc:DetectPose">
+          <dlc:ModelFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\exported-models\DLC_rig_001_resnet_50_iteration-0_shuffle-1\snapshot-1030000.pb</dlc:ModelFileName>
+          <dlc:PoseConfigFileName>C:\Users\emily\Desktop\rig_001-dennislab-2022-04-27\dlc-models\iteration-0\rig_001Apr27-trainset90shuffle1\train\pose_cfg.yaml</dlc:PoseConfigFileName>
+          <dlc:MinConfidence>0.2</dlc:MinConfidence>
+          <dlc:ScaleFactor xsi:nil="true" />
+        </Combinator>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
