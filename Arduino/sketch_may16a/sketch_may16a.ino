@@ -11,7 +11,6 @@
 #include <SPI.h>
 #include <SD.h>
 
-
 AudioPlaySdWav           playWav1;
 // Use one of these 3 output types: Digital I2S, Digital S/PDIF, or Analog DAC
 AudioOutputI2S           audioOutput;
@@ -21,7 +20,6 @@ AudioConnection          patchCord1(playWav1, 0, audioOutput, 0);
 AudioConnection          patchCord2(playWav1, 1, audioOutput, 1);
 AudioControlSGTL5000     sgtl5000_1;
 
-String command;
 
 // Use these with the audio adaptor board
 #define SDCARD_CS_PIN    10
@@ -31,6 +29,7 @@ String command;
 
 
 void setup() {
+
     Serial.begin(9600);
 
   // Audio connections require memory to work.  For more
@@ -55,6 +54,7 @@ void setup() {
 }
 
 
+
 void playFile(const char *filename)
 {
   Serial.print("Playing file: ");
@@ -69,16 +69,4 @@ void playFile(const char *filename)
 
   // Simply wait for the file to finish playing.
   while (playWav1.isPlaying()) {
-  }
-}
 
-
-void loop() {
-  if (Serial.available()) {
-    command = Serial.readStringUntil('\n');
-    command.trim();
-    if (command.equals("1")) {
-  playFile("TEST.WAV");  // filenames are always uppercase 8.3 format
-    }
-  }
-}
