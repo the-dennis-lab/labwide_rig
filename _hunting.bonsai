@@ -71,7 +71,7 @@
             </cv:CapturePropertyAssignment>
             <cv:CapturePropertyAssignment>
               <cv:Property>Fps</cv:Property>
-              <cv:Value>20</cv:Value>
+              <cv:Value>22</cv:Value>
             </cv:CapturePropertyAssignment>
           </cv:CaptureProperties>
         </Combinator>
@@ -86,7 +86,7 @@
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
           <cv:FourCC>MJPG</cv:FourCC>
-          <cv:FrameRate>20</cv:FrameRate>
+          <cv:FrameRate>22</cv:FrameRate>
           <cv:FrameSize>
             <cv:Width>0</cv:Width>
             <cv:Height>0</cv:Height>
@@ -112,7 +112,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>H2</Value>
+                <Value>H12</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -120,7 +120,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>G3</Value>
+                <Value>M3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -128,7 +128,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>M4</Value>
+                <Value>B3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -136,7 +136,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>B2</Value>
+                <Value>G3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -144,7 +144,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>O5</Value>
+                <Value>K13</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -152,7 +152,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N8</Value>
+                <Value>O5</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -160,7 +160,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K7</Value>
+                <Value>E8</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -168,7 +168,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K4</Value>
+                <Value>J11</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -196,7 +196,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>O2</Value>
+                <Value>F6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -204,7 +204,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>F10</Value>
+                <Value>L10</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -212,7 +212,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>G12</Value>
+                <Value>M7</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -220,7 +220,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>J10</Value>
+                <Value>O3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -228,7 +228,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>C6</Value>
+                <Value>F4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -236,7 +236,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>H8</Value>
+                <Value>K4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -244,7 +244,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>I5</Value>
+                <Value>C2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -252,7 +252,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>M7</Value>
+                <Value>H4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -408,7 +408,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1800</Value>
+          <Value>2000</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
@@ -844,7 +844,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value> p18</Value>
+                <Value> p17</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -852,7 +852,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>exploration</Value>
+                <Value> crickets_nolight</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1068,83 +1068,59 @@ def process(value):
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="ExternalizedMapping">
-                <Property Name="PortName" DisplayName="arduinoPort_1" />
-              </Builder>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduinoPort_1" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM5</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM7</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="ExternalizedMapping">
-                <Property Name="PortName" DisplayName="arduinoPort_2" />
-              </Builder>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduinoPort_2" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM14</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM14</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="ExternalizedMapping">
-                <Property Name="PortName" DisplayName="arduinoPort_4" />
-              </Builder>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduinoPort_4" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM9</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM9</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="ExternalizedMapping">
-                <Property Name="PortName" DisplayName="arduinoPort_8" />
-              </Builder>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduinoPort_8" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM8</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM8</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="ExternalizedMapping">
-                <Property Name="PortName" DisplayName="arduinoPort_16" />
-              </Builder>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduinoPort_16" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM12</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM12</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="ExternalizedMapping">
-                <Property Name="PortName" DisplayName="arduinoPort_32" />
-              </Builder>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduinoPort_32" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM13</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:SerialStringWrite">
+                <io:PortName>COM13</io:PortName>
+                <io:NewLine>\r\n</io:NewLine>
+              </Combinator>
             </Expression>
           </Nodes>
           <Edges>
