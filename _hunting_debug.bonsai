@@ -6,10 +6,9 @@
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
-                 xmlns:ipy="clr-namespace:Bonsai.Scripting.IronPython;assembly=Bonsai.Scripting.IronPython"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:ipy="clr-namespace:Bonsai.Scripting.IronPython;assembly=Bonsai.Scripting.IronPython"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
-                 xmlns:dlc="clr-namespace:Bonsai.DeepLabCut;assembly=Bonsai.DeepLabCut"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -71,7 +70,7 @@
             </cv:CapturePropertyAssignment>
             <cv:CapturePropertyAssignment>
               <cv:Property>Fps</cv:Property>
-              <cv:Value>22</cv:Value>
+              <cv:Value>18</cv:Value>
             </cv:CapturePropertyAssignment>
           </cv:CaptureProperties>
         </Combinator>
@@ -86,7 +85,7 @@
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
           <cv:FourCC>MJPG</cv:FourCC>
-          <cv:FrameRate>22</cv:FrameRate>
+          <cv:FrameRate>18</cv:FrameRate>
           <cv:FrameSize>
             <cv:Width>0</cv:Width>
             <cv:Height>0</cv:Height>
@@ -251,6 +250,19 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />
             </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>C:\Users\emily\Desktop\data\DLC_all_.csv</io:FileName>
+              <io:Append>true</io:Append>
+              <io:Overwrite>false</io:Overwrite>
+              <io:Suffix>Timestamp</io:Suffix>
+              <io:IncludeHeader>false</io:IncludeHeader>
+            </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Width</Selector>
             </Expression>
@@ -350,20 +362,11 @@ def process(value):
               <Combinator xsi:type="rx:Zip" />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="io:CsvWriter">
-                <io:FileName>C:\Users\emily\Desktop\data\median_python_boolean_.csv</io:FileName>
-                <io:Append>false</io:Append>
-                <io:Overwrite>false</io:Overwrite>
-                <io:Suffix>Timestamp</io:Suffix>
-                <io:IncludeHeader>false</io:IncludeHeader>
-              </Builder>
-            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="3" Label="Source1" />
-            <Edge From="1" To="27" Label="Source1" />
+            <Edge From="1" To="30" Label="Source1" />
             <Edge From="2" To="3" Label="Source2" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="3" To="7" Label="Source1" />
@@ -399,29 +402,32 @@ def process(value):
             <Edge From="22" To="23" Label="Source1" />
             <Edge From="22" To="25" Label="Source1" />
             <Edge From="23" To="24" Label="Source7" />
-            <Edge From="24" To="35" Label="Source1" />
+            <Edge From="24" To="38" Label="Source1" />
+            <Edge From="24" To="27" Label="Source1" />
             <Edge From="25" To="26" Label="Source7" />
-            <Edge From="26" To="31" Label="Source1" />
+            <Edge From="26" To="34" Label="Source1" />
+            <Edge From="26" To="27" Label="Source2" />
             <Edge From="27" To="28" Label="Source1" />
-            <Edge From="28" To="31" Label="Source2" />
-            <Edge From="28" To="35" Label="Source2" />
-            <Edge From="29" To="30" Label="Source1" />
-            <Edge From="30" To="31" Label="Source3" />
-            <Edge From="30" To="35" Label="Source3" />
-            <Edge From="31" To="32" Label="Source1" />
+            <Edge From="28" To="29" Label="Source1" />
+            <Edge From="30" To="31" Label="Source1" />
+            <Edge From="31" To="34" Label="Source2" />
+            <Edge From="31" To="38" Label="Source2" />
             <Edge From="32" To="33" Label="Source1" />
-            <Edge From="32" To="34" Label="Source1" />
-            <Edge From="33" To="41" Label="Source2" />
-            <Edge From="34" To="39" Label="Source1" />
+            <Edge From="33" To="34" Label="Source3" />
+            <Edge From="33" To="38" Label="Source3" />
+            <Edge From="34" To="35" Label="Source1" />
             <Edge From="35" To="36" Label="Source1" />
-            <Edge From="36" To="37" Label="Source1" />
-            <Edge From="36" To="38" Label="Source1" />
-            <Edge From="37" To="41" Label="Source1" />
-            <Edge From="38" To="39" Label="Source2" />
+            <Edge From="35" To="37" Label="Source1" />
+            <Edge From="36" To="44" Label="Source2" />
+            <Edge From="37" To="42" Label="Source1" />
+            <Edge From="38" To="39" Label="Source1" />
             <Edge From="39" To="40" Label="Source1" />
-            <Edge From="40" To="41" Label="Source3" />
-            <Edge From="40" To="43" Label="Source1" />
-            <Edge From="41" To="42" Label="Source1" />
+            <Edge From="39" To="41" Label="Source1" />
+            <Edge From="40" To="44" Label="Source1" />
+            <Edge From="41" To="42" Label="Source2" />
+            <Edge From="42" To="43" Label="Source1" />
+            <Edge From="43" To="44" Label="Source3" />
+            <Edge From="44" To="45" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -519,112 +525,6 @@ def process(value):
         <Operand xsi:type="DoubleProperty">
           <Value>0</Value>
         </Operand>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>parameterSaving</Name>
-        <Description>parameterSaving</Description>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="PropertySource" TypeArguments="dlc:DetectPose,sys:String">
-              <MemberName>ModelFileName</MemberName>
-              <Value>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\exported-models\DLC_rigtesting_resnet_50_iteration-6_shuffle-1\snapshot-1030000.pb</Value>
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="dlc:DetectPose,sys:String">
-              <MemberName>PoseConfigFileName</MemberName>
-              <Value>C:\Users\emily\Desktop\rigtesting-thedennislab-2022-07-19\dlc-models\iteration-4\rigtestingJul19-trainset95shuffle1\test\pose_cfg.yaml</Value>
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="dlc:DetectPose,sys:Nullable(sys:Single)">
-              <MemberName>MinConfidence</MemberName>
-              <Value>0.9</Value>
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="dlc:DetectPose,sys:Nullable(sys:Single)">
-              <MemberName>ScaleFactor</MemberName>
-              <Value>1</Value>
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="cv:LoadImage,sys:String">
-              <MemberName>FileName</MemberName>
-              <Value>C:\Users\emily\Desktop\data\rig_l_mult_1-1.png</Value>
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="cv:LoadImage,sys:String">
-              <MemberName>FileName</MemberName>
-              <Value>C:\Users\emily\Desktop\data\rig_ax3_mult_1-1.png</Value>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="IntProperty,sys:Int32">
-              <MemberName>Value</MemberName>
-              <Value>10</Value>
-            </Expression>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source2</Name>
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="rx:Timer,sys:TimeSpan">
-              <MemberName>DueTime</MemberName>
-              <Value />
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="rx:Timer,sys:TimeSpan">
-              <MemberName>Period</MemberName>
-              <Value />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="animal_name" Description="a string, no spaces with animal name" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value> p18</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="experiment_type" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value>crickets</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\rig_info_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>false</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="6" Label="Source4" />
-            <Edge From="1" To="6" Label="Source3" />
-            <Edge From="2" To="6" Label="Source2" />
-            <Edge From="3" To="6" Label="Source1" />
-            <Edge From="4" To="6" Label="Source5" />
-            <Edge From="5" To="6" Label="Source6" />
-            <Edge From="6" To="17" Label="Source1" />
-            <Edge From="7" To="16" Label="Source3" />
-            <Edge From="8" To="16" Label="Source2" />
-            <Edge From="9" To="16" Label="Source1" />
-            <Edge From="10" To="16" Label="Source5" />
-            <Edge From="11" To="16" Label="Source4" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="16" Label="Source6" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source7" />
-            <Edge From="16" To="17" Label="Source2" />
-            <Edge From="17" To="18" Label="Source1" />
-            <Edge From="18" To="19" Label="Source1" />
-          </Edges>
-        </Workflow>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Item3</Selector>
@@ -749,7 +649,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>G11</Value>
+                <Value>J12</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -757,7 +657,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E3</Value>
+                <Value>H5</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -765,7 +665,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>D9</Value>
+                <Value>G10</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -773,7 +673,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>D3</Value>
+                <Value>E2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -781,7 +681,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>B3</Value>
+                <Value>D8</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -789,7 +689,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>M10</Value>
+                <Value>L3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -797,7 +697,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>O7</Value>
+                <Value>J9</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -805,7 +705,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>J7</Value>
+                <Value>N7</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -833,7 +733,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N7</Value>
+                <Value>P2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -841,7 +741,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>L5</Value>
+                <Value>I2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -849,7 +749,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K12</Value>
+                <Value>G4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -857,7 +757,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>I10</Value>
+                <Value>L6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -865,7 +765,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>M2</Value>
+                <Value>K2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -873,7 +773,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>G5</Value>
+                <Value>M11</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -881,7 +781,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E9</Value>
+                <Value>H7</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -889,7 +789,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K3</Value>
+                <Value>C3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1053,14 +953,14 @@ def process(value):
   else:
     mult=loudness_default
   chirp_str="{}_{:.2f}".format(chirp_val,mult)
-  print(mult)
+  print(chirp_str)
 
   if dist &lt; radius:
     is_not_inside=False
-    print('is inside, dist is {} radius is {}'.format(dist,radius))
+    print('is inside, dist is {}'.format(dist,radius))
   else:
     is_not_inside=True
-    print('is not inside, dist is {} radius is {}'.format(dist,radius))
+    print('dist is {} radius is {}'.format(dist,radius))
 
   return Tuple[str,str,bool](chirp_str,str(release_val),is_not_inside)
 </ipy:Script>
@@ -1141,14 +1041,36 @@ def process(value):
                 <io:NewLine>\r\n</io:NewLine>
               </Combinator>
             </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduino_Port_64" />
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="io:SerialStringWrite">
+                  <io:PortName>COM12</io:PortName>
+                  <io:NewLine>\r\n</io:NewLine>
+                </Combinator>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" DisplayName="arduino_Port_128" />
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="io:SerialStringWrite">
+                  <io:PortName>COM15</io:PortName>
+                  <io:NewLine>\r\n</io:NewLine>
+                </Combinator>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item2</Selector>
+            </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item2</Selector>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -1156,29 +1078,37 @@ def process(value):
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="1" To="4" Label="Source1" />
-            <Edge From="1" To="17" Label="Source1" />
+            <Edge From="1" To="21" Label="Source1" />
+            <Edge From="1" To="22" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="18" Label="Source1" />
+            <Edge From="3" To="23" Label="Source1" />
             <Edge From="4" To="6" Label="Source1" />
             <Edge From="4" To="8" Label="Source1" />
             <Edge From="4" To="10" Label="Source1" />
             <Edge From="4" To="12" Label="Source1" />
             <Edge From="4" To="14" Label="Source1" />
             <Edge From="4" To="16" Label="Source1" />
+            <Edge From="4" To="18" Label="Source2" />
+            <Edge From="4" To="20" Label="Source1" />
             <Edge From="5" To="6" Label="Source2" />
             <Edge From="7" To="8" Label="Source2" />
             <Edge From="9" To="10" Label="Source2" />
             <Edge From="11" To="12" Label="Source2" />
             <Edge From="13" To="14" Label="Source2" />
             <Edge From="15" To="16" Label="Source2" />
-            <Edge From="17" To="18" Label="Source2" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="19" To="20" Label="Source2" />
+            <Edge From="21" To="23" Label="Source2" />
+            <Edge From="22" To="23" Label="Source3" />
+            <Edge From="23" To="24" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Switch" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item2</Selector>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:DistinctUntilChanged" />
@@ -1231,6 +1161,58 @@ def process(value):
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>Timestamp</io:Suffix>
         <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>parameterSaving</Name>
+        <Description>parameterSaving</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="animal_name" Description="a string, no spaces with animal name" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value> p17</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="experiment_type" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>crickets</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>C:\Users\emily\Desktop\data\modulo_info_.csv</io:FileName>
+              <io:Append>false</io:Append>
+              <io:Overwrite>false</io:Overwrite>
+              <io:Suffix>Timestamp</io:Suffix>
+              <io:IncludeHeader>false</io:IncludeHeader>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="5" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="5" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source3" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>moveZaber</Name>
@@ -1311,150 +1293,210 @@ def process(value):
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>released_num</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="GroupWorkflow">
-          <Name>hikvision_2</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="StringProperty">
-                  <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timer">
-                  <rx:DueTime>PT0S</rx:DueTime>
-                  <rx:Period>PT0S</rx:Period>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timestamp" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
-                <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:CombineLatest" />
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Format" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.36.178/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
-                <Selector>Item1,Item2</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Take">
-                  <rx:Count>1</rx:Count>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="PropertyMapping">
-                <PropertyMappings>
-                  <Property Name="Arguments" />
-                </PropertyMappings>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="io:StartProcess">
-                  <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                  <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.36.178/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_20231213-12-32-29.avi'}"</io:Arguments>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="4" Label="Source1" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="2" To="3" Label="Source1" />
-              <Edge From="3" To="4" Label="Source2" />
-              <Edge From="4" To="6" Label="Source1" />
-              <Edge From="5" To="6" Label="Source2" />
-              <Edge From="6" To="7" Label="Source1" />
-              <Edge From="7" To="8" Label="Source1" />
-              <Edge From="8" To="9" Label="Source2" />
-              <Edge From="9" To="10" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>hickvision_1</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timer">
+                <rx:DueTime>PT0S</rx:DueTime>
+                <rx:Period>PT0S</rx:Period>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
+              <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Format" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
+              <Selector>Item1,Item2</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Arguments" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+                <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_2024329-14-27-41.avi'}"</io:Arguments>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="4" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="4" To="6" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="GroupWorkflow">
-          <Name>hickvision_1</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="StringProperty">
-                  <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timer">
-                  <rx:DueTime>PT0S</rx:DueTime>
-                  <rx:Period>PT0S</rx:Period>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timestamp" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
-                <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:CombineLatest" />
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Format" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
-                <Selector>Item1,Item2</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Take">
-                  <rx:Count>1</rx:Count>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="PropertyMapping">
-                <PropertyMappings>
-                  <Property Name="Arguments" />
-                </PropertyMappings>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="io:StartProcess">
-                  <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                  <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_20231213-12-32-29.avi'}"</io:Arguments>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="4" Label="Source1" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="2" To="3" Label="Source1" />
-              <Edge From="3" To="4" Label="Source2" />
-              <Edge From="4" To="6" Label="Source1" />
-              <Edge From="5" To="6" Label="Source2" />
-              <Edge From="6" To="7" Label="Source1" />
-              <Edge From="7" To="8" Label="Source1" />
-              <Edge From="8" To="9" Label="Source2" />
-              <Edge From="9" To="10" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>hickvision_2</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timer">
+                <rx:DueTime>PT0.02S</rx:DueTime>
+                <rx:Period>PT0S</rx:Period>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
+              <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Format" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.36.178/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
+              <Selector>Item1,Item2</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Arguments" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+                <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.36.178/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_2024329-14-27-41.avi'}"</io:Arguments>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="4" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="4" To="6" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>hickvision_tilelocations</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timer">
+                <rx:DueTime>PT0.01S</rx:DueTime>
+                <rx:Period>PT0S</rx:Period>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1color_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
+              <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Format" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/101" --sout "#transcode{0}:standard{1}"</Format>
+              <Selector>Item1,Item2</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Arguments" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+                <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/101" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1color_2024329-14-27-41.avi'}"</io:Arguments>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="4" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="4" To="6" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="3" Label="Source1" />
-      <Edge From="0" To="71" Label="Source2" />
+      <Edge From="0" To="73" Label="Source2" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="1" To="71" Label="Source1" />
+      <Edge From="1" To="73" Label="Source1" />
       <Edge From="2" To="3" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="4" To="44" Label="Source2" />
-      <Edge From="4" To="47" Label="Source1" />
-      <Edge From="4" To="54" Label="Source1" />
+      <Edge From="4" To="43" Label="Source2" />
+      <Edge From="4" To="46" Label="Source1" />
+      <Edge From="4" To="53" Label="Source1" />
       <Edge From="5" To="28" Label="Source3" />
       <Edge From="5" To="33" Label="Source3" />
       <Edge From="6" To="28" Label="Source2" />
@@ -1462,60 +1504,66 @@ def process(value):
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="28" Label="Source5" />
       <Edge From="9" To="33" Label="Source5" />
-      <Edge From="9" To="37" Label="Source2" />
+      <Edge From="9" To="71" Label="Source2" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="10" To="26" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="14" To="54" Label="Source4" />
+      <Edge From="14" To="53" Label="Source4" />
       <Edge From="15" To="61" Label="Source1" />
-      <Edge From="16" To="37" Label="Source3" />
-      <Edge From="17" To="41" Label="Source2" />
-      <Edge From="18" To="54" Label="Source2" />
+      <Edge From="16" To="72" Label="Source2" />
+      <Edge From="17" To="40" Label="Source2" />
+      <Edge From="18" To="53" Label="Source2" />
       <Edge From="18" To="69" Label="Source2" />
       <Edge From="19" To="20" Label="Source1" />
       <Edge From="20" To="64" Label="Source2" />
       <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="54" Label="Source5" />
+      <Edge From="22" To="53" Label="Source5" />
+      <Edge From="22" To="69" Label="Source5" />
       <Edge From="23" To="24" Label="Source1" />
       <Edge From="24" To="28" Label="Source4" />
       <Edge From="24" To="33" Label="Source4" />
-      <Edge From="24" To="37" Label="Source1" />
+      <Edge From="24" To="71" Label="Source1" />
+      <Edge From="24" To="43" Label="Source3" />
       <Edge From="25" To="26" Label="Source2" />
       <Edge From="26" To="27" Label="Source1" />
       <Edge From="26" To="32" Label="Source1" />
-      <Edge From="26" To="44" Label="Source1" />
-      <Edge From="26" To="38" Label="Source1" />
+      <Edge From="26" To="43" Label="Source1" />
+      <Edge From="26" To="37" Label="Source1" />
       <Edge From="27" To="28" Label="Source1" />
       <Edge From="28" To="29" Label="Source1" />
       <Edge From="29" To="30" Label="Source1" />
-      <Edge From="29" To="71" Label="Source3" />
+      <Edge From="29" To="73" Label="Source3" />
       <Edge From="30" To="31" Label="Source1" />
-      <Edge From="31" To="39" Label="Source1" />
+      <Edge From="31" To="38" Label="Source1" />
       <Edge From="32" To="33" Label="Source1" />
       <Edge From="33" To="34" Label="Source1" />
       <Edge From="34" To="35" Label="Source1" />
-      <Edge From="34" To="71" Label="Source4" />
+      <Edge From="34" To="73" Label="Source4" />
       <Edge From="35" To="36" Label="Source1" />
-      <Edge From="36" To="39" Label="Source2" />
-      <Edge From="38" To="39" Label="Source3" />
+      <Edge From="36" To="38" Label="Source2" />
+      <Edge From="37" To="38" Label="Source3" />
+      <Edge From="38" To="39" Label="Source1" />
       <Edge From="39" To="40" Label="Source1" />
       <Edge From="40" To="41" Label="Source1" />
       <Edge From="41" To="42" Label="Source1" />
-      <Edge From="42" To="43" Label="Source1" />
-      <Edge From="43" To="55" Label="Source2" />
+      <Edge From="42" To="54" Label="Source2" />
+      <Edge From="43" To="44" Label="Source1" />
       <Edge From="44" To="45" Label="Source1" />
-      <Edge From="45" To="46" Label="Source1" />
-      <Edge From="47" To="48" Label="Source1" />
-      <Edge From="49" To="50" Label="Source1" />
-      <Edge From="50" To="54" Label="Source6" />
-      <Edge From="51" To="52" Label="Source1" />
-      <Edge From="52" To="54" Label="Source7" />
-      <Edge From="53" To="54" Label="Source3" />
+      <Edge From="46" To="47" Label="Source1" />
+      <Edge From="48" To="49" Label="Source1" />
+      <Edge From="49" To="53" Label="Source6" />
+      <Edge From="49" To="69" Label="Source3" />
+      <Edge From="50" To="51" Label="Source1" />
+      <Edge From="51" To="53" Label="Source7" />
+      <Edge From="51" To="69" Label="Source4" />
+      <Edge From="52" To="53" Label="Source3" />
+      <Edge From="53" To="54" Label="Source1" />
+      <Edge From="53" To="71" Label="Source3" />
       <Edge From="54" To="55" Label="Source1" />
       <Edge From="55" To="56" Label="Source1" />
+      <Edge From="55" To="68" Label="Source1" />
       <Edge From="56" To="57" Label="Source1" />
-      <Edge From="56" To="68" Label="Source1" />
       <Edge From="57" To="58" Label="Source1" />
       <Edge From="58" To="59" Label="Source1" />
       <Edge From="58" To="61" Label="Source2" />
@@ -1528,9 +1576,10 @@ def process(value):
       <Edge From="66" To="67" Label="Source1" />
       <Edge From="68" To="69" Label="Source1" />
       <Edge From="69" To="70" Label="Source1" />
-      <Edge From="72" To="73" Label="Source1" />
-      <Edge From="73" To="74" Label="Source1" />
+      <Edge From="71" To="72" Label="Source1" />
+      <Edge From="74" To="75" Label="Source1" />
       <Edge From="75" To="76" Label="Source1" />
+      <Edge From="77" To="78" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
