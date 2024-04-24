@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+VisualStudioVersion = 16.0.32929.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZaberMovement", "ZaberMovement.csproj", "{FB0CFDD0-E94E-457B-A1E4-7F8EEFD374E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZaberMovement", "ZaberMovement.csproj", "{41095F0F-87DD-473E-94AB-1B1347C3326E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB0CFDD0-E94E-457B-A1E4-7F8EEFD374E6}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{FB0CFDD0-E94E-457B-A1E4-7F8EEFD374E6}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{FB0CFDD0-E94E-457B-A1E4-7F8EEFD374E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB0CFDD0-E94E-457B-A1E4-7F8EEFD374E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41095F0F-87DD-473E-94AB-1B1347C3326E}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{41095F0F-87DD-473E-94AB-1B1347C3326E}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{41095F0F-87DD-473E-94AB-1B1347C3326E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41095F0F-87DD-473E-94AB-1B1347C3326E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AE2EBE91-5942-4148-A44A-4F0A0781E421}
+		SolutionGuid = {546792F4-BFAB-43A8-A1B1-A5E51B0B0806}
 	EndGlobalSection
 EndGlobal

@@ -13,20 +13,19 @@ namespace ZaberMovement
 
     public class ZaberLocation : Transform<TSource, TResult>
     {
-        
+
         public override IObservable<TResult> Process(IObservable<TSource> source)
         {
 
             return source.Select(
                 s =>
-                    {
-                        var lockstepaxis = s.Item1.GetAxis(1);
-                        Zaber.Motion.Ascii.Axis axis = s.Item1.GetAxis(3);
-                        double axisposition = axis.GetPosition();
-                        return Tuple.Create(lockstepaxis.GetPosition(), axisposition);
-                    });
+                {
+                    var lockstepaxis = s.Item1.GetAxis(1);
+                    Zaber.Motion.Ascii.Axis axis = s.Item1.GetAxis(3);
+                    //double axisposition = axis.GetPosition();
+                    return Tuple.Create(lockstepaxis.GetPosition(), axis.GetPosition());
+                });
 
-        } 
+        }
     }
 }
-    

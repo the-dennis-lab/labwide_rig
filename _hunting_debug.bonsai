@@ -71,8 +71,8 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="sleap:PredictSinglePose">
                 <sleap:ModelFileName>C:\Users\emily\Desktop\sleap\frozen_graph.pb</sleap:ModelFileName>
-                <sleap:TrainingConfig>C:\Users\emily\Desktop\sleap\confmap_config.json</sleap:TrainingConfig>
-                <sleap:PartMinConfidence>0.5</sleap:PartMinConfidence>
+                <sleap:TrainingConfig>C:\Users\emily\Desktop\sleap\models\240418_102331.single_instance.n=900\training_config.json</sleap:TrainingConfig>
+                <sleap:PartMinConfidence>0.6</sleap:PartMinConfidence>
                 <sleap:ScaleFactor>1</sleap:ScaleFactor>
                 <sleap:ColorConversion xsi:nil="true" />
               </Combinator>
@@ -186,7 +186,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>12</Value>
+                <Value>15</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -346,16 +346,8 @@ def process(value):
           <p1:PortName>COM3</p1:PortName>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0.001S</rx:Period>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="IntProperty">
-          <Value>1</Value>
-        </Combinator>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Width</Selector>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
@@ -368,7 +360,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1000</Value>
+          <Value>1400</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -407,7 +399,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E8</Value>
+                <Value>B3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -415,7 +407,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>J3</Value>
+                <Value>L10</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -423,7 +415,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>B2</Value>
+                <Value>K2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -431,7 +423,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>I12</Value>
+                <Value>E12</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -439,7 +431,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>I9</Value>
+                <Value>N6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -447,7 +439,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>L4</Value>
+                <Value>H4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -455,7 +447,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>M2</Value>
+                <Value>K4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -463,7 +455,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>I1</Value>
+                <Value>L6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -471,7 +463,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>D2</Value>
+                <Value>N2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -479,7 +471,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>C6</Value>
+                <Value>L8</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -487,7 +479,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N7</Value>
+                <Value>O7</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -495,7 +487,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N2</Value>
+                <Value>H6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -503,7 +495,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>P3</Value>
+                <Value>D5</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -511,7 +503,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K8</Value>
+                <Value>F3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -519,7 +511,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>F2</Value>
+                <Value>J11</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -527,7 +519,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>F10</Value>
+                <Value>G1</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -567,7 +559,6 @@ def process(value):
         loc_tuples.append([int(split_vals[1]),int(split_vals[2])])
     if not good:
       loc_tuples.append([0,0])
-  print(loc_tuples)
   return str(loc_tuples)</ipy:Script>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -600,7 +591,7 @@ def process(value):
               <Property Name="FileName" DisplayName="locations_csv" />
             </Expression>
             <Expression xsi:type="io:CsvReader">
-              <io:FileName>C:\Users\emily\Desktop\data\zaber_centers_20230213.csv</io:FileName>
+              <io:FileName>C:\Users\emily\Desktop\data\zaber_centers_20240423.csv</io:FileName>
               <io:SkipRows>1</io:SkipRows>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -706,12 +697,9 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_20240415.tif</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_20240423.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
-      </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>zaberLocation</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>cam</Name>
@@ -768,7 +756,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax_mult_20240415.tif</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax_mult_20240423.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
@@ -793,7 +781,7 @@ def process(value):
   width=value[4]
 
   #make constant depend on zaber
-  mult_str=str(img[int(lockstep/100),int(ax3/100)])[1:4]
+  mult_str= str(img[int(lockstep/100),int(ax3/100)])[1:4]
 
 
   if '255' in mult_str:
@@ -958,77 +946,73 @@ def process(value):
               <Property Name="PortName" DisplayName="arduinoPort_1" />
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:SerialStringWrite">
-                <io:PortName>COM7</io:PortName>
-                <io:NewLine>\r\n</io:NewLine>
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM7</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduinoPort_2" />
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:SerialStringWrite">
-                <io:PortName>COM14</io:PortName>
-                <io:NewLine>\r\n</io:NewLine>
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM14</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduinoPort_4" />
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:SerialStringWrite">
-                <io:PortName>COM9</io:PortName>
-                <io:NewLine>\r\n</io:NewLine>
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM9</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduinoPort_8" />
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:SerialStringWrite">
-                <io:PortName>COM8</io:PortName>
-                <io:NewLine>\r\n</io:NewLine>
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM8</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduinoPort_16" />
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:SerialStringWrite">
-                <io:PortName>COM12</io:PortName>
-                <io:NewLine>\r\n</io:NewLine>
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM12</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduinoPort_32" />
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:SerialStringWrite">
-                <io:PortName>COM15</io:PortName>
-                <io:NewLine>\r\n</io:NewLine>
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM15</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduino_Port_64" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM16</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM16</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
+              </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PortName" DisplayName="arduino_Port_128" />
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="io:SerialStringWrite">
-                  <io:PortName>COM18</io:PortName>
-                  <io:NewLine>\r\n</io:NewLine>
-                </Combinator>
-              </Builder>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM18</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
+              </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Item3</Selector>
@@ -1220,17 +1204,17 @@ def process(value):
         <Workflow>
           <Nodes>
             <Expression xsi:type="WorkflowInput">
-              <Name>Source2</Name>
+              <Name>Source1</Name>
             </Expression>
             <Expression xsi:type="WorkflowInput">
-              <Name>Source3</Name>
+              <Name>Source2</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Name>MakeDoubleLs</scr:Name>
               <scr:Expression>double(it)</scr:Expression>
             </Expression>
             <Expression xsi:type="WorkflowInput">
-              <Name>Source4</Name>
+              <Name>Source3</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Name>MakeDoubleAx</scr:Name>
@@ -1242,22 +1226,6 @@ def process(value):
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="p1:ZaberMoveVelocity" />
             </Expression>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\ZaberMove_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>true</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="5" Label="Source1" />
@@ -1266,10 +1234,6 @@ def process(value):
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source3" />
             <Edge From="5" To="6" Label="Source1" />
-            <Edge From="5" To="8" Label="Source1" />
-            <Edge From="7" To="8" Label="Source2" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1496,97 +1460,95 @@ def process(value):
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="0" To="4" Label="Source1" />
+      <Edge From="0" To="6" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="3" To="4" Label="Source2" />
-      <Edge From="4" To="12" Label="Source1" />
-      <Edge From="4" To="28" Label="Source1" />
-      <Edge From="4" To="37" Label="Source1" />
-      <Edge From="4" To="43" Label="Source1" />
-      <Edge From="5" To="8" Label="Source1" />
-      <Edge From="5" To="73" Label="Source2" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="6" To="73" Label="Source1" />
-      <Edge From="7" To="8" Label="Source2" />
-      <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="12" Label="Source2" />
-      <Edge From="9" To="15" Label="Source1" />
-      <Edge From="9" To="27" Label="Source1" />
-      <Edge From="9" To="30" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
-      <Edge From="11" To="12" Label="Source3" />
-      <Edge From="11" To="33" Label="Source4" />
-      <Edge From="11" To="39" Label="Source4" />
-      <Edge From="11" To="70" Label="Source1" />
+      <Edge From="4" To="11" Label="Source1" />
+      <Edge From="4" To="27" Label="Source1" />
+      <Edge From="4" To="35" Label="Source1" />
+      <Edge From="4" To="41" Label="Source1" />
+      <Edge From="5" To="7" Label="Source1" />
+      <Edge From="5" To="71" Label="Source1" />
+      <Edge From="6" To="7" Label="Source2" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="11" Label="Source2" />
+      <Edge From="8" To="14" Label="Source1" />
+      <Edge From="8" To="26" Label="Source1" />
+      <Edge From="8" To="31" Label="Source4" />
+      <Edge From="8" To="37" Label="Source4" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source3" />
+      <Edge From="10" To="31" Label="Source5" />
+      <Edge From="10" To="37" Label="Source5" />
+      <Edge From="10" To="68" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="14" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
-      <Edge From="17" To="27" Label="Source2" />
-      <Edge From="17" To="68" Label="Source2" />
-      <Edge From="18" To="27" Label="Source3" />
-      <Edge From="19" To="20" Label="Source1" />
-      <Edge From="20" To="27" Label="Source4" />
-      <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="27" Label="Source5" />
-      <Edge From="22" To="68" Label="Source5" />
-      <Edge From="23" To="24" Label="Source1" />
-      <Edge From="24" To="27" Label="Source6" />
-      <Edge From="24" To="68" Label="Source3" />
-      <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="27" Label="Source7" />
-      <Edge From="26" To="68" Label="Source4" />
-      <Edge From="27" To="50" Label="Source1" />
-      <Edge From="27" To="70" Label="Source3" />
-      <Edge From="28" To="33" Label="Source1" />
-      <Edge From="29" To="33" Label="Source2" />
-      <Edge From="30" To="33" Label="Source3" />
-      <Edge From="30" To="39" Label="Source3" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="16" To="26" Label="Source2" />
+      <Edge From="16" To="66" Label="Source2" />
+      <Edge From="17" To="26" Label="Source3" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="26" Label="Source4" />
+      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="21" To="26" Label="Source5" />
+      <Edge From="21" To="66" Label="Source5" />
+      <Edge From="22" To="23" Label="Source1" />
+      <Edge From="23" To="26" Label="Source6" />
+      <Edge From="23" To="66" Label="Source3" />
+      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="25" To="26" Label="Source7" />
+      <Edge From="25" To="66" Label="Source4" />
+      <Edge From="26" To="48" Label="Source1" />
+      <Edge From="26" To="68" Label="Source3" />
+      <Edge From="27" To="31" Label="Source1" />
+      <Edge From="28" To="31" Label="Source2" />
+      <Edge From="29" To="30" Label="Source1" />
+      <Edge From="30" To="31" Label="Source6" />
+      <Edge From="30" To="37" Label="Source6" />
+      <Edge From="30" To="68" Label="Source2" />
       <Edge From="31" To="32" Label="Source1" />
-      <Edge From="32" To="33" Label="Source5" />
-      <Edge From="32" To="39" Label="Source5" />
-      <Edge From="32" To="70" Label="Source2" />
+      <Edge From="32" To="33" Label="Source1" />
+      <Edge From="32" To="71" Label="Source2" />
       <Edge From="33" To="34" Label="Source1" />
-      <Edge From="34" To="35" Label="Source1" />
-      <Edge From="34" To="73" Label="Source3" />
-      <Edge From="35" To="36" Label="Source1" />
-      <Edge From="36" To="44" Label="Source1" />
-      <Edge From="37" To="39" Label="Source1" />
-      <Edge From="38" To="39" Label="Source2" />
+      <Edge From="34" To="42" Label="Source1" />
+      <Edge From="35" To="37" Label="Source1" />
+      <Edge From="36" To="37" Label="Source2" />
+      <Edge From="37" To="38" Label="Source1" />
+      <Edge From="38" To="39" Label="Source1" />
+      <Edge From="38" To="71" Label="Source3" />
       <Edge From="39" To="40" Label="Source1" />
-      <Edge From="40" To="41" Label="Source1" />
-      <Edge From="40" To="73" Label="Source4" />
-      <Edge From="41" To="42" Label="Source1" />
-      <Edge From="42" To="44" Label="Source2" />
-      <Edge From="43" To="44" Label="Source3" />
-      <Edge From="44" To="45" Label="Source1" />
-      <Edge From="45" To="47" Label="Source1" />
-      <Edge From="46" To="47" Label="Source2" />
-      <Edge From="47" To="48" Label="Source1" />
+      <Edge From="40" To="42" Label="Source2" />
+      <Edge From="41" To="42" Label="Source3" />
+      <Edge From="42" To="43" Label="Source1" />
+      <Edge From="43" To="45" Label="Source1" />
+      <Edge From="44" To="45" Label="Source2" />
+      <Edge From="45" To="46" Label="Source1" />
+      <Edge From="46" To="47" Label="Source1" />
+      <Edge From="47" To="48" Label="Source2" />
       <Edge From="48" To="49" Label="Source1" />
-      <Edge From="49" To="50" Label="Source2" />
+      <Edge From="49" To="50" Label="Source1" />
+      <Edge From="49" To="65" Label="Source1" />
       <Edge From="50" To="51" Label="Source1" />
       <Edge From="51" To="52" Label="Source1" />
-      <Edge From="51" To="67" Label="Source1" />
       <Edge From="52" To="53" Label="Source1" />
+      <Edge From="52" To="56" Label="Source2" />
+      <Edge From="52" To="57" Label="Source1" />
       <Edge From="53" To="54" Label="Source1" />
-      <Edge From="54" To="55" Label="Source1" />
-      <Edge From="54" To="58" Label="Source2" />
-      <Edge From="54" To="59" Label="Source1" />
       <Edge From="55" To="56" Label="Source1" />
       <Edge From="57" To="58" Label="Source1" />
+      <Edge From="58" To="61" Label="Source1" />
       <Edge From="59" To="60" Label="Source1" />
-      <Edge From="60" To="63" Label="Source1" />
+      <Edge From="60" To="61" Label="Source2" />
       <Edge From="61" To="62" Label="Source1" />
-      <Edge From="62" To="63" Label="Source2" />
+      <Edge From="62" To="63" Label="Source1" />
       <Edge From="63" To="64" Label="Source1" />
-      <Edge From="64" To="65" Label="Source1" />
       <Edge From="65" To="66" Label="Source1" />
-      <Edge From="67" To="68" Label="Source1" />
-      <Edge From="68" To="69" Label="Source1" />
-      <Edge From="70" To="72" Label="Source1" />
-      <Edge From="71" To="72" Label="Source2" />
-      <Edge From="74" To="75" Label="Source1" />
+      <Edge From="66" To="67" Label="Source1" />
+      <Edge From="68" To="70" Label="Source1" />
+      <Edge From="69" To="70" Label="Source2" />
+      <Edge From="72" To="73" Label="Source1" />
+      <Edge From="73" To="74" Label="Source1" />
       <Edge From="75" To="76" Label="Source1" />
-      <Edge From="77" To="78" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

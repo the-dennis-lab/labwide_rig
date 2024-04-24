@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj": {
-      "version": "0.1.4",
+      "version": "0.1.7",
       "restore": {
         "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
         "projectName": "ZaberMovement",
@@ -46,11 +46,11 @@
           "dependencies": {
             "Bonsai.Core": {
               "target": "Package",
-              "version": "[2.7.0, )"
+              "version": "[2.8.1, )"
             },
             "Zaber.Motion": {
               "target": "Package",
-              "version": "[2.10.1, )"
+              "version": "[4.8.0, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"

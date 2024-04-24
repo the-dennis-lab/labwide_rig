@@ -4,6 +4,6 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)zaber.motion\2.10.1\build\net45\Zaber.Motion.targets" Condition="Exists('$(NuGetPackageRoot)zaber.motion\2.10.1\build\net45\Zaber.Motion.targets')" />
+    <Import Project="$(NuGetPackageRoot)zaber.motion\4.8.0\build\net45\Zaber.Motion.targets" Condition="Exists('$(NuGetPackageRoot)zaber.motion\4.8.0\build\net45\Zaber.Motion.targets')" />
   </ImportGroup>
 </Project>

@@ -1,14 +1,17 @@
 ﻿using Bonsai;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reactive.Linq;
 using Zaber.Motion;
 using Zaber.Motion.Ascii;
+
 namespace ZaberMovement
 {
+
     [Description("Connect to zaber API via COM and return device")]
     [WorkflowElementCategory(ElementCategory.Source)]
-          
     public class ZaberDevice : Source<Device>
 
     {
@@ -18,11 +21,14 @@ namespace ZaberMovement
         public override IObservable<Device> Generate()
         {
             return Observable.Using(
-                () => Connection.OpenSerialPort(PortName),
+                () =>
+                {
+                    return Connection.OpenSerialPort(PortName);
+                },
                 connection =>
                 {
                     Library.EnableDeviceDbStore(); // From Zaber, necessary
-                    Device device = connection.DetectDevices()[0];
+                    var device = connection.DetectDevices()[0];
                     return Observable.Return(device).Concat(Observable.Never(device));
                 }
             );

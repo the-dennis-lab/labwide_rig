@@ -16,9 +16,9 @@ namespace ZaberMovement
                 s =>
                 {
                     var lockstep = s.Item1.GetLockstep(1);
-                    lockstep.MoveVelocity(s.Item2);
+                    lockstep.MoveVelocityAsync(s.Item2);
                     var axis = s.Item1.GetAxis(3);
-                    axis.MoveVelocity(s.Item3);
+                    axis.MoveVelocityAsync(s.Item3);
                 }
             );
         }

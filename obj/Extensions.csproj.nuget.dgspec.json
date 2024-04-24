@@ -1,26 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj": {}
+    "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\Extensions.csproj": {}
   },
   "projects": {
-    "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj": {
+    "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\Extensions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj",
+        "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\Extensions.csproj",
         "projectName": "Extensions",
-        "projectPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\Extensions.csproj",
-        "packagesPath": "C:\\Users\\labadmin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\obj\\",
+        "projectPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\Extensions.csproj",
+        "packagesPath": "C:\\Users\\emily\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\labadmin\\Desktop\\GitHub\\labwide_Rig001\\NuGet.Config",
-          "C:\\Users\\labadmin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\NuGet.Config",
+          "C:\\Users\\emily\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\emily\\AppData\\Local\\Bonsai\\Gallery": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://www.myget.org/F/bonsai-community/api/v3/index.json": {},
           "https://www.myget.org/F/bonsai/api/v3/index.json": {}
@@ -45,18 +48,12 @@
               "target": "Package",
               "version": "[2.6.3, )"
             },
-            "Microsoft.NETFramework.ReferenceAssemblies": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.0.2, )",
-              "autoReferenced": true
-            },
             "Zaber.Motion": {
               "target": "Package",
               "version": "[2.10.1, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.7.2": {
-      "Bonsai.Core/2.7.0": {
+      "Bonsai.Core/2.8.1": {
         "type": "package",
         "dependencies": {
           "Rx-Linq": "2.2.5",
@@ -15,7 +15,7 @@
           "lib/net462/Bonsai.Core.dll": {}
         }
       },
-      "Google.Protobuf/3.19.1": {
+      "Google.Protobuf/3.21.9": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -119,10 +119,10 @@
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
-      "Zaber.Motion/2.10.1": {
+      "Zaber.Motion/4.8.0": {
         "type": "package",
         "dependencies": {
-          "Google.Protobuf": "3.19.1"
+          "Google.Protobuf": "3.21.9"
         },
         "compile": {
           "lib/net45/Zaber.Motion.dll": {}
@@ -167,14 +167,14 @@
     }
   },
   "libraries": {
-    "Bonsai.Core/2.7.0": {
-      "sha512": "Nux11jFjHXE1Kj833C4dQxSM9shBGnQ2RymHOpRjURGGwSvueplurpdq98gmE47rzN14xv4JXTXJTlLoOnncpQ==",
+    "Bonsai.Core/2.8.1": {
+      "sha512": "1wZareTIVkNIoYxK0/ygAfDBnR9IRAfhE0yAE17Cg22D6hwesFa7PKlkrhJForW8eturhGikU7ETsUEpBw66uA==",
       "type": "package",
-      "path": "bonsai.core/2.7.0",
+      "path": "bonsai.core/2.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "bonsai.core.2.7.0.nupkg.sha512",
+        "bonsai.core.2.8.1.nupkg.sha512",
         "bonsai.core.nuspec",
         "lib/net462/Bonsai.Core.dll",
         "lib/net462/Bonsai.Core.xml",
@@ -184,14 +184,14 @@
         "lib/netstandard2.0/Bonsai.Core.xml"
       ]
     },
-    "Google.Protobuf/3.19.1": {
-      "sha512": "M6yun2BPdHkBjD3V14muZSt72azWHRJEx88ME2TyyH2+/ww6R3hIptjBFQQtO6pmkfLXW/NGQ4hADWSa9AmK2A==",
+    "Google.Protobuf/3.21.9": {
+      "sha512": "OTpFujTgkmqMLbg3KT7F/iuKi1rg6s5FCS2M9XcVLDn40zL8wgXm37CY/F6MeOEXKjdcnXGCN/h7oyMkVydVsg==",
       "type": "package",
-      "path": "google.protobuf/3.19.1",
+      "path": "google.protobuf/3.21.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "google.protobuf.3.19.1.nupkg.sha512",
+        "google.protobuf.3.21.9.nupkg.sha512",
         "google.protobuf.nuspec",
         "lib/net45/Google.Protobuf.dll",
         "lib/net45/Google.Protobuf.pdb",
@@ -445,10 +445,10 @@
         "version.txt"
       ]
     },
-    "Zaber.Motion/2.10.1": {
-      "sha512": "ZhPKCka6iLbkbbdgNJmO1lEpYLJbChr35+c3er3Dswv4oQNrPPUfYkbCV5RpLOg2CtaOecKEh21Vv11R9TDrOA==",
+    "Zaber.Motion/4.8.0": {
+      "sha512": "Two1fO5bQ3kMqOfSYR1pCMzLivEs8eolZY1uCrJp9ZwukMYUSpr1R3JIr56BAn+LouSoGbL00K6dlrupHXlgtA==",
       "type": "package",
-      "path": "zaber.motion/2.10.1",
+      "path": "zaber.motion/4.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -470,22 +470,22 @@
         "runtimes/osx/native/zaber-motion-lib-darwin-uni.dylib",
         "runtimes/win/native/zaber-motion-lib-windows-386.dll",
         "runtimes/win/native/zaber-motion-lib-windows-amd64.dll",
-        "zaber.motion.2.10.1.nupkg.sha512",
+        "zaber.motion.4.8.0.nupkg.sha512",
         "zaber.motion.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Bonsai.Core >= 2.7.0",
-      "Zaber.Motion >= 2.10.1"
+      "Bonsai.Core >= 2.8.1",
+      "Zaber.Motion >= 4.8.0"
     ]
   },
   "packageFolders": {
     "C:\\Users\\emily\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "0.1.4",
+    "version": "0.1.7",
     "restore": {
       "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
       "projectName": "ZaberMovement",
@@ -526,11 +526,11 @@
         "dependencies": {
           "Bonsai.Core": {
             "target": "Package",
-            "version": "[2.7.0, )"
+            "version": "[2.8.1, )"
           },
           "Zaber.Motion": {
             "target": "Package",
-            "version": "[2.10.1, )"
+            "version": "[4.8.0, )"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"

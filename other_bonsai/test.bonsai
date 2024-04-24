@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameWidth</cv:Property>
+              <cv:Value>1896</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>FrameHeight</cv:Property>
+              <cv:Value>1896</cv:Value>
+            </cv:CapturePropertyAssignment>
+            <cv:CapturePropertyAssignment>
+              <cv:Property>Fps</cv:Property>
+              <cv:Value>21</cv:Value>
+            </cv:CapturePropertyAssignment>
+          </cv:CaptureProperties>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Grayscale" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="sleap:PredictSinglePose">
+          <sleap:ModelFileName>C:\Users\emily\Desktop\sleap\frozen_graph.pb</sleap:ModelFileName>
+          <sleap:TrainingConfig>C:\Users\emily\Desktop\sleap\models\240418_102331.single_instance.n=900\training_config.json</sleap:TrainingConfig>
+          <sleap:PartMinConfidence>0.6</sleap:PartMinConfidence>
+          <sleap:ScaleFactor>1</sleap:ScaleFactor>
+          <sleap:ColorConversion xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Timestamp</Selector>
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\emily\Desktop\testcam.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>true</io:Overwrite>
+        <io:Suffix>None</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:VideoWriter">
+          <cv:FileName>C:\Users\emily\Desktop\testcam.AVI</cv:FileName>
+          <cv:Suffix>None</cv:Suffix>
+          <cv:Buffered>true</cv:Buffered>
+          <cv:Overwrite>false</cv:Overwrite>
+          <cv:FourCC>mpeg</cv:FourCC>
+          <cv:FrameRate>21</cv:FrameRate>
+          <cv:FrameSize>
+            <cv:Width>0</cv:Width>
+            <cv:Height>0</cv:Height>
+          </cv:FrameSize>
+          <cv:ResizeInterpolation>NearestNeighbor</cv:ResizeInterpolation>
+        </Combinator>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="0" To="6" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
