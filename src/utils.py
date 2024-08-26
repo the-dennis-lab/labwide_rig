@@ -25,9 +25,9 @@ def get_row_vals(centers,index_of_centers,length_of_row):
     NOTE: if you have K2c, try
         K_ls_cs, K_ax_cs = get_row_vals(K2c,1,13) because K2 is the 1st element in the list of K tile values from 1-13
     '''
-    ls_row_offset = -1600
-    ax_row_offset= 21600
-    print('using ls_row_offset of {} and ax_row_offset of {}'.format(ls_row_offset,ax_row_offset))
+    ls_row_offset = -1400 #was -1400
+    ax_row_offset= 21000 #was 21200
+    #print('using ls_row_offset of {} and ax_row_offset of {}'.format(ls_row_offset,ax_row_offset))
     ls = centers[0]
     ax = centers[1]
     ls_row_vals=[]
@@ -48,8 +48,8 @@ def get_neighbor_tile(centers,direction):
     '''
     ls = centers[0]
     ax = centers[1]
-    M1_to_L1_offset = [-19500,9200]
-    L1_to_M2_offset = [17600,12200]
+    M1_to_L1_offset = [-19500,9200] #was -19500, 9200
+    L1_to_M2_offset = [17900,11600] #was 17600, 12200
     if direction == 0:
         new_centers = [ls+M1_to_L1_offset[0],ax+M1_to_L1_offset[1]]
         #print('generated the tile center above and right of the values provided (e.g. M1 center entered, want L1 centers) using {} offset'.format(M1_to_L1_offset))

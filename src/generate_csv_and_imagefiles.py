@@ -61,7 +61,6 @@ else:
     L_ls_cs,L_ax_cs = utils.get_row_vals(L1c,0,12)
     print('L1c {}'.format(L1c))
     M2c=utils.get_neighbor_tile([L_ls_cs[0],L_ax_cs[0]],1)
-    print('M2c {}'.format(M2c))
 
     M_ls_cs,M_ax_cs = utils.get_row_vals(M2c,1,13)
     N1c=utils.get_neighbor_tile([M_ls_cs[1],M_ax_cs[1]],1)
@@ -73,6 +72,8 @@ else:
     O_ls_cs,O_ax_cs = utils.get_row_vals(O1c,0,7)
     P1c= utils.get_neighbor_tile([O_ls_cs[1],O_ax_cs[1]],1)
     P_ls_cs,P_ax_cs = utils.get_row_vals(P1c,0,4)
+    print('P3c {}'.format([P_ls_cs[2],P_ax_cs[2]]))
+
     #from O2
     Q1c= utils.get_neighbor_tile([P_ls_cs[1],P_ax_cs[1]],1)
     Q_ls_cs,Q_ax_cs = Q1c

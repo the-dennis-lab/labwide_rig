@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -11,6 +11,7 @@
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:p2="clr-namespace:Bonsai.ONIX;assembly=Bonsai.ONIX"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -43,7 +44,7 @@
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
           <cv:FourCC>MJPG</cv:FourCC>
-          <cv:FrameRate>15</cv:FrameRate>
+          <cv:FrameRate>12</cv:FrameRate>
           <cv:FrameSize>
             <cv:Width>0</cv:Width>
             <cv:Height>0</cv:Height>
@@ -72,7 +73,7 @@
               <Combinator xsi:type="sleap:PredictSinglePose">
                 <sleap:ModelFileName>C:\Users\emily\Desktop\sleap\frozen_graph.pb</sleap:ModelFileName>
                 <sleap:TrainingConfig>C:\Users\emily\Desktop\sleap\models\240418_102331.single_instance.n=900\training_config.json</sleap:TrainingConfig>
-                <sleap:PartMinConfidence>0.6</sleap:PartMinConfidence>
+                <sleap:PartMinConfidence>0.45</sleap:PartMinConfidence>
                 <sleap:ScaleFactor>1</sleap:ScaleFactor>
                 <sleap:ColorConversion xsi:nil="true" />
               </Combinator>
@@ -186,7 +187,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>15</Value>
+                <Value>16</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -360,7 +361,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1400</Value>
+          <Value>1500</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -399,7 +400,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>B3</Value>
+                <Value>B2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -407,7 +408,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>L10</Value>
+                <Value>D9</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -415,7 +416,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K2</Value>
+                <Value>F2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -423,7 +424,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E12</Value>
+                <Value>O4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -431,7 +432,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N6</Value>
+                <Value>L7</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -439,7 +440,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>H4</Value>
+                <Value>L9</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -447,7 +448,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K4</Value>
+                <Value>G11</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -455,7 +456,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>L6</Value>
+                <Value>E8</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -463,7 +464,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N2</Value>
+                <Value>F9</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -471,7 +472,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>L8</Value>
+                <Value>H8</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -479,7 +480,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>O7</Value>
+                <Value>J7</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -487,7 +488,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>H6</Value>
+                <Value>L11</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -495,7 +496,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>D5</Value>
+                <Value>N4</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -503,7 +504,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>F3</Value>
+                <Value>M1</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -511,7 +512,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>J11</Value>
+                <Value>K5</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -519,7 +520,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>G1</Value>
+                <Value>E5</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -591,7 +592,7 @@ def process(value):
               <Property Name="FileName" DisplayName="locations_csv" />
             </Expression>
             <Expression xsi:type="io:CsvReader">
-              <io:FileName>C:\Users\emily\Desktop\data\zaber_centers_20240423.csv</io:FileName>
+              <io:FileName>C:\Users\emily\Desktop\data\zaber_centers.csv</io:FileName>
               <io:SkipRows>1</io:SkipRows>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -697,7 +698,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_l_mult_20240423.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\ls_limits.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
@@ -731,9 +732,9 @@ def process(value):
   mult_str=str(img[int(lockstep/100),int(ax3/100)])[1:4]
 
   if '255' in mult_str:
-    constant=192
+    constant=172
   elif '0' in mult_str:
-    constant=64
+    constant=84
   else:
     constant=128
 
@@ -756,7 +757,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\rig_ax_mult_20240423.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\ax_limits.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
@@ -785,9 +786,9 @@ def process(value):
 
 
   if '255' in mult_str:
-    constant=192
+    constant=172
   elif '0' in mult_str:
-    constant=64
+    constant=84
   else:
     constant=128
 
@@ -931,7 +932,6 @@ def process(value):
 
   if dist &lt; radius:
     is_not_inside=False
-    print('is inside, dist is {}'.format(dist,radius))
   else:
     is_not_inside=True
     print('dist is {} radius is {}'.format(dist,radius))
@@ -947,7 +947,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM7</port:PortName>
+                <port:PortName>COM20</port:PortName>
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
@@ -956,7 +956,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM14</port:PortName>
+                <port:PortName>COM11</port:PortName>
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
@@ -965,7 +965,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM9</port:PortName>
+                <port:PortName>COM5</port:PortName>
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
@@ -996,23 +996,31 @@ def process(value):
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="PortName" DisplayName="arduino_Port_64" />
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="ExternalizedMapping">
+                <Property Name="PortName" DisplayName="arduino_Port_64" />
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM16</port:PortName>
-                <port:NewLine>\r\n</port:NewLine>
-              </Combinator>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="port:SerialWriteLine">
+                  <port:PortName>COM16</port:PortName>
+                  <port:NewLine>\r\n</port:NewLine>
+                </Combinator>
+              </Builder>
             </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="PortName" DisplayName="arduino_Port_128" />
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="ExternalizedMapping">
+                <Property Name="PortName" DisplayName="arduino_Port_128" />
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM18</port:PortName>
-                <port:NewLine>\r\n</port:NewLine>
-              </Combinator>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="port:SerialWriteLine">
+                  <port:PortName>COM18</port:PortName>
+                  <port:NewLine>\r\n</port:NewLine>
+                </Combinator>
+              </Builder>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Item3</Selector>
@@ -1117,7 +1125,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">
-          <Value>true</Value>
+          <Value>false</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -1163,7 +1171,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>test</Value>
+                <Value>p20</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -1171,7 +1179,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>crickets</Value>
+                <Value>treats_soundoff216</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1455,6 +1463,108 @@ def process(value):
             </Edges>
           </Workflow>
         </Builder>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>hs_cam_sync</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p2:ONIContext">
+                <p2:ContextConfiguration>
+                  <p2:Slot>
+                    <p2:Driver>riffa</p2:Driver>
+                    <p2:Index>0</p2:Index>
+                  </p2:Slot>
+                  <p2:ReadSize>2048</p2:ReadSize>
+                  <p2:WriteSize>2048</p2:WriteSize>
+                </p2:ContextConfiguration>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p2:AnalogIODevice">
+                <p2:DeviceAddress>
+                  <p2:HardwareSlot>
+                    <p2:Driver>riffa</p2:Driver>
+                    <p2:Index>0</p2:Index>
+                  </p2:HardwareSlot>
+                  <p2:Address>6</p2:Address>
+                </p2:DeviceAddress>
+                <p2:BlockSize>100</p2:BlockSize>
+                <p2:DataType>S16</p2:DataType>
+                <p2:EnableStream>true</p2:EnableStream>
+                <p2:InputRange00>TenVolts</p2:InputRange00>
+                <p2:InputRange01>TenVolts</p2:InputRange01>
+                <p2:InputRange02>TenVolts</p2:InputRange02>
+                <p2:InputRange03>TenVolts</p2:InputRange03>
+                <p2:InputRange04>TenVolts</p2:InputRange04>
+                <p2:InputRange05>TenVolts</p2:InputRange05>
+                <p2:InputRange06>TenVolts</p2:InputRange06>
+                <p2:InputRange07>TenVolts</p2:InputRange07>
+                <p2:InputRange08>TenVolts</p2:InputRange08>
+                <p2:InputRange09>TenVolts</p2:InputRange09>
+                <p2:InputRange10>TenVolts</p2:InputRange10>
+                <p2:InputRange11>TenVolts</p2:InputRange11>
+                <p2:Direction00>Input</p2:Direction00>
+                <p2:Direction01>Output</p2:Direction01>
+                <p2:Direction02>Output</p2:Direction02>
+                <p2:Direction03>Output</p2:Direction03>
+                <p2:Direction04>Output</p2:Direction04>
+                <p2:Direction05>Output</p2:Direction05>
+                <p2:Direction06>Output</p2:Direction06>
+                <p2:Direction07>Output</p2:Direction07>
+                <p2:Direction08>Output</p2:Direction08>
+                <p2:Direction09>Output</p2:Direction09>
+                <p2:Direction10>Output</p2:Direction10>
+                <p2:Direction11>Output</p2:Direction11>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Data</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Submatrix">
+                <dsp:StartRow>0</dsp:StartRow>
+                <dsp:EndRow>1</dsp:EndRow>
+                <dsp:StartCol>0</dsp:StartCol>
+                <dsp:EndCol xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="dsp:ConvertToArray">
+              <dsp:Depth xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="GreaterThan">
+              <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+                <Value>150</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:DistinctUntilChanged" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>C:\Users\emily\Desktop\data\hs_cam_frames_.csv</io:FileName>
+              <io:Append>false</io:Append>
+              <io:Overwrite>false</io:Overwrite>
+              <io:Suffix>Timestamp</io:Suffix>
+              <io:IncludeHeader>false</io:IncludeHeader>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
     </Nodes>
     <Edges>
