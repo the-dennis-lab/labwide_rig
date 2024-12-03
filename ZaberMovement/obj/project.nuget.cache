@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5fkRUC51jAvcIL7XzkM61iaRf6t9FsST6trq/BfTmX6ANeBwgGm6E620fXCO5Gr09KBge9kR8kDUeXH6+t4kEA==",
+  "dgSpecHash": "Rmu81iRoa1alMoigJS9KSnHjRc9iTPCUIPIzCvJfmJiThQrcBxl/SCgiLL1InBQHk2SlKa22EZ1hBPLGjYTuOQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
+  "projectFilePath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\_hunting\\ZaberMovement\\ZaberMovement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emily\\.nuget\\packages\\bonsai.core\\2.8.1\\bonsai.core.2.8.1.nupkg.sha512",
     "C:\\Users\\emily\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",

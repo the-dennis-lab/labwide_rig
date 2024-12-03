@@ -487,14 +487,14 @@
   "project": {
     "version": "0.1.7",
     "restore": {
-      "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
+      "projectUniqueName": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\_hunting\\ZaberMovement\\ZaberMovement.csproj",
       "projectName": "ZaberMovement",
-      "projectPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\ZaberMovement.csproj",
+      "projectPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\_hunting\\ZaberMovement\\ZaberMovement.csproj",
       "packagesPath": "C:\\Users\\emily\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\ZaberMovement\\obj\\",
+      "outputPath": "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\_hunting\\ZaberMovement\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\NuGet.Config",
+        "C:\\Users\\emily\\Desktop\\github\\labwide_rig\\_hunting\\NuGet.Config",
         "C:\\Users\\emily\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
