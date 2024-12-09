@@ -1264,7 +1264,7 @@ def process(value):
           <Nodes>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
+                <Value>{vcodec=h264,vb=800,--no-sout-audio,deinterlace}</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1277,7 +1277,7 @@ def process(value):
               <Combinator xsi:type="rx:Timestamp" />
             </Expression>
             <Expression xsi:type="Format">
-              <Format>{{access=file,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
+              <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_{0}{1}{2}-{3}-{4}-{5}.mp4'}}</Format>
               <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1287,7 +1287,7 @@ def process(value):
               <Property Name="Format" />
             </Expression>
             <Expression xsi:type="Format">
-              <Format>-vvv "rtsp://admin:Dennislab@169.254.99.212/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
+              <Format>-vvv --quiet "rtsp://admin:Dennislab@169.254.99.212/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
               <Selector>Item1,Item2</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1303,7 +1303,7 @@ def process(value):
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="io:StartProcess">
                 <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                <io:Arguments>-vvv "rtsp://admin:Dennislab@169.254.99.212/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_2024123-11-57-28.avi'}"</io:Arguments>
+                <io:Arguments>-vvv --quiet "rtsp://admin:Dennislab@169.254.99.212/Streaming/Channels/201" --sout "#transcode{vcodec=h264,vb=800,--no-sout-audio,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1_2024124-15-58-27.mp4'}"</io:Arguments>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -1321,138 +1321,6 @@ def process(value):
             <Edge From="9" To="10" Label="Source1" />
           </Edges>
         </Workflow>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="GroupWorkflow">
-          <Name>hickvision_2</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="StringProperty">
-                  <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timer">
-                  <rx:DueTime>PT0.02S</rx:DueTime>
-                  <rx:Period>PT0S</rx:Period>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timestamp" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
-                <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:CombineLatest" />
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Format" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.36.178/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
-                <Selector>Item1,Item2</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Take">
-                  <rx:Count>1</rx:Count>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="PropertyMapping">
-                <PropertyMappings>
-                  <Property Name="Arguments" />
-                </PropertyMappings>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="io:StartProcess">
-                  <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                  <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.36.178/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_2024415-11-13-1.avi'}"</io:Arguments>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="4" Label="Source1" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="2" To="3" Label="Source1" />
-              <Edge From="3" To="4" Label="Source2" />
-              <Edge From="4" To="6" Label="Source1" />
-              <Edge From="5" To="6" Label="Source2" />
-              <Edge From="6" To="7" Label="Source1" />
-              <Edge From="7" To="8" Label="Source1" />
-              <Edge From="8" To="9" Label="Source2" />
-              <Edge From="9" To="10" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="GroupWorkflow">
-          <Name>hickvision_tilelocations</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="StringProperty">
-                  <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timer">
-                  <rx:DueTime>PT0.01S</rx:DueTime>
-                  <rx:Period>PT0S</rx:Period>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Timestamp" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1color_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
-                <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:CombineLatest" />
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Format" />
-              </Expression>
-              <Expression xsi:type="Format">
-                <Format>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/101" --sout "#transcode{0}:standard{1}"</Format>
-                <Selector>Item1,Item2</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Take">
-                  <rx:Count>1</rx:Count>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="PropertyMapping">
-                <PropertyMappings>
-                  <Property Name="Arguments" />
-                </PropertyMappings>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="io:StartProcess">
-                  <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                  <io:Arguments>-vvv "rtsp://admin:EJDlab@2022@169.254.44.252/Streaming/Channels/101" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h1color_202449-14-24-16.avi'}"</io:Arguments>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="4" Label="Source1" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="2" To="3" Label="Source1" />
-              <Edge From="3" To="4" Label="Source2" />
-              <Edge From="4" To="6" Label="Source1" />
-              <Edge From="5" To="6" Label="Source2" />
-              <Edge From="6" To="7" Label="Source1" />
-              <Edge From="7" To="8" Label="Source1" />
-              <Edge From="8" To="9" Label="Source2" />
-              <Edge From="9" To="10" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="GroupWorkflow">
