@@ -46,7 +46,7 @@
           "dependencies": {
             "Bonsai.Core": {
               "target": "Package",
-              "version": "[2.8.5, )"
+              "version": "[2.6.3, )"
             },
             "Zaber.Motion": {
               "target": "Package",
