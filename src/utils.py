@@ -25,40 +25,32 @@ def get_row_vals(centers,index_of_centers,length_of_row):
     NOTE: if you have K2c, try
         K_ls_cs, K_ax_cs = get_row_vals(K2c,1,13) because K2 is the 1st element in the list of K tile values from 1-13
     '''
-    ls_row_offset = -1400 #was -1400
-    ax_row_offset= 21000 #was 21200
+    ls_row_offset = -1300 #was -1400
+    ax_row_offset= 21200 #was 21000
     #print('using ls_row_offset of {} and ax_row_offset of {}'.format(ls_row_offset,ax_row_offset))
     ls = centers[0]
     ax = centers[1]
     ls_row_vals=[]
     ax_row_vals=[]
+    # TO CHANGE M2/E2 but not M13/E13, change this value
     for i in np.arange(0-index_of_centers,length_of_row-index_of_centers):
         ls_row_vals.append(ls+i*ls_row_offset)
         ax_row_vals.append(ax+i*ax_row_offset)
+        #print('on i {}, {} '.format(i,i*ax_row_offset))
     return ls_row_vals, ax_row_vals
 
-def get_neighbor_tile(centers,direction):
+def get_neighbor_tile(centers):
     ''' INPUTS
         1. centers: a tuple or list of center values for a tile in Zaber units (e.g. ls = 238800, ax=47200 the input would be [238800,47200] or (238800,47200))
-        2. direction: an int, either 0 for above right or 1 for below right (e.g. to get M2 from L2, use 1. to get L1 from M1, use 0)
 
-        TODO later I should make this more flexible and harder to mess up
         OUTPUTS:
         1. new list with the center values in [ls,ax]
     '''
     ls = centers[0]
     ax = centers[1]
-    M1_to_L1_offset = [-19500,9200] #was -19500, 9200
-    L1_to_M2_offset = [17900,11600] #was 17600, 12200
-    if direction == 0:
-        new_centers = [ls+M1_to_L1_offset[0],ax+M1_to_L1_offset[1]]
-        #print('generated the tile center above and right of the values provided (e.g. M1 center entered, want L1 centers) using {} offset'.format(M1_to_L1_offset))
-    elif direction == 1:
-        new_centers = [ls+L1_to_M2_offset[0],ax+L1_to_M2_offset[1]]
-        #print('generated the tile center from below and right of the values provided (e.g. L1 center entered, want M2 centers) using {} offset'.format(L1_to_M2_offset))
-    else:
-        print('ERROR: you entered {}, which must be either 0 (for above, right) or 1 (for below, right)')
-        new_centers=[]
+    # TO CHANGE  M13/E13 but not M2/E2 change this value
+    L1_to_M2_offset = [17800,11900] #was 17600, 12200
+    new_centers = [ls+L1_to_M2_offset[0],ax+L1_to_M2_offset[1]]
     return new_centers
 
 def get_relative_vals(df, location1, location2, adj_val):

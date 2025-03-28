@@ -33,49 +33,67 @@ else:
     A_ls_cs,A_ax_cs=A1c
 
     # get B centers (4)
-    B3c = utils.get_neighbor_tile(A1c,1)
+    B3c = utils.get_neighbor_tile(A1c)
     B_ls_cs,B_ax_cs = utils.get_row_vals(B3c,2,4)
-    C3c=utils.get_neighbor_tile([B_ls_cs[0],B_ax_cs[0]],1)
+
+    print('B3c is {}'.format([B_ls_cs[2],B_ax_cs[2]]))
+    print('B1c is {}'.format([B_ls_cs[0],B_ax_cs[0]]))
+    C3c=utils.get_neighbor_tile([B_ls_cs[0],B_ax_cs[0]])
     C_ls_cs,C_ax_cs = utils.get_row_vals(C3c,2,7)
-    D3c=utils.get_neighbor_tile([C_ls_cs[0],C_ax_cs[0]],1)
+    print('C3c is {}'.format([C_ls_cs[2],C_ax_cs[2]]))
+
+    D3c=utils.get_neighbor_tile([C_ls_cs[0],C_ax_cs[0]])
     D_ls_cs,D_ax_cs = utils.get_row_vals(D3c,2,10)
-    print('D1c is {}'.format([D_ls_cs[0],D_ax_cs[0]]))
-    E3c=utils.get_neighbor_tile([D_ls_cs[0],D_ax_cs[0]],1)
+
+    E3c=utils.get_neighbor_tile([D_ls_cs[0],D_ax_cs[0]])
     E_ls_cs,E_ax_cs = utils.get_row_vals(E3c,2,13)
-    F1c=utils.get_neighbor_tile([E_ls_cs[0],E_ax_cs[0]],1)
+    print('E1c is {}'.format([E_ls_cs[0],E_ax_cs[0]]))
+    print('E13c is {}'.format([E_ls_cs[12],E_ax_cs[12]]))
+
+    F1c=utils.get_neighbor_tile([E_ls_cs[0],E_ax_cs[0]])
     F_ls_cs,F_ax_cs = utils.get_row_vals(F1c,0,12)
-    print('f1c {}'.format(F1c))
-    G2c=utils.get_neighbor_tile([F_ls_cs[0],F_ax_cs[0]],1)
+    print('F1c is {}'.format([F_ls_cs[0],F_ax_cs[0]]))
+
+    G2c=utils.get_neighbor_tile([F_ls_cs[0],F_ax_cs[0]])
     G_ls_cs,G_ax_cs = utils.get_row_vals(G2c,1,13)
-    H1c=utils.get_neighbor_tile([G_ls_cs[0],G_ax_cs[0]],1)
+
+    H1c=utils.get_neighbor_tile([G_ls_cs[0],G_ax_cs[0]])
     H_ls_cs,H_ax_cs = utils.get_row_vals(H1c,0,12)
-    print('H1c {}'.format(H1c))
-    I2c=utils.get_neighbor_tile([H_ls_cs[0],H_ax_cs[0]],1)
+
+    I2c=utils.get_neighbor_tile([H_ls_cs[0],H_ax_cs[0]])
     I_ls_cs,I_ax_cs = utils.get_row_vals(I2c,1,13)
-    J1c=utils.get_neighbor_tile([I_ls_cs[0],I_ax_cs[0]],1)
+
+    J1c=utils.get_neighbor_tile([I_ls_cs[0],I_ax_cs[0]])
     J_ls_cs,J_ax_cs = utils.get_row_vals(J1c,0,12)
-    print('J1c {}'.format(J1c))
-    K2c=utils.get_neighbor_tile([J_ls_cs[0],J_ax_cs[0]],1)
+
+    K2c=utils.get_neighbor_tile([J_ls_cs[0],J_ax_cs[0]])
     K_ls_cs,K_ax_cs = utils.get_row_vals(K2c,1,13)
-    L1c=utils.get_neighbor_tile([K_ls_cs[0],K_ax_cs[0]],1)
+
+    L1c=utils.get_neighbor_tile([K_ls_cs[0],K_ax_cs[0]])
     L_ls_cs,L_ax_cs = utils.get_row_vals(L1c,0,12)
     print('L1c {}'.format(L1c))
-    M2c=utils.get_neighbor_tile([L_ls_cs[0],L_ax_cs[0]],1)
+    print('L2c {}'.format([L_ls_cs[1],L_ax_cs[1]]))
 
+    M2c=utils.get_neighbor_tile([L_ls_cs[0],L_ax_cs[0]])
     M_ls_cs,M_ax_cs = utils.get_row_vals(M2c,1,13)
-    N1c=utils.get_neighbor_tile([M_ls_cs[1],M_ax_cs[1]],1)
+    print('M1c {}'.format([M_ls_cs[0],M_ax_cs[0]]))
+    print(M2c)
+    print('M2c {}'.format([M_ls_cs[1],M_ax_cs[1]]))
+    print('M13c {}'.format([M_ls_cs[12],M_ax_cs[12]]))
+
+    N1c=utils.get_neighbor_tile([M_ls_cs[1],M_ax_cs[1]])
     N_ls_cs,N_ax_cs = utils.get_row_vals(N1c,0,10)
-    print('N1c {}'.format(N1c))
 
     # from N2
-    O1c=utils.get_neighbor_tile([N_ls_cs[1],N_ax_cs[1]],1)
+    O1c=utils.get_neighbor_tile([N_ls_cs[1],N_ax_cs[1]])
     O_ls_cs,O_ax_cs = utils.get_row_vals(O1c,0,7)
-    P1c= utils.get_neighbor_tile([O_ls_cs[1],O_ax_cs[1]],1)
+
+    P1c= utils.get_neighbor_tile([O_ls_cs[1],O_ax_cs[1]])
     P_ls_cs,P_ax_cs = utils.get_row_vals(P1c,0,4)
     print('P3c {}'.format([P_ls_cs[2],P_ax_cs[2]]))
 
     #from O2
-    Q1c= utils.get_neighbor_tile([P_ls_cs[1],P_ax_cs[1]],1)
+    Q1c= utils.get_neighbor_tile([P_ls_cs[1],P_ax_cs[1]])
     Q_ls_cs,Q_ax_cs = Q1c
     #from P2
 
@@ -294,7 +312,7 @@ for i in np.arange(1,len(lss)):
 #right vert triangle
 ls_low = int((A1c[0]+58800)/100)
 ls_high = int((A1c[0]+237900)/100)
-ax_low = int((A1c[1]+120400)/100)
+ax_low = int((A1c[1]+140400)/100)
 ax_high = int((A1c[1]+142000)/100)
 [lss,axs] = utils.getpoints((ls_low,ax_low),(ls_high,ax_high))
 print(lss[0],lss[-1],axs[0],axs[-1])
@@ -302,9 +320,18 @@ for i in np.arange(1,len(lss)):
     new_ax[lss[i-1]:lss[i],ax_low:axs[-i]]=128
 
 ### save
+
 ax_tif_filestring='/Users/emily/Desktop/data/ax_limits.png'
 ax_tif_filestring2 = '/Users/emily/Desktop/data/ax_limits_{}.png'.format(now.strftime("%Y%m%d"))
+try:
+    os.remove(ax_tif_filestring)
+    print('removed file {}'.format(ax_tif_filestring))
+    os.remove(ax_tif_filestring2)
+    print('removed file {}'.format(ax_tif_filestring2))
+except:
+    print('no previous files found to delete, this is fine')
 tif.imsave(ax_tif_filestring,new_ax.astype('uint8'),photometric='rgb')
 tif.imsave(ax_tif_filestring2,new_ax.astype('uint8'),photometric='rgb')
+print('saved new files')
 
 #
