@@ -6,14 +6,16 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import pandas as pd
 
-def get_row_vals(centers,index_of_centers,length_of_row):
+
+def get_row_vals(centers, index_of_centers, length_of_row, ls_row_offset=None, ax_row_offset=None):
     ''' function to auto-generate row values from a single center val
+    NOTE: TO CHANGE M2/E2 but not M13/E13, change this value
     INPUTS:
         1. centers: a tuple or list of center values for a tile in Zaber units (e.g. ls = 238800, ax=47200 the input would be [238800,47200] or (238800,47200))
         2. index_of_centers: an integer indicating which tile value you're inputting (e.g. M1 = element 0, M2 = element 1... etc)
         3. length_of_row: an integer indicating how many tiles in the row (e.g. 1 if A, 4 if B... 13 if M... 1 if Q)
-    OUTPUTS:
-        two lists ls_row_vals and ax_row_vals
+        4. ls_row_offset: (optional) an integer indicating the offset for ls values (default is -1300)
+        5. ax_row_offset: (optional) an integer indicating the offset for ax values (default is 21200)
     EXAMPLE:
         M1c = (230100, 46500)
         M_ls_cs,M_ax_cs = get_row_vals(M1c,0,13)
@@ -21,35 +23,48 @@ def get_row_vals(centers,index_of_centers,length_of_row):
         print(M_ax_cs)
         > [230100, 228100, 226100, 224100, 222100, 220100, 218100, 216100, 214100, 212100, 210100, 208100, 206100]
         > [46500, 67700, 88900, 110100, 131300, 152500, 173700, 194900, 216100, 237300, 258500, 279700, 300900]
-
-    NOTE: if you have K2c, try
+    EXAMPLE 2: if you have K2c, try
         K_ls_cs, K_ax_cs = get_row_vals(K2c,1,13) because K2 is the 1st element in the list of K tile values from 1-13
     '''
-    ls_row_offset = -1300 #was -1400
-    ax_row_offset= 21200 #was 21000
+    if ls_row_offset is not None:
+        print(f"ls row offset was provided: {ls_row_offset}")
+    else:
+        ls_row_offset=-1650
+        #print(f"ls row offset was not provided, using default: {ls_row_offset}")
+    if ax_row_offset is not None:
+        print(f"ax row offset was provided: {ax_row_offset}")
+    else:
+        ax_row_offset=21340
+        #print(f"ax row offset was not provided, using default: {ax_row_offset}")
+
+
     #print('using ls_row_offset of {} and ax_row_offset of {}'.format(ls_row_offset,ax_row_offset))
     ls = centers[0]
     ax = centers[1]
     ls_row_vals=[]
     ax_row_vals=[]
-    # TO CHANGE M2/E2 but not M13/E13, change this value
+    
     for i in np.arange(0-index_of_centers,length_of_row-index_of_centers):
         ls_row_vals.append(ls+i*ls_row_offset)
         ax_row_vals.append(ax+i*ax_row_offset)
         #print('on i {}, {} '.format(i,i*ax_row_offset))
     return ls_row_vals, ax_row_vals
 
-def get_neighbor_tile(centers):
+def get_neighbor_tile(centers,L1_to_M2_offset=None):
     ''' INPUTS
         1. centers: a tuple or list of center values for a tile in Zaber units (e.g. ls = 238800, ax=47200 the input would be [238800,47200] or (238800,47200))
 
         OUTPUTS:
         1. new list with the center values in [ls,ax]
     '''
+    if L1_to_M2_offset is not None:
+        print(f"L1 to M2 offset was provided: {L1_to_M2_offset[0]}")
+    else:
+        L1_to_M2_offset=[17700,11939] #17800,11900: TO CHANGE  M13/E13 but not M2/E2 change this value
+        #print(f"L1 to M2 offset was not provided, using default: {L1_to_M2_offset[0]}")
+
     ls = centers[0]
     ax = centers[1]
-    # TO CHANGE  M13/E13 but not M2/E2 change this value
-    L1_to_M2_offset = [17800,11900] #was 17600, 12200
     new_centers = [ls+L1_to_M2_offset[0],ax+L1_to_M2_offset[1]]
     return new_centers
 
@@ -57,8 +72,8 @@ def get_relative_vals(df, location1, location2, adj_val):
     '''
     INPUTS:
         1. df: a pandas DataFrame with three columns: name, ls_guess, and ax_new_guess
-        2.
-        3.
+        2. loc1 : a string with the name of the first location (e.g. M1c)
+        3. loc2: a string with the name of the second location (e.g. M2c)
         4. adj_val = adjust the outputs by this amount
     OUTPUTS:
         1. ls_high the highest ls value as an integer
@@ -70,6 +85,7 @@ def get_relative_vals(df, location1, location2, adj_val):
     ax2 = int(df.ax_new_guess[df.name==location2]/100)
     ls1= int(df.ls_guess[df.name==location1]/100)
     ls2 = int(df.ls_guess[df.name==location2]/100)
+    #print(ax1,ax2,ls1,ls2)
     if ls1 > ls2:
         ls_high = ls1
         ls_low = ls2
