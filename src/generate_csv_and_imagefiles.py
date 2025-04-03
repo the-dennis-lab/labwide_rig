@@ -78,7 +78,7 @@ for i in np.arange(0,len(all_ax_cs)):
 plt.scatter(all_ax_cs[0],all_ls_cs[0],s=100)
 plt.xlim([0,350000])
 plt.ylim([-5000,345000])
-plt.title('entered: {} \n check E2 center is [ls,ax]: {} \n E12 center is {} \n  L10 center is {}'.format((sys.argv[1:2],E_ls_cs[1],E_ax_cs[1]),(E_ls_cs[11],E_ax_cs[11]),(L_ls_cs[9],L_ax_cs[9])))
+plt.title('entered: {} \n check E2 center is [ls,ax]: \n E12 center is {} \n  L10 center is {}'.format((E_ls_cs[1],E_ax_cs[1]),(E_ls_cs[11],E_ax_cs[11]),(L_ls_cs[9],L_ax_cs[9])))
 #plt.scatter(current_file.ax_new_guess,current_file.ls_guess,c='k',alpha=0.2)
 plt.savefig('../../../checkfig.png')
 
