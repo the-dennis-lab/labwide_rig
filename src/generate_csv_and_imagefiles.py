@@ -103,7 +103,7 @@ for i in np.arange(0,len(all_ax_cs)):
 new_dict = {'name':names,'ls_guess':ls_guesses,'ax_new_guess':ax_new_guesses}
 new_csv = pd.DataFrame(new_dict)
 now = datetime.now()
-filestring = "../../../data/zaber_centers_"+now.strftime("%Y%m%d")+".csv"
+filestring = "../../../data/zaber_centers_"+now.strftime("%Y%m%d%H%M")+".csv"
 filestring2 = "../../../data/zaber_centers.csv"
 new_csv.to_csv(filestring,index=False)
 try:
@@ -184,7 +184,7 @@ print(maxv)
 new_ls[bottom:maxv,int((A1c[1]-4100)/100):int((A1c[1]+36500)/100)]=128
 
 ls_tif_filestring='/Users/emily/Desktop/data/ls_limits.png'
-ls_tif_filestring2='/Users/emily/Desktop/data/ls_limits_{}.png'.format(now.strftime("%Y%m%d"))
+ls_tif_filestring2='/Users/emily/Desktop/data/ls_limits_{}.png'.format(now.strftime("%Y%m%d%H%M"))
 tif.imsave(ls_tif_filestring,new_ls.astype('uint8'),photometric='rgb')
 tif.imsave(ls_tif_filestring2,new_ls.astype('uint8'),photometric='rgb')
 
@@ -209,6 +209,7 @@ b_right = ax_high
 
 # get top left triangle filled as 128
 [a,b,c,ax_b1]=utils.get_relative_vals(new_csv,"B1","B4",0)
+print('ax_b1 is  ',ax_b1)
 # want intersect of A1_top_ls/100 and ax_b1 - 60 as the top
 ls_low = int(A1_top_ls/100) #int((A1c[0]-10900)/100)
 ls_high = int((A1_top_ls+88580)/100) #a
@@ -217,8 +218,11 @@ ax_high = int(A1_top_ax/100) #int((A1c[1]-700)/100)
 print(ls_low,ls_high,ax_low,ax_high)
 [lss,axs] = utils.getpoints((ls_high,ax_low),(ls_low,ax_high)) # returns integer locations on line
 # find intersect and use this
+
+diffval=100
 for val in zip(lss,axs):
-    if val[1]==ax_b1:
+    if abs(ax_b1-val[1]) < diffval:
+        diffval=abs(ax_b1-val[1])
         ls_new=val[0]
 #-60 below is from empirical observation 2025.03.29 by ejd
 [lss,axs] = utils.getpoints((ls_high,ax_low),(ls_new-60,ax_b1+1)) # returns integer locations on line
@@ -321,7 +325,7 @@ for i in np.arange(1,len(lss)):
 ### save
 
 ax_tif_filestring='/Users/emily/Desktop/data/ax_limits.png'
-ax_tif_filestring2 = '/Users/emily/Desktop/data/ax_limits_{}.png'.format(now.strftime("%Y%m%d"))
+ax_tif_filestring2 = '/Users/emily/Desktop/data/ax_limits_{}.png'.format(now.strftime("%Y%m%d%H%M"))
 try:
     os.remove(ax_tif_filestring)
     print('removed file {}'.format(ax_tif_filestring))

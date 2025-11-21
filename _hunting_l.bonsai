@@ -73,7 +73,7 @@
               <Combinator xsi:type="sleap:PredictSinglePose">
                 <sleap:ModelFileName>C:\Users\emily\Desktop\sleap\frozen_graph.pb</sleap:ModelFileName>
                 <sleap:TrainingConfig>C:\Users\emily\Desktop\sleap\models\250521_180123.single_instance.n=955\training_config.json</sleap:TrainingConfig>
-                <sleap:PartMinConfidence>0.45</sleap:PartMinConfidence>
+                <sleap:PartMinConfidence>0.5</sleap:PartMinConfidence>
                 <sleap:ScaleFactor>1</sleap:ScaleFactor>
                 <sleap:ColorConversion xsi:nil="true" />
               </Combinator>
@@ -361,7 +361,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
-          <Value>1500</Value>
+          <Value>1600</Value>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -464,7 +464,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>N6</Value>
+                <Value>D8</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -472,7 +472,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E5</Value>
+                <Value>F2</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -480,7 +480,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E7</Value>
+                <Value>N6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -488,7 +488,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>L4</Value>
+                <Value>E1</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -496,7 +496,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>K2</Value>
+                <Value>F6</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -504,7 +504,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>Q1</Value>
+                <Value>J3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -512,7 +512,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>O7</Value>
+                <Value>M3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
@@ -520,7 +520,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>E3</Value>
+                <Value>L10</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -704,7 +704,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\ls_limits.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\ls_limits_202508131419.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
@@ -763,7 +763,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:LoadImage">
-          <cv:FileName>C:\Users\emily\Desktop\data\ax_limits.png</cv:FileName>
+          <cv:FileName>C:\Users\emily\Desktop\data\ax_limits_202508131419.png</cv:FileName>
           <cv:Mode>Grayscale</cv:Mode>
         </Combinator>
       </Expression>
@@ -953,7 +953,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM20</port:PortName>
+                <port:PortName>COM30</port:PortName>
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
@@ -989,7 +989,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM12</port:PortName>
+                <port:PortName>COM29</port:PortName>
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
@@ -1007,7 +1007,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>COM16</port:PortName>
+                <port:PortName>COM28</port:PortName>
                 <port:NewLine>\r\n</port:NewLine>
               </Combinator>
             </Expression>
@@ -1177,7 +1177,7 @@ def process(value):
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>hunting</Value>
+                <Value>exploration</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1264,209 +1264,213 @@ def process(value):
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>released_num</Name>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>hickvision_2</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timer">
-                <rx:DueTime>PT1S</rx:DueTime>
-                <rx:Period>PT0S</rx:Period>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
-            </Expression>
-            <Expression xsi:type="Format">
-              <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
-              <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Format" />
-            </Expression>
-            <Expression xsi:type="Format">
-              <Format>-vvv "rtsp://admin:Dennislab@169.254.114.80/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
-              <Selector>Item1,Item2</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Take">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="Arguments" />
-              </PropertyMappings>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:StartProcess">
-                <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
-                <io:Arguments>-vvv "rtsp://admin:Dennislab@169.254.114.80/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_202569-16-10-37.avi'}"</io:Arguments>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="4" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="4" Label="Source2" />
-            <Edge From="4" To="6" Label="Source1" />
-            <Edge From="5" To="6" Label="Source2" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source2" />
-            <Edge From="9" To="10" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>hickvision_2</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>{vcodec=mjpg,vb=800,ab=128,deinterlace}</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Timer">
+                  <rx:DueTime>PT1S</rx:DueTime>
+                  <rx:Period>PT0S</rx:Period>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Timestamp" />
+              </Expression>
+              <Expression xsi:type="Format">
+                <Format>{{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_{0}{1}{2}-{3}-{4}-{5}.avi'}}</Format>
+                <Selector>Timestamp.Year,Timestamp.Month,Timestamp.Day,Timestamp.Hour,Timestamp.Minute,Timestamp.Second</Selector>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:CombineLatest" />
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Format" />
+              </Expression>
+              <Expression xsi:type="Format">
+                <Format>-vvv "rtsp://admin:Dennislab@169.254.73.12/Streaming/Channels/201" --sout "#transcode{0}:standard{1}"</Format>
+                <Selector>Item1,Item2</Selector>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Take">
+                  <rx:Count>1</rx:Count>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="PropertyMapping">
+                <PropertyMappings>
+                  <Property Name="Arguments" />
+                </PropertyMappings>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="io:StartProcess">
+                  <io:FileName>C:\Program Files\VideoLAN\VLC\vlc.exe</io:FileName>
+                  <io:Arguments>-vvv "rtsp://admin:Dennislab@169.254.73.12/Streaming/Channels/201" --sout "#transcode{vcodec=mjpg,vb=800,ab=128,deinterlace}:standard{access=file,mux=ts,dst='C:\\Users\\emily\\Desktop\\data\\thermal_h2_202592-11-0-14.avi'}"</io:Arguments>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="4" Label="Source1" />
+              <Edge From="1" To="2" Label="Source1" />
+              <Edge From="2" To="3" Label="Source1" />
+              <Edge From="3" To="4" Label="Source2" />
+              <Edge From="4" To="6" Label="Source1" />
+              <Edge From="5" To="6" Label="Source2" />
+              <Edge From="6" To="7" Label="Source1" />
+              <Edge From="7" To="8" Label="Source1" />
+              <Edge From="8" To="9" Label="Source2" />
+              <Edge From="9" To="10" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>hs_cam_sync</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:CreateContext">
-                <onix1:Driver>riffa</onix1:Driver>
-                <onix1:Index>0</onix1:Index>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:ConfigureBreakoutBoard">
-                <onix1:Name>BreakoutBoard</onix1:Name>
-                <onix1:Heartbeat>
-                  <onix1:DeviceName>BreakoutBoard/Heartbeat</onix1:DeviceName>
-                  <onix1:DeviceAddress>0</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:BeatsPerSecond>100</onix1:BeatsPerSecond>
-                </onix1:Heartbeat>
-                <onix1:AnalogIO>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>hs_cam_sync</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="onix1:CreateContext">
+                  <onix1:Driver>riffa</onix1:Driver>
+                  <onix1:Index>0</onix1:Index>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="onix1:ConfigureBreakoutBoard">
+                  <onix1:Name>BreakoutBoard</onix1:Name>
+                  <onix1:Heartbeat>
+                    <onix1:DeviceName>BreakoutBoard/Heartbeat</onix1:DeviceName>
+                    <onix1:DeviceAddress>0</onix1:DeviceAddress>
+                    <onix1:Enable>true</onix1:Enable>
+                    <onix1:BeatsPerSecond>100</onix1:BeatsPerSecond>
+                  </onix1:Heartbeat>
+                  <onix1:AnalogIO>
+                    <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
+                    <onix1:DeviceAddress>6</onix1:DeviceAddress>
+                    <onix1:Enable>true</onix1:Enable>
+                    <onix1:InputRange0>TenVolts</onix1:InputRange0>
+                    <onix1:InputRange1>TenVolts</onix1:InputRange1>
+                    <onix1:InputRange2>TenVolts</onix1:InputRange2>
+                    <onix1:InputRange3>TenVolts</onix1:InputRange3>
+                    <onix1:InputRange4>TenVolts</onix1:InputRange4>
+                    <onix1:InputRange5>TenVolts</onix1:InputRange5>
+                    <onix1:InputRange6>TenVolts</onix1:InputRange6>
+                    <onix1:InputRange7>TenVolts</onix1:InputRange7>
+                    <onix1:InputRange8>TenVolts</onix1:InputRange8>
+                    <onix1:InputRange9>TenVolts</onix1:InputRange9>
+                    <onix1:InputRange10>TenVolts</onix1:InputRange10>
+                    <onix1:InputRange11>TenVolts</onix1:InputRange11>
+                    <onix1:Direction0>Input</onix1:Direction0>
+                    <onix1:Direction1>Input</onix1:Direction1>
+                    <onix1:Direction2>Input</onix1:Direction2>
+                    <onix1:Direction3>Input</onix1:Direction3>
+                    <onix1:Direction4>Input</onix1:Direction4>
+                    <onix1:Direction5>Input</onix1:Direction5>
+                    <onix1:Direction6>Input</onix1:Direction6>
+                    <onix1:Direction7>Input</onix1:Direction7>
+                    <onix1:Direction8>Input</onix1:Direction8>
+                    <onix1:Direction9>Input</onix1:Direction9>
+                    <onix1:Direction10>Input</onix1:Direction10>
+                    <onix1:Direction11>Input</onix1:Direction11>
+                  </onix1:AnalogIO>
+                  <onix1:DigitalIO>
+                    <onix1:DeviceName>BreakoutBoard/DigitalIO</onix1:DeviceName>
+                    <onix1:DeviceAddress>7</onix1:DeviceAddress>
+                    <onix1:Enable>true</onix1:Enable>
+                  </onix1:DigitalIO>
+                  <onix1:ClockOutput>
+                    <onix1:DeviceName>BreakoutBoard/OutputClock</onix1:DeviceName>
+                    <onix1:DeviceAddress>5</onix1:DeviceAddress>
+                    <onix1:ClockGate>false</onix1:ClockGate>
+                    <onix1:Frequency>1000000</onix1:Frequency>
+                    <onix1:DutyCycle>50</onix1:DutyCycle>
+                    <onix1:Delay>0</onix1:Delay>
+                  </onix1:ClockOutput>
+                  <onix1:HarpInput>
+                    <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
+                    <onix1:DeviceAddress>12</onix1:DeviceAddress>
+                    <onix1:Enable>true</onix1:Enable>
+                    <onix1:Source>Breakout</onix1:Source>
+                  </onix1:HarpInput>
+                  <onix1:MemoryMonitor>
+                    <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
+                    <onix1:DeviceAddress>10</onix1:DeviceAddress>
+                    <onix1:Enable>false</onix1:Enable>
+                    <onix1:SamplesPerSecond>10</onix1:SamplesPerSecond>
+                  </onix1:MemoryMonitor>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="onix1:StartAcquisition">
+                  <onix1:ReadSize>2048</onix1:ReadSize>
+                  <onix1:WriteSize>2048</onix1:WriteSize>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="onix1:AnalogInput">
                   <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
-                  <onix1:DeviceAddress>6</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:InputRange0>TenVolts</onix1:InputRange0>
-                  <onix1:InputRange1>TenVolts</onix1:InputRange1>
-                  <onix1:InputRange2>TenVolts</onix1:InputRange2>
-                  <onix1:InputRange3>TenVolts</onix1:InputRange3>
-                  <onix1:InputRange4>TenVolts</onix1:InputRange4>
-                  <onix1:InputRange5>TenVolts</onix1:InputRange5>
-                  <onix1:InputRange6>TenVolts</onix1:InputRange6>
-                  <onix1:InputRange7>TenVolts</onix1:InputRange7>
-                  <onix1:InputRange8>TenVolts</onix1:InputRange8>
-                  <onix1:InputRange9>TenVolts</onix1:InputRange9>
-                  <onix1:InputRange10>TenVolts</onix1:InputRange10>
-                  <onix1:InputRange11>TenVolts</onix1:InputRange11>
-                  <onix1:Direction0>Input</onix1:Direction0>
-                  <onix1:Direction1>Input</onix1:Direction1>
-                  <onix1:Direction2>Input</onix1:Direction2>
-                  <onix1:Direction3>Input</onix1:Direction3>
-                  <onix1:Direction4>Input</onix1:Direction4>
-                  <onix1:Direction5>Input</onix1:Direction5>
-                  <onix1:Direction6>Input</onix1:Direction6>
-                  <onix1:Direction7>Input</onix1:Direction7>
-                  <onix1:Direction8>Input</onix1:Direction8>
-                  <onix1:Direction9>Input</onix1:Direction9>
-                  <onix1:Direction10>Input</onix1:Direction10>
-                  <onix1:Direction11>Input</onix1:Direction11>
-                </onix1:AnalogIO>
-                <onix1:DigitalIO>
-                  <onix1:DeviceName>BreakoutBoard/DigitalIO</onix1:DeviceName>
-                  <onix1:DeviceAddress>7</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                </onix1:DigitalIO>
-                <onix1:ClockOutput>
-                  <onix1:DeviceName>BreakoutBoard/OutputClock</onix1:DeviceName>
-                  <onix1:DeviceAddress>5</onix1:DeviceAddress>
-                  <onix1:ClockGate>false</onix1:ClockGate>
-                  <onix1:Frequency>1000000</onix1:Frequency>
-                  <onix1:DutyCycle>50</onix1:DutyCycle>
-                  <onix1:Delay>0</onix1:Delay>
-                </onix1:ClockOutput>
-                <onix1:HarpInput>
-                  <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
-                  <onix1:DeviceAddress>12</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:Source>Breakout</onix1:Source>
-                </onix1:HarpInput>
-                <onix1:MemoryMonitor>
-                  <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
-                  <onix1:DeviceAddress>10</onix1:DeviceAddress>
-                  <onix1:Enable>false</onix1:Enable>
-                  <onix1:SamplesPerSecond>10</onix1:SamplesPerSecond>
-                </onix1:MemoryMonitor>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:StartAcquisition">
-                <onix1:ReadSize>2048</onix1:ReadSize>
-                <onix1:WriteSize>2048</onix1:WriteSize>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:AnalogInput">
-                <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
-                <onix1:BufferSize>100</onix1:BufferSize>
-                <onix1:DataType>S16</onix1:DataType>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>AnalogData</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Submatrix">
-                <dsp:StartRow>0</dsp:StartRow>
-                <dsp:EndRow>1</dsp:EndRow>
-                <dsp:StartCol>0</dsp:StartCol>
-                <dsp:EndCol xsi:nil="true" />
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="dsp:ConvertToArray">
-              <dsp:Depth xsi:nil="true" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="GreaterThan">
-              <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
-                <Value>150</Value>
-              </Operand>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:DistinctUntilChanged" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timestamp" />
-            </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>C:\Users\emily\Desktop\data\hs_cam_frames_.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>false</io:Overwrite>
-              <io:Suffix>Timestamp</io:Suffix>
-              <io:IncludeHeader>false</io:IncludeHeader>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-          </Edges>
-        </Workflow>
+                  <onix1:BufferSize>100</onix1:BufferSize>
+                  <onix1:DataType>S16</onix1:DataType>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="MemberSelector">
+                <Selector>AnalogData</Selector>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="dsp:Submatrix">
+                  <dsp:StartRow>0</dsp:StartRow>
+                  <dsp:EndRow>1</dsp:EndRow>
+                  <dsp:StartCol>0</dsp:StartCol>
+                  <dsp:EndCol xsi:nil="true" />
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="dsp:ConvertToArray">
+                <dsp:Depth xsi:nil="true" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Merge" />
+              </Expression>
+              <Expression xsi:type="GreaterThan">
+                <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+                  <Value>150</Value>
+                </Operand>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:DistinctUntilChanged" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Timestamp" />
+              </Expression>
+              <Expression xsi:type="io:CsvWriter">
+                <io:FileName>C:\Users\emily\Desktop\data\hs_cam_frames_.csv</io:FileName>
+                <io:Append>false</io:Append>
+                <io:Overwrite>false</io:Overwrite>
+                <io:Suffix>Timestamp</io:Suffix>
+                <io:IncludeHeader>false</io:IncludeHeader>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+              <Edge From="1" To="2" Label="Source1" />
+              <Edge From="3" To="4" Label="Source1" />
+              <Edge From="4" To="5" Label="Source1" />
+              <Edge From="5" To="6" Label="Source1" />
+              <Edge From="6" To="7" Label="Source1" />
+              <Edge From="7" To="8" Label="Source1" />
+              <Edge From="8" To="9" Label="Source1" />
+              <Edge From="9" To="10" Label="Source1" />
+              <Edge From="10" To="11" Label="Source1" />
+              <Edge From="11" To="12" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>

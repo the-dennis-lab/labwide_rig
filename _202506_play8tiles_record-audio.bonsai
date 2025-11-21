@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.5"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:onix1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:ipy="clr-namespace:Bonsai.Scripting.IronPython;assembly=Bonsai.Scripting.IronPython"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:CreateContext">
+          <onix1:Driver>riffa</onix1:Driver>
+          <onix1:Index>0</onix1:Index>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:ConfigureBreakoutBoard">
+          <onix1:Name>BreakoutBoard</onix1:Name>
+          <onix1:Heartbeat>
+            <onix1:DeviceName>BreakoutBoard/Heartbeat</onix1:DeviceName>
+            <onix1:DeviceAddress>0</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
+            <onix1:BeatsPerSecond>100</onix1:BeatsPerSecond>
+          </onix1:Heartbeat>
+          <onix1:AnalogIO>
+            <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
+            <onix1:DeviceAddress>6</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
+            <onix1:InputRange0>TenVolts</onix1:InputRange0>
+            <onix1:InputRange1>TenVolts</onix1:InputRange1>
+            <onix1:InputRange2>TenVolts</onix1:InputRange2>
+            <onix1:InputRange3>TenVolts</onix1:InputRange3>
+            <onix1:InputRange4>TenVolts</onix1:InputRange4>
+            <onix1:InputRange5>TenVolts</onix1:InputRange5>
+            <onix1:InputRange6>TenVolts</onix1:InputRange6>
+            <onix1:InputRange7>TenVolts</onix1:InputRange7>
+            <onix1:InputRange8>TenVolts</onix1:InputRange8>
+            <onix1:InputRange9>TenVolts</onix1:InputRange9>
+            <onix1:InputRange10>TenVolts</onix1:InputRange10>
+            <onix1:InputRange11>TenVolts</onix1:InputRange11>
+            <onix1:Direction0>Input</onix1:Direction0>
+            <onix1:Direction1>Input</onix1:Direction1>
+            <onix1:Direction2>Input</onix1:Direction2>
+            <onix1:Direction3>Input</onix1:Direction3>
+            <onix1:Direction4>Input</onix1:Direction4>
+            <onix1:Direction5>Input</onix1:Direction5>
+            <onix1:Direction6>Input</onix1:Direction6>
+            <onix1:Direction7>Input</onix1:Direction7>
+            <onix1:Direction8>Input</onix1:Direction8>
+            <onix1:Direction9>Input</onix1:Direction9>
+            <onix1:Direction10>Input</onix1:Direction10>
+            <onix1:Direction11>Input</onix1:Direction11>
+          </onix1:AnalogIO>
+          <onix1:DigitalIO>
+            <onix1:DeviceName>BreakoutBoard/DigitalIO</onix1:DeviceName>
+            <onix1:DeviceAddress>7</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
+          </onix1:DigitalIO>
+          <onix1:ClockOutput>
+            <onix1:DeviceName>BreakoutBoard/OutputClock</onix1:DeviceName>
+            <onix1:DeviceAddress>5</onix1:DeviceAddress>
+            <onix1:ClockGate>false</onix1:ClockGate>
+            <onix1:Frequency>1000000</onix1:Frequency>
+            <onix1:DutyCycle>50</onix1:DutyCycle>
+            <onix1:Delay>0</onix1:Delay>
+          </onix1:ClockOutput>
+          <onix1:HarpInput>
+            <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
+            <onix1:DeviceAddress>12</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
+            <onix1:Source>Breakout</onix1:Source>
+          </onix1:HarpInput>
+          <onix1:MemoryMonitor>
+            <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
+            <onix1:DeviceAddress>10</onix1:DeviceAddress>
+            <onix1:Enable>false</onix1:Enable>
+            <onix1:SamplesPerSecond>10</onix1:SamplesPerSecond>
+          </onix1:MemoryMonitor>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:StartAcquisition">
+          <onix1:ReadSize>2048</onix1:ReadSize>
+          <onix1:WriteSize>2048</onix1:WriteSize>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:AnalogInput">
+          <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
+          <onix1:BufferSize>100</onix1:BufferSize>
+          <onix1:DataType>S16</onix1:DataType>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>AnalogData</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:Submatrix">
+          <dsp:StartRow>0</dsp:StartRow>
+          <dsp:EndRow>1</dsp:EndRow>
+          <dsp:StartCol>0</dsp:StartCol>
+          <dsp:EndCol xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:MatrixWriter">
+          <dsp:Path>C:\Users\emily\Desktop\data\audio_SUB_</dsp:Path>
+          <dsp:Suffix>Timestamp</dsp:Suffix>
+          <dsp:Overwrite>false</dsp:Overwrite>
+          <dsp:Layout>ColumnMajor</dsp:Layout>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT4S</rx:DueTime>
+          <rx:Period>PT2S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>1</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:Accumulate" />
+      <Expression xsi:type="ipy:PythonTransform">
+        <ipy:Name>chirp</ipy:Name>
+        <ipy:Script>import math
+from System import Tuple
+
+@returns(str)
+def process(value):
+  # want 0,1,2 = 1 3,4,5 = 2...
+  val=2**int(math.floor(value/3.1))
+  if value==0:
+     val=1
+  chirp_str="{}_0.7".format(val)
+
+
+  return chirp_str
+</ipy:Script>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\emily\Desktop\data\test_bandk_.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>false</io:Overwrite>
+        <io:Suffix>Timestamp</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduinoPort_1" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM20</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduinoPort_2" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM18</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduinoPort_4" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM26</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduinoPort_8" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM27</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduinoPort_16" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM29</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduinoPort_32" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM22</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduino_Port_64" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM16</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="PortName" DisplayName="arduino_Port_128" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="port:SerialWriteLine">
+          <port:PortName>COM32</port:PortName>
+          <port:NewLine>\r\n</port:NewLine>
+        </Combinator>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="10" To="14" Label="Source2" />
+      <Edge From="10" To="16" Label="Source1" />
+      <Edge From="10" To="18" Label="Source1" />
+      <Edge From="10" To="20" Label="Source1" />
+      <Edge From="10" To="22" Label="Source1" />
+      <Edge From="10" To="24" Label="Source1" />
+      <Edge From="10" To="26" Label="Source2" />
+      <Edge From="10" To="28" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source2" />
+      <Edge From="17" To="18" Label="Source2" />
+      <Edge From="19" To="20" Label="Source2" />
+      <Edge From="21" To="22" Label="Source2" />
+      <Edge From="23" To="24" Label="Source2" />
+      <Edge From="25" To="26" Label="Source1" />
+      <Edge From="27" To="28" Label="Source2" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
